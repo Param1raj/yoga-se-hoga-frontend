@@ -2,7 +2,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import styles from "./page.module.css";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import ButtonComp from "@/components/ButtonComp";
 import AccordionVideoList from "@/components/Video/AccordionVideoList";
 import VideoWithDetails from "@/components/Video/VideoWithDetails";

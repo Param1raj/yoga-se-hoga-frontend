@@ -1,5 +1,4 @@
 "use client";
-
 import styles from "./page.module.css";
 import { Box, Typography } from "@mui/material";
 import VideoBaner from "@/components/Home/Videobanne/VideoBaner";

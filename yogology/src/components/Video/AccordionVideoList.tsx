@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 function AccordionVideoList({
   title,
@@ -19,6 +20,7 @@ function AccordionVideoList({
   title: string;
   List: string[];
 }) {
+  const { push, replace } = useRouter();
   const list = {
     visible: {
       opacity: 1,
@@ -36,9 +38,14 @@ function AccordionVideoList({
     hidden: { opacity: 0, x: -100 },
   };
   const [isOpen, setIsOpen] = useState(false);
+  const [colored, setColored] = useState(0);
   return (
-    <Accordion sx={{ marginTop: "10px" }} onClick={() => setIsOpen(!isOpen)}>
-      <AccordionSummary id="panel1d-header" expandIcon={<ExpandMoreIcon />}>
+    <Accordion sx={{ marginTop: "10px" }}>
+      <AccordionSummary
+        id="panel1d-header"
+        onClick={() => setIsOpen(!isOpen)}
+        expandIcon={<ExpandMoreIcon />}
+      >
         <Typography>{title}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{ width: "100%", height: "100%", marginTop: -2 }}>
@@ -47,11 +54,25 @@ function AccordionVideoList({
           variants={list}
           animate={isOpen ? "visible" : "hidden"}
         >
-          {List.map((VideoTitle) => (
-            <motion.div variants={item}>
-              <ListItemButton>
+          {List.map((VideoTitle, i) => (
+            <motion.div
+              variants={item}
+              onClick={() => {
+                replace("/videos");
+                setColored(i);
+              }}
+            >
+              <ListItemButton
+                sx={{
+                  border:
+                    colored === i ? "2px solid #5F2C70" : "2px solid white",
+                  borderRadius: "5px",
+                  color: colored === i ? "#5F2C70" : "black",
+                  transition: "border 300ms ease",
+                }}
+              >
                 <ListItemIcon>
-                  <PlayCircleFilledIcon />
+                  <PlayCircleFilledIcon color={"inherit"} />
                 </ListItemIcon>
                 <ListItemText primary={VideoTitle} />
               </ListItemButton>

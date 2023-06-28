@@ -17,6 +17,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import Image from "next/image";
 import logo from "../../assets/images/GitaWebLogo.png";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
 const pages = ["Home", "About", "Contact", "Pain relief"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -26,7 +27,7 @@ function ResponsiveAppBar() {
   // const query = useSearchParams();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-  const [active, setActive] = useState<null | String>("Home");
+  const [active, setActive] = useState<null | String>("/");
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -43,11 +44,20 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
   console.log("pathName", pathName);
-  // const router = useRouter();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   console.log(router.pathname);
-  // }, []);
+  const container = {
+    visible: {},
+    hidden: {},
+  };
+  const child = {
+    visible: { scaleX: 1 },
+    hidden: { scaleX: 0 },
+  };
+
+  useEffect(() => {
+    setActive(pathName);
+  }, [pathName]);
   return (
     <AppBar
       sx={{
@@ -63,7 +73,9 @@ function ResponsiveAppBar() {
         }}
       >
         <Toolbar disableGutters sx={{ paddingInline: "80px" }}>
-          <Image src={logo} alt="logo" />
+          <a href="/">
+            <Image src={logo} alt="logo" />
+          </a>
           <Box
             sx={{
               flexGrow: 1,
@@ -114,30 +126,124 @@ function ResponsiveAppBar() {
               width: { xs: "0%", sm: "20%", md: "30%", lg: "25%" },
             }}
           >
-            {pages.map((page) => (
-              <a href="#" key={page}>
+            <motion.div
+              variants={container}
+              initial={pathName === "/" ? "visible" : "hidden"}
+              whileHover="visible"
+            >
+              <a href="/">
                 <Box
                   sx={{
                     transition: "border 500ms ease",
                     border: "1px solid white",
-                    borderBottom: active === page ? "1px solid #1D0427" : "",
-                  }}
-                  onClick={(e) => {
-                    setActive(page);
+                    cursor: "pointer",
                   }}
                 >
-                  <Typography color={"#322038"}>{page}</Typography>
-                  {/* <Box
-                    className={"bottom"}
-                    sx={{
-                      border: "1px solid #322038",
-                      display: "none",
-                      width: "0%",
-                    }}
-                  ></Box> */}
+                  <Typography color={"#322038"}>Home</Typography>
+                  <motion.div
+                    variants={child}
+                    style={{ border: "1px solid #5F2C70" }}
+                  ></motion.div>
                 </Box>
               </a>
-            ))}
+            </motion.div>
+            <motion.div
+              variants={container}
+              initial={pathName == "/about" ? "visible" : "hidden"}
+              whileHover="visible"
+            >
+              <a href="/about">
+                <Box
+                  sx={{
+                    transition: "border 500ms ease",
+                    border: "1px solid white",
+                    cursor: "pointer",
+                  }}
+                  onClick={(e) => {
+                    router.replace("/about");
+                    router.refresh();
+                  }}
+                >
+                  <Typography color={"#322038"}>about</Typography>
+                  <motion.div
+                    variants={child}
+                    style={{ border: "1px solid #5F2C70" }}
+                  ></motion.div>
+                </Box>
+              </a>
+            </motion.div>
+            <motion.div
+              variants={container}
+              initial={pathName === "/contact" ? "visible" : "hidden"}
+              whileHover="visible"
+            >
+              <a href="/contact">
+                <Box
+                  sx={{
+                    transition: "border 500ms ease",
+                    border: "1px solid white",
+                    cursor: "pointer",
+                  }}
+                  onClick={(e) => {
+                    router.replace("/contact");
+                  }}
+                >
+                  <Typography color={"#322038"}>Contact</Typography>
+                  <motion.div
+                    variants={child}
+                    style={{ border: "1px solid #5F2C70" }}
+                  ></motion.div>
+                </Box>
+              </a>
+            </motion.div>
+            <motion.div
+              variants={container}
+              initial={pathName === "/pain-relief" ? "visible" : "hidden"}
+              whileHover="visible"
+            >
+              <a href="/pain-relief">
+                <Box
+                  sx={{
+                    transition: "border 500ms ease",
+                    border: "1px solid white",
+                    cursor: "pointer",
+                  }}
+                  onClick={(e) => {
+                    router.replace("/pain-relief");
+                  }}
+                >
+                  <Typography color={"#322038"}>Pain relief</Typography>
+                  <motion.div
+                    variants={child}
+                    style={{ border: "1px solid #5F2C70" }}
+                  ></motion.div>
+                </Box>
+              </a>
+            </motion.div>
+            <motion.div
+              variants={container}
+              initial={pathName === "/blogs" ? "visible" : "hidden"}
+              whileHover="visible"
+            >
+              <a href="/blogs">
+                <Box
+                  sx={{
+                    transition: "border 500ms ease",
+                    border: "1px solid white",
+                    cursor: "pointer",
+                  }}
+                  onClick={(e) => {
+                    router.replace("/blogs");
+                  }}
+                >
+                  <Typography color={"#322038"}>Blogs</Typography>
+                  <motion.div
+                    variants={child}
+                    style={{ border: "1px solid #5F2C70" }}
+                  ></motion.div>
+                </Box>
+              </a>
+            </motion.div>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
