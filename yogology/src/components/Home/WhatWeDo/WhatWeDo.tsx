@@ -71,7 +71,7 @@ function WhatWeDo() {
         </Grid>
         <ButtonComp text={"More About Us"} />
       </Stack>
-    </Stack>
+    </Stack>                          
   );
 }
 

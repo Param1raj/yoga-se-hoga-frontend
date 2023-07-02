@@ -2,18 +2,20 @@
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+
 type cardprops = {
   image: any;
   title: string;
   caption: string;
+  count?: number;
 };
 
-function ServiceCard({ image, title, caption }: cardprops) {
+function ServiceCard({ image, title, caption, count = 3 }: cardprops) {
   const [isHovering, setIsHovering] = useState(false);
   return (
     <Grid
       item
-      xs={3}
+      xs={count}
       height={"100%"}
       onMouseEnter={(e) => {
         setIsHovering(true);
@@ -24,7 +26,6 @@ function ServiceCard({ image, title, caption }: cardprops) {
     >
       <Paper
         sx={{
-          //   border: "1px solid red",
           display: "flex",
           alignItems: "center",
           height: "100%",
@@ -37,13 +38,7 @@ function ServiceCard({ image, title, caption }: cardprops) {
         }}
         elevation={0}
       >
-        <Stack
-          spacing={2}
-          width={"100%"}
-          height={"70%"}
-          //   border={"1px solid blue"}
-          alignItems={"center"}
-        >
+        <Stack spacing={2} width={"100%"} height={"70%"} alignItems={"center"}>
           <Box textAlign={"center"} color={isHovering ? "#5F2C70" : "black"}>
             {image}
           </Box>

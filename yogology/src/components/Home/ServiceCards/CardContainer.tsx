@@ -31,7 +31,6 @@ const services = [
 function CardContainer() {
   return (
     <Box
-      // border={"1px solid red"}
       width={"100%"}
       height={"500px"}
       display={"flex"}

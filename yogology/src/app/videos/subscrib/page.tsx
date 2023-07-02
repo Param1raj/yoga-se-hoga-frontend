@@ -42,7 +42,7 @@ const VideoList = [
   "SomeListed Video",
 ];
 function page() {
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState("2");
   const forPreview = true;
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -323,7 +323,7 @@ function page() {
                   <AccordionVideoList title={"Intermediate"} List={VideoList} />
                   <AccordionVideoList title={"Advance"} List={VideoList} /> */}
                 </Typography>
-                <Accordion>
+                <Accordion sx={{ background: "transparent" }}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -468,7 +468,7 @@ function page() {
                     </Box>
                   </AccordionDetails>
                 </Accordion>
-                <Accordion>
+                <Accordion sx={{ background: "transparent" }}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
@@ -482,7 +482,7 @@ function page() {
                     <Typography>Coming Soon</Typography>
                   </AccordionDetails>
                 </Accordion>
-                <Accordion>
+                <Accordion sx={{ background: "transparent" }}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
@@ -505,7 +505,7 @@ function page() {
                   padding={"0px"}
                   sx={{
                     // boxShadow:
-                    //   " rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px",
+                    // " rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px",
                     display: "flex",
                   }}
                 >

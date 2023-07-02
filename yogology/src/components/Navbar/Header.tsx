@@ -164,7 +164,7 @@ function ResponsiveAppBar() {
                     router.refresh();
                   }}
                 >
-                  <Typography color={"#322038"}>about</Typography>
+                  <Typography color={"#322038"}>About</Typography>
                   <motion.div
                     variants={child}
                     style={{ border: "1px solid #5F2C70" }}

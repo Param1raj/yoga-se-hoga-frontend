@@ -1,12 +1,21 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-function HoverInput({ label, width }: { label: string; width: string }) {
+function HoverInput({
+  label,
+  width,
+  placeholder,
+}: {
+  label: string;
+  width: string;
+  placeholder?: string;
+}) {
   return (
     <TextField
       id="standard-basic"
       label={label}
       variant="standard"
+      placeholder={placeholder}
       sx={{
         "& #standard-basic": {
           color: "#847988",
@@ -17,7 +26,7 @@ function HoverInput({ label, width }: { label: string; width: string }) {
           fontFamily: ["Nuito", "sans-serif"],
         },
         "& .css-v4u5dn-MuiInputBase-root-MuiInput-root": {
-          borderBottom: "1px solid #847988",
+          borderBottom: !placeholder ? "1px solid #847988" : "",
         },
         "& .css-v4u5dn-MuiInputBase-root-MuiInput-root::before": {
           content: '""',
