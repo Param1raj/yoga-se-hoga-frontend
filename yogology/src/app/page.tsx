@@ -9,11 +9,20 @@ import WhatWeDo from "@/components/Home/WhatWeDo/WhatWeDo";
 import Careers from "@/components/Home/Careers/Careers";
 import EmailSubscrib from "@/components/Home/EmailSubscrib/EmailSubscrib";
 import ContactUs from "@/components/Home/ContactUs/ContactUs";
+import { useEffect } from "react";
 
 export default function Home() {
+  let path = "./waterfall.mp3";
+  let audio = new Audio(path);
+  useEffect(() => {
+    console.log(audio);
+    audio.play();
+  }, []);
   return (
     <div className={styles.main}>
+      {/* <audio src={path} controls={false}></audio> */}
       <Box padding={"120px"} width={"50%"} marginTop={"0px"}>
+        {/* <AudioPlayer /> */}
         <Box
           display={"flex"}
           alignItems={"center"}
