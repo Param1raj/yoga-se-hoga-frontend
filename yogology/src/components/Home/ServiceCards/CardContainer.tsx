@@ -32,12 +32,20 @@ function CardContainer() {
   return (
     <Box
       width={"100%"}
-      height={"500px"}
+      height={{ md: "25rem", lg: "31rem" }}
       display={"flex"}
       justifyContent={"center"}
       alignItems={"center"}
     >
-      <Grid container spacing={3} width={"70%"} margin={"auto"} height={"65%"}>
+      <Grid
+        container
+        spacing={3}
+        display={"grid"}
+        gridTemplateColumns={{ md: "repeat(2,1fr)", lg: "repeat(4,1fr)" }}
+        width={{ md: "75%", lg: "95%", xl: "75%" }}
+        margin={"auto"}
+        height={{ md: "80%", lg: "63%", xl: "65%" }}
+      >
         {services.map(({ title, image, caption }) => {
           return (
             <ServiceCard

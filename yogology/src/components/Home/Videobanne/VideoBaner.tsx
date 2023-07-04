@@ -11,7 +11,7 @@ export default function VideoBaner() {
   return (
     <Box
       width={"100%"}
-      height={"681px"}
+      height={{ md: "30rem", lg: "35rem", l: "43rem" }}
       sx={{
         backgroundImage: `url('${VideoBanner.src}')`,
         backgroundRepeat: "no-repeat",

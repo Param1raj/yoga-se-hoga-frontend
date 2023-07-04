@@ -1,10 +1,10 @@
-import React from "react";
-
-import { Box, Grid, Stack, Typography } from "@mui/material";
-// import background from "../../assets/images/loginbackground.jpg";
+"use client";
+import React, { useCallback } from "react";
+import { Grid, Stack, Typography } from "@mui/material";
 import HoverInput from "@/components/HoverInput";
 import ButtonComp from "@/components/ButtonComp";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 function LoginSgnup({
   isForLogin,
   image,
@@ -12,6 +12,8 @@ function LoginSgnup({
   isForLogin: boolean;
   image: string;
 }) {
+  const Login = useCallback(() => {}, []);
+  const { replace } = useRouter();
   return (
     <Grid container>
       <Grid
@@ -66,7 +68,7 @@ function LoginSgnup({
             >
               <Typography
                 variant="body1"
-                fontFamily={("Kumbh Sans", "sans-serif")}
+                fontFamily={["Kumbh Sans", "sans-serif"]}
                 textTransform={"uppercase"}
                 fontWeight={"600"}
               >
@@ -85,7 +87,6 @@ function LoginSgnup({
                   variant="body1"
                   component={"p"}
                   fontFamily={"Kumbh Sans"}
-                  //   textTransform={"uppercase"}
                   fontWeight={"700"}
                   fontSize={"3rem"}
                 >
@@ -117,7 +118,10 @@ function LoginSgnup({
                   initial={{ y: "100px", opacity: 0 }}
                   animate={{ y: ["50px", "0px"], opacity: 1 }}
                 >
-                  <HoverInput width={"80%"} label={"Email"} />
+                  <HoverInput
+                    width={"80%"}
+                    label={isForLogin ? "Email" : "Phone"}
+                  />
                 </motion.div>
               </Grid>
               <Grid item xs={12} marginTop={"30px"}>
@@ -133,7 +137,7 @@ function LoginSgnup({
               initial={{ y: "100px", opacity: 0 }}
               animate={{ y: ["50px", "0px"], opacity: 1 }}
             >
-              <ButtonComp text={"Login"} />
+              <ButtonComp text={isForLogin ? "Login" : "Sing up"} />
             </motion.div>
             <motion.div
               initial={{ y: "100px", opacity: 0 }}
@@ -141,12 +145,14 @@ function LoginSgnup({
             >
               <Typography
                 variant="body1"
-                fontFamily={("Kumbh Sans", "sans-serif")}
+                fontFamily={["Kumbh Sans", "sans-serif"]}
                 fontWeight={"400"}
               >
                 {isForLogin ? "Don't have account?" : "Already Registered?"}
                 <span
-                  onClick={() => {}}
+                  onClick={() => {
+                    replace(isForLogin ? "/signup" : "/login");
+                  }}
                   style={{ color: "blue", cursor: "pointer" }}
                 >
                   {isForLogin ? "Register." : " Login"}

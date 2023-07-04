@@ -175,7 +175,7 @@ export default function Home() {
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
-        height={"40rem"}
+        height={"30rem"}
         width={"100%"}
         sx={{
           // background: `url('${background.src}')`,

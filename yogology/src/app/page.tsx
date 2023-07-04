@@ -20,8 +20,11 @@ export default function Home() {
   }, []);
   return (
     <div className={styles.main}>
-      {/* <audio src={path} controls={false}></audio> */}
-      <Box padding={"120px"} width={"50%"} marginTop={"0px"}>
+      <Box
+        padding={{ md: "5rem", lg: "5rem", xl: "7rem" }}
+        width={{ md: "70%", lg: "65%", xl: "50%" }}
+        marginTop={"0px"}
+      >
         {/* <AudioPlayer /> */}
         <Box
           display={"flex"}
@@ -35,10 +38,10 @@ export default function Home() {
             component={"h1"}
             fontWeight={"700"}
             fontFamily={"Kumbh Sans"}
-            fontSize={"70px"}
+            fontSize={{ md: "2rem", lg: "2.0rem", xl: "3rem" }}
             fontStyle={"normal"}
             color={"#322038"}
-            lineHeight={"125px"}
+            lineHeight={"8rem"}
             letterSpacing={"-1.1px"}
           >
             Open your
@@ -49,20 +52,20 @@ export default function Home() {
             component={"h1"}
             fontStyle={"normal"}
             fontWeight={"bold"}
-            fontSize={"134px"}
+            fontSize  ={{ md: "6rem",lg: "6rem", xl: "7rem" }}
             color={"#5F2C70"}
           >
             Mind
           </Typography>
         </Box>
-        <Box maxWidth={"70%"} margin={"auto"}>
+        <Box maxWidth={{ md: "80%", lg: "80%", xl: "70%" }} margin={"auto"}>
           <Typography
             variant="subtitle2"
             textAlign={"center"}
             color={"#847988"}
             fontFamily={"sans-serif"}
             fontStyle={"normal"}
-            fontSize={"22px"}
+            fontSize={"1.1rem"}
           >
             Revitalize your mind, body, and soul with the transformative
             practice of yoga.

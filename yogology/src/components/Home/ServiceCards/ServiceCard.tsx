@@ -7,15 +7,20 @@ type cardprops = {
   image: any;
   title: string;
   caption: string;
-  count?: number;
+  count?: { xs?: number; md?: number; lg?: number; xl: number };
 };
 
-function ServiceCard({ image, title, caption, count = 3 }: cardprops) {
+function ServiceCard({
+  image,
+  title,
+  caption,
+  count = { md: 6, xl: 3 },
+}: cardprops) {
   const [isHovering, setIsHovering] = useState(false);
   return (
     <Grid
       item
-      xs={count}
+      // xs={count}
       height={"100%"}
       onMouseEnter={(e) => {
         setIsHovering(true);
@@ -38,7 +43,12 @@ function ServiceCard({ image, title, caption, count = 3 }: cardprops) {
         }}
         elevation={0}
       >
-        <Stack spacing={2} width={"100%"} height={"70%"} alignItems={"center"}>
+        <Stack
+          spacing={2}
+          width={"100%"}
+          height={{ md: "100%", lg: "70%" }}
+          alignItems={"center"}
+        >
           <Box textAlign={"center"} color={isHovering ? "#5F2C70" : "black"}>
             {image}
           </Box>
@@ -53,13 +63,13 @@ function ServiceCard({ image, title, caption, count = 3 }: cardprops) {
               component={"h4"}
               fontSize={"20px"}
               fontWeight={"600"}
-              fontFamily={("Kumbh Sans", "sans-serif")}
+              fontFamily={["Kumbh Sans", "sans-serif"]}
               color={"#322038"}
             >
               {title}
             </Typography>
             <Typography
-              fontFamily={("Nunito", "sans-serif")}
+              fontFamily={["Nunito", "sans-serif"]}
               fontSize={"17px"}
               color={" #847988"}
               fontWeight={"400"}

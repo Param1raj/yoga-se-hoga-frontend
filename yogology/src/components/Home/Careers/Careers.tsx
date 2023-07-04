@@ -55,9 +55,9 @@ function GridComp({ image, head, title, ButtonText }: GridCompProps) {
             // textTransform={"uppercase"}
             color={"#ffffff"}
             textAlign={"center"}
-            fontFamily={("Kumbh Sans", "sans-serif")}
+            fontFamily={["Kumbh Sans", "sans-serif"]}
             fontWeight={"700"}
-            fontSize={"3rem"}
+            fontSize={{ lg: "2.5rem", xl: "3rem" }}
           >
             {title}{" "}
           </Typography>
@@ -75,11 +75,11 @@ function Careers() {
     <Grid
       container
       //   sx={{ border: "1px solid red" }}
-      height={"43rem"}
+      height={{ lg: "35rem", xl: "43rem" }}
       width={"100%"}
     >
       <GridComp
-        title={"Sign up for a session"}
+        title={"Sign up for a session!"}
         head={"Get in touch"}
         ButtonText={"contact us"}
         image={image1.src}

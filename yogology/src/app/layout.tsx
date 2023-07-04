@@ -1,7 +1,6 @@
-import ResponsiveAppBar from "@/components/Navbar/Header";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Footer from "@/components/Footer/Footer";
+import App from "./app";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,11 +37,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <header>
-          <ResponsiveAppBar />
-        </header>
-        <main style={{ marginTop: "104px" }}>{children}</main>
-        <Footer />
+        <App children={children} />
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { MouseEvent, useEffect, useState } from "react";
+import { MouseEvent, useContext, useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,16 +18,45 @@ import Image from "next/image";
 import logo from "../../assets/images/GitaWebLogo.png";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { AuthContext } from "@/app/app";
+import ButtonComp from "../ButtonComp";
 const pages = ["Home", "About", "Contact", "Pain relief"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const container = {
+  visible: {},
+  hidden: {},
+};
+const child = {
+  visible: { scaleX: 1 },
+  hidden: { scaleX: 0 },
+};
+
+const NavRoutes = [
+  {
+    name: "Home",
+    pathName: "/",
+  },
+  {
+    name: "About",
+    pathName: "/about",
+  },
+  {
+    name: "Contact",
+    pathName: "/contact",
+  },
+  {
+    name: "Pain relief",
+    pathName: "/pain-relief",
+  },
+  {
+    name: "Blogs",
+    pathName: "/blogs",
+  },
+];
 
 function ResponsiveAppBar() {
-  // const router = useRouter();
-  const pathName = usePathname();
-  // const query = useSearchParams();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-  const [active, setActive] = useState<null | String>("/");
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -36,6 +65,8 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
+  const Auth = useContext(AuthContext);
+  // console.log("Auth", Auth);
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -43,21 +74,7 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  console.log("pathName", pathName);
   const router = useRouter();
-
-  const container = {
-    visible: {},
-    hidden: {},
-  };
-  const child = {
-    visible: { scaleX: 1 },
-    hidden: { scaleX: 0 },
-  };
-
-  useEffect(() => {
-    setActive(pathName);
-  }, [pathName]);
   return (
     <AppBar
       sx={{
@@ -66,20 +83,27 @@ function ResponsiveAppBar() {
       }}
       position="fixed"
     >
-      <Container
-        maxWidth={false}
+      <Box
+        // maxWidth={false}
+        // border={"1px solid black"}
         sx={{
-          padding: "20px",
+          padding: "1.3rem",
         }}
       >
-        <Toolbar disableGutters sx={{ paddingInline: "80px" }}>
+        <Toolbar
+          disableGutters
+          sx={{
+            paddingInline: "80px",
+            display: { xs: "flex", justifyContent: "space-between" },
+          }}
+        >
           <a href="/">
             <Image src={logo} alt="logo" />
           </a>
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: "flex", md: "none" },
+              display: { xs: "flex", lg: "none" },
             }}
           >
             <IconButton
@@ -107,7 +131,7 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                display: { xs: "block", lg: "none" },
                 width: "100vw",
               }}
             >
@@ -120,164 +144,85 @@ function ResponsiveAppBar() {
           </Box>
           <Box
             sx={{
-              display: { xs: "none", md: "flex" },
+              display: { xs: "none", lg: "flex" },
               justifyContent: "space-between",
               margin: "auto",
-              width: { xs: "0%", sm: "20%", md: "30%", lg: "25%" },
+              width: { xs: "0%", sm: "20%", md: "45%", lg: "35%", xl: "25%" },
+              // border: "1px solid red",
             }}
           >
-            <motion.div
-              variants={container}
-              initial={pathName === "/" ? "visible" : "hidden"}
-              whileHover="visible"
-            >
-              <a href="/">
-                <Box
-                  sx={{
-                    transition: "border 500ms ease",
-                    border: "1px solid white",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Typography color={"#322038"}>Home</Typography>
-                  <motion.div
-                    variants={child}
-                    style={{ border: "1px solid #5F2C70" }}
-                  ></motion.div>
-                </Box>
-              </a>
-            </motion.div>
-            <motion.div
-              variants={container}
-              initial={pathName == "/about" ? "visible" : "hidden"}
-              whileHover="visible"
-            >
-              <a href="/about">
-                <Box
-                  sx={{
-                    transition: "border 500ms ease",
-                    border: "1px solid white",
-                    cursor: "pointer",
-                  }}
-                  onClick={(e) => {
-                    router.replace("/about");
-                    router.refresh();
-                  }}
-                >
-                  <Typography color={"#322038"}>About</Typography>
-                  <motion.div
-                    variants={child}
-                    style={{ border: "1px solid #5F2C70" }}
-                  ></motion.div>
-                </Box>
-              </a>
-            </motion.div>
-            <motion.div
-              variants={container}
-              initial={pathName === "/contact" ? "visible" : "hidden"}
-              whileHover="visible"
-            >
-              <a href="/contact">
-                <Box
-                  sx={{
-                    transition: "border 500ms ease",
-                    border: "1px solid white",
-                    cursor: "pointer",
-                  }}
-                  onClick={(e) => {
-                    router.replace("/contact");
-                  }}
-                >
-                  <Typography color={"#322038"}>Contact</Typography>
-                  <motion.div
-                    variants={child}
-                    style={{ border: "1px solid #5F2C70" }}
-                  ></motion.div>
-                </Box>
-              </a>
-            </motion.div>
-            <motion.div
-              variants={container}
-              initial={pathName === "/pain-relief" ? "visible" : "hidden"}
-              whileHover="visible"
-            >
-              <a href="/pain-relief">
-                <Box
-                  sx={{
-                    transition: "border 500ms ease",
-                    border: "1px solid white",
-                    cursor: "pointer",
-                  }}
-                  onClick={(e) => {
-                    router.replace("/pain-relief");
-                  }}
-                >
-                  <Typography color={"#322038"}>Pain relief</Typography>
-                  <motion.div
-                    variants={child}
-                    style={{ border: "1px solid #5F2C70" }}
-                  ></motion.div>
-                </Box>
-              </a>
-            </motion.div>
-            <motion.div
-              variants={container}
-              initial={pathName === "/blogs" ? "visible" : "hidden"}
-              whileHover="visible"
-            >
-              <a href="/blogs">
-                <Box
-                  sx={{
-                    transition: "border 500ms ease",
-                    border: "1px solid white",
-                    cursor: "pointer",
-                  }}
-                  onClick={(e) => {
-                    router.replace("/blogs");
-                  }}
-                >
-                  <Typography color={"#322038"}>Blogs</Typography>
-                  <motion.div
-                    variants={child}
-                    style={{ border: "1px solid #5F2C70" }}
-                  ></motion.div>
-                </Box>
-              </a>
-            </motion.div>
+            {NavRoutes.map(({ pathName, name }) => (
+              <NavbarElement pathName={pathName} name={name} />
+            ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Pemy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px", borderRadius: 0 }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          {Auth.isAuth ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Pemy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px", borderRadius: 0 }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          ) : (
+            <Box display={"flex"} columnGap={"10px"}>
+              <ButtonComp text="Login" width={true} link="/login" />
+              <ButtonComp text="Sign up" width={true} link="/signup" />
+            </Box>
+          )}
         </Toolbar>
-      </Container>
+      </Box>
     </AppBar>
   );
 }
+
+function NavbarElement({ pathName, name }: { pathName: string; name: string }) {
+  const path = usePathname();
+  return (
+    <motion.div
+      variants={container}
+      initial={pathName === path ? "visible" : "hidden"}
+      whileHover="visible"
+    >
+      <a href={pathName}>
+        <Box
+          sx={{
+            transition: "border 500ms ease",
+            border: "1px solid white",
+            cursor: "pointer",
+          }}
+        >
+          <Typography color={"#322038"}>{name}</Typography>
+          <motion.div
+            variants={child}
+            style={{ border: "1px solid #5F2C70" }}
+          ></motion.div>
+        </Box>
+      </a>
+    </motion.div>
+  );
+}
+
 export default ResponsiveAppBar;

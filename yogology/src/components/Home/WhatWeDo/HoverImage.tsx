@@ -3,7 +3,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
-import { easeIn, motion } from "framer-motion";
+import { motion } from "framer-motion";
 type HoverImageProps = {
   image: string;
   title?: string;
@@ -26,14 +26,10 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
         setHover(false);
       }}
     >
-      <motion.div
-        initial={{ y: 0 }}
-        whileHover={{ y: -20 }}
-        // transition={easeIn}
-      >
+      <motion.div initial={{ y: 0 }} whileHover={{ y: forBlog ? -20 : 0 }}>
         <Box
           width={"100%"}
-          height={forBlog ? "75%" : "80%"}
+          height={forBlog ? "75%" : "65%"}
           sx={{
             overflow: "hidden",
             boxShadow:
@@ -66,7 +62,7 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
         <Box
           sx={{
             background: "white",
-            height: forBlog ? "25%" : "30%",
+            height: forBlog ? "25%" : "35%",
             display: forBlog ? "" : "flex",
             alignItems: "center",
             justifyContent: "center",

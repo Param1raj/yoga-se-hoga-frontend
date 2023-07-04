@@ -8,7 +8,7 @@ function YogaQuetes() {
       // border={"1px solid  #5F2C70"}
       sx={{ background: " #5F2C70" }}
       width={"100%"}
-      height={"500px"}
+      height={{ md: "26rem", lg: "26rem", xl: "31rem" }}
     >
       <Box
         width={"70%"}
@@ -40,25 +40,20 @@ function YogaQuetes() {
           <Typography
             variant="h4"
             component={"h4"}
-            fontFamily={("kumbh Sans", "sans-serif")}
+            fontFamily={["kumbh Sans", "sans-serif"]}
             fontWeight={700}
+            fontSize={{ md: "1.2rem", lg: "1.5rem", xl: "2.1rem" }}
           >
             Awaken your true self through yoga. Find liberation, peace, and
             harmony as Mind, body.
             <Typography
               variant="h4"
               component={"h5"}
-              fontFamily={("kumbh Sans", "sans-serif")}
+              fontFamily={["kumbh Sans", "sans-serif"]}
               fontWeight={700}
               sx={{ textDecoration: "underline", borderWidth: "5px" }}
+              fontSize={{ md: "1.2rem", lg: "1.5rem", xl: "2.1rem" }}
             >
-              {/* <Typewriter
-                options={{
-                  strings: ["Mind, Mind, Soul"],
-                  loop: true,
-                  autoStart: true,
-                }}
-              /> */}
               - buddha
             </Typography>
           </Typography>

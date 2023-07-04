@@ -13,7 +13,11 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 function EmailSubscrib() {
   return (
-    <Box sx={{ background: "#724D67" }} width={"100%"} height={"30rem"}>
+    <Box
+      sx={{ background: "#724D67" }}
+      width={"100%"}
+      height={{ lg: "25rem", xl: "30rem" }}
+    >
       <Stack
         width={"65%"}
         // border={"1px solid blue"}
@@ -38,7 +42,7 @@ function EmailSubscrib() {
               component={"p"}
               color={"#FFFFFF"}
               fontWeight={"700"}
-              fontFamily={("Kumbh Sans", "sans-serif")}
+              fontFamily={["Kumbh Sans", "sans-serif"]}
               textTransform={"uppercase"}
               fontSize={"0.9rem"}
             >
@@ -49,9 +53,9 @@ function EmailSubscrib() {
               component={"h2"}
               color={"#FFFFFF"}
               fontWeight={"700"}
-              fontFamily={("Kumbh Sans", "sans-serif")}
+              fontFamily={["Kumbh Sans", "sans-serif"]}
               //   textTransform={"uppercase"}
-              fontSize={"3rem"}
+              fontSize={{ lg: "2rem", xl: "3rem" }}
             >
               Subscribe for the exclusive updates!
             </Typography>
@@ -61,14 +65,9 @@ function EmailSubscrib() {
             alignItems={"center"}
             height={"55%"}
             spacing={1}
-            width={"40%"}
+            width={{ lg: "50%", xl: "40%" }}
           >
-            <Box
-              display={"flex"}
-              alignItems={"center"}
-              width={"80%"}
-              //   border={"1px solid blue"}
-            >
+            <Box display={"flex"} alignItems={"center"} width={"80%"}>
               <TextField
                 id="standard-basic"
                 label="Enter Your Email Address"
@@ -80,7 +79,7 @@ function EmailSubscrib() {
                   "& #standard-basic-label": {
                     color: "#FEFCFF",
                     marginBottom: "20px",
-                    fontFamily: ("Nuito", "sans-serif"),
+                    fontFamily: ["Nuito", "sans-serif"],
                   },
                   "& .css-v4u5dn-MuiInputBase-root-MuiInput-root::before": {
                     borderBottom: "1px solid #ffffff",
@@ -128,13 +127,13 @@ function EmailSubscrib() {
                 component={"p"}
                 display={"flex"}
                 color={"#FEFCFF"}
-                fontFamily={("Nunito", "sans-serif")}
+                fontFamily={["Nunito", "sans-serif"]}
               >
                 I agree to{" "}
                 <Typography
                   marginLeft={"5px"}
                   sx={{ textDecoration: "underline" }}
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                 >
                   {" "}
                   Privacy Policy

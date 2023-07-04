@@ -24,13 +24,17 @@ const hoverData = [
 
 function WhatWeDo() {
   return (
-    <Stack width={"70%"} justifyContent={"center"} height={"56rem"}>
+    <Stack
+      width={{ lg: "85%", xl: "70%" }}
+      justifyContent={"center"}
+      height={{ lg: "47rem", xl: "56rem" }}
+    >
       <Stack
         // border={"1px solid blue"}
         width={"100%"}
-        height={"75%"}
+        height={"80%"}
         alignItems={"center"}
-        spacing={10}
+        spacing={{ lg: 5, xl: 10 }}
       >
         <Stack spacing={2} width={"60%"}>
           <Typography
@@ -38,7 +42,7 @@ function WhatWeDo() {
             component={"p"}
             textTransform={"uppercase"}
             textAlign={"center"}
-            fontFamily={("Kumbh Sans", "sans-serif")}
+            fontFamily={["Kumbh Sans", "sans-serif"]}
             fontWeight={"700"}
             fontSize={"14px"}
             color={"#322038"}
@@ -49,9 +53,9 @@ function WhatWeDo() {
             variant="h5"
             component={"h5"}
             textAlign={"center"}
-            fontFamily={("Kumbh Sans", "sans-serif")}
+            fontFamily={["Kumbh Sans", "sans-serif"]}
             fontWeight={"700"}
-            fontSize={"2.5rem"}
+            fontSize={{ lg: "2rem", xl: "2.5rem" }}
             color={"#322038"}
             lineHeight={" 50px"}
           >
@@ -71,7 +75,7 @@ function WhatWeDo() {
         </Grid>
         <ButtonComp text={"More About Us"} />
       </Stack>
-    </Stack>                          
+    </Stack>
   );
 }
 
