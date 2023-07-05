@@ -7,35 +7,45 @@ import Facebookicon from "../../assets/Iconsvg/FacebookIcon";
 import Instagramicon from "../../assets/Iconsvg/InstagramIcon";
 function Footer() {
   return (
-    <Box width={"100%"} height={"30rem"} sx={{ background: "#1D0427" }}>
+    <Box
+      width={"100%"}
+      height={{ sm: "30rem", md: "30rem" }}
+      sx={{ background: "#1D0427" }}
+    >
       <Container
         sx={{
           // border: "1px solid red",
           // padding: "0px",
           height: "100%",
-          width: "80%",
+          width: { md: "100%", lg: "80%" },
           display: "flex",
-          alignItems: "flex-end",
+          alignItems: { sm: "center", md: "flex-end" },
         }}
       >
         <Stack
           // border={"1px solid yellow"}
           // margin={"0px"}
           width={"100%"}
-          height={"78%"}
+          height={{ sm: "90%", md: "78%" }}
         >
-          <Grid height={"75%"} spacing={2} container>
+          <Grid
+            height={"75%"}
+            display={"grid"}
+            gridTemplateColumns={{ sm: "20% 35% 15% 30%", md: "repeat(4,1fr)" }}
+            spacing={2}
+            container
+          >
             <Grid
               item
-              xs={3}
+              // xs={3}
               // border={"1px solid yellow"}
               padding={"20px"}
               height={"100%"}
               color={"white"}
             >
               <Box
-                width={"40%"}
-                height={"25%"}
+                width={{ sm: "100%", md: "40%" }}
+                height={{ sm: "30%", md: "25%" }}
                 // border={"1px solid yellow"}
                 sx={{
                   background: `url('${logo.src}')`,
@@ -44,7 +54,7 @@ function Footer() {
                 }}
               ></Box>
             </Grid>
-            <Grid item xs={3} height={"100%"}>
+            <Grid item height={"100%"}>
               <Stack
                 // border={"1px solid yellow"}
                 spacing={"20px"}
@@ -53,7 +63,7 @@ function Footer() {
                 <Typography
                   variant={"h6"}
                   component={"h6"}
-                  fontFamily={("Kumbh Sans", "sans-serif")}
+                  fontFamily={["Kumbh Sans", "sans-serif"]}
                   color={"white"}
                   fontWeight={"700"}
                 >
@@ -62,7 +72,7 @@ function Footer() {
                 <Stack spacing={"10px"}>
                   <Typography
                     color={"#BCB4BF"}
-                    fontFamily={("Nunito", "sans-serif")}
+                    fontFamily={["Nunito", "sans-serif"]}
                     variant={"body1"}
                     component={"p"}
                   >
@@ -70,7 +80,7 @@ function Footer() {
                   </Typography>
                   <Typography
                     color={"#BCB4BF"}
-                    fontFamily={("Nunito", "sans-serif")}
+                    fontFamily={["Nunito", "sans-serif"]}
                     variant={"body1"}
                     component={"p"}
                   >
@@ -78,7 +88,7 @@ function Footer() {
                   </Typography>
                   <Typography
                     color={"#BCB4BF"}
-                    fontFamily={("Nunito", "sans-serif")}
+                    fontFamily={["Nunito", "sans-serif"]}
                     variant={"body1"}
                     component={"p"}
                   >
@@ -87,7 +97,7 @@ function Footer() {
                 </Stack>
                 <Typography
                   variant="body1"
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                   color={"#BCB4BF"}
                   component={"p"}
                   sx={{ cursor: "pointer" }}
@@ -96,7 +106,7 @@ function Footer() {
                 </Typography>
                 <Typography
                   variant="body1"
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                   color={"#FEFCFF"}
                   fontWeight={"700"}
                   component={"p"}
@@ -106,7 +116,7 @@ function Footer() {
                 </Typography>
               </Stack>
             </Grid>
-            <Grid item xs={3} height={"100%"}>
+            <Grid item height={"100%"}>
               <Stack
                 // border={"1px solid yellow"}
                 spacing={"20px"}
@@ -115,7 +125,7 @@ function Footer() {
                 <Typography
                   variant={"h6"}
                   component={"h6"}
-                  fontFamily={("Kumbh Sans", "sans-serif")}
+                  fontFamily={["Kumbh Sans", "sans-serif"]}
                   color={"white"}
                   fontWeight={"700"}
                 >
@@ -123,7 +133,7 @@ function Footer() {
                 </Typography>
                 <Typography
                   variant="body1"
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                   color={"#BCB4BF"}
                   component={"p"}
                   sx={{ cursor: "pointer" }}
@@ -132,7 +142,7 @@ function Footer() {
                 </Typography>
                 <Typography
                   variant="body1"
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                   color={"#BCB4BF"}
                   component={"p"}
                   sx={{ cursor: "pointer" }}
@@ -141,7 +151,7 @@ function Footer() {
                 </Typography>
                 <Typography
                   variant="body1"
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                   color={"#BCB4BF"}
                   component={"p"}
                   sx={{ cursor: "pointer" }}
@@ -150,7 +160,7 @@ function Footer() {
                 </Typography>
                 <Typography
                   variant="body1"
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                   color={"#BCB4BF"}
                   component={"p"}
                   sx={{ cursor: "pointer" }}
@@ -159,7 +169,7 @@ function Footer() {
                 </Typography>
                 <Typography
                   variant="body1"
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                   color={"#BCB4BF"}
                   component={"p"}
                   sx={{ cursor: "pointer" }}
@@ -168,7 +178,7 @@ function Footer() {
                 </Typography>
               </Stack>
             </Grid>
-            <Grid item xs={3} height={"100%"}>
+            <Grid item height={"100%"}>
               <Stack
                 // border={"1px solid yellow"}
                 spacing={"20px"}
@@ -177,21 +187,26 @@ function Footer() {
                 <Typography
                   variant={"h6"}
                   component={"h6"}
-                  fontFamily={("Kumbh Sans", "sans-serif")}
+                  fontFamily={["Kumbh Sans", "sans-serif"]}
                   color={"white"}
                   fontWeight={"700"}
                 >
                   Get in touch
                 </Typography>
-                <Grid container>
-                  <Grid item xs={2}>
+                <Grid
+                  container
+                  display={"grid"}
+                  gridTemplateColumns={{
+                    sm: "repeat(2,1fr)",
+                    md: "repeat(4,1fr)",
+                  }}
+                >
+                  <Grid item xs={4}>
                     <Facebookicon />
                   </Grid>
-                  <Grid item xs={2}>
+                  <Grid item xs={4}>
                     <Instagramicon />
                   </Grid>
-                  <Grid item xs={2}></Grid>
-                  <Grid item xs={2}></Grid>
                 </Grid>
               </Stack>
             </Grid>
@@ -205,7 +220,7 @@ function Footer() {
               <Typography
                 variant="body1"
                 component={"p"}
-                fontFamily={("Kumbh Sans", "sans-serif")}
+                fontFamily={["Kumbh Sans", "sans-serif"]}
                 color={"#BCB4BF"}
                 fontWeight={"400"}
               >

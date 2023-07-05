@@ -15,7 +15,7 @@ function ContactUs() {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         display: "grid",
-        gridTemplateColumns: { md: "40% 60%", lg: "repeat(2,1fr)" },
+        gridTemplateColumns: { sm: "1fr", md: "40% 60%", lg: "repeat(2,1fr)" },
       }}
     >
       <Grid item></Grid>
@@ -23,14 +23,15 @@ function ContactUs() {
         item
         // border={"1px solid red"}
         display={"flex"}
-        alignItems={"center"}
+        alignItems={{ sm: "none", md: "center" }}
+        justifyContent={{ sm: "center" }}
         // xs={6}
       >
         <Stack
-          width={{ md: "85%", lg: "75%", xl: "60%" }}
-          height={"80%"}
+          width={{ sm: "90%", md: "85%", lg: "75%", xl: "60%" }}
+          height={{ sm: "90%", md: "80%" }}
           sx={{ background: "#ffffff" }}
-          padding={"50px"}
+          padding={{ sm: "40px", md: "50px" }}
           spacing={4}
         >
           <Typography
@@ -48,7 +49,7 @@ function ContactUs() {
               fontFamily={"Kumbh Sans"}
               //   textTransform={"uppercase"}
               fontWeight={"700"}
-              fontSize={{ md: "2.3rem", lg: "2.5rem", xl: "3rem" }}
+              fontSize={{ sm: "2rem", md: "2.3rem", lg: "2.5rem", xl: "3rem" }}
             >
               Have questions?
             </Typography>
@@ -58,7 +59,7 @@ function ContactUs() {
               fontFamily={"Kumbh Sans"}
               //   textTransform={"uppercase"}
               fontWeight={"700"}
-              fontSize={{ md: "2.3rem", lg: "2.5rem", xl: "3rem" }}
+              fontSize={{ sm: "2rem", md: "2.3rem", lg: "2.5rem", xl: "3rem" }}
             >
               Get in touch!
             </Typography>

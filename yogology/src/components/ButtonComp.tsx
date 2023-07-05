@@ -32,7 +32,9 @@ function ButtonComp({
       size="large"
       sx={{
         borderRadius: "0px",
-        width: width ? undefined : { md: "12rem", lg: "13rem", xl: "15rem" },
+        width: width
+          ? undefined
+          : { sm: "13rem", md: "14rem", lg: "13rem", xl: "15rem" },
         backgroundColor: "#5F2C70",
         ":hover": {
           backgroundColor: "#5F2C70",

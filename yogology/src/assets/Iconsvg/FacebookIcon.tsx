@@ -8,7 +8,7 @@ function Facebookicon() {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        width="38x"
+        width="38px"
         height="38px"
         //   color="#ffffff"
         style={{

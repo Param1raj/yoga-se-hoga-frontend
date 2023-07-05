@@ -15,7 +15,7 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
   return (
     <Grid
       item
-      xs={3.9}
+      // xs={3.9}
       sx={{
         cursor: "pointer",
       }}
@@ -26,10 +26,14 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
         setHover(false);
       }}
     >
-      <motion.div initial={{ y: 0 }} whileHover={{ y: forBlog ? -20 : 0 }}>
+      <motion.div
+        style={{ width: "100%", height: "100%" }}
+        initial={{ y: 0 }}
+        whileHover={{ y: forBlog ? -20 : 0 }}
+      >
         <Box
-          width={"100%"}
-          height={forBlog ? "75%" : "65%"}
+          width={{ md: "100%", lg: "100%", xl: "100%" }}
+          height={forBlog ? "75%" : "75%"}
           sx={{
             overflow: "hidden",
             boxShadow:
@@ -37,7 +41,7 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
             transition: "box-shadow 0.3s ease-out",
           }}
         >
-          <Image
+          {/* <Image
             style={{
               ...(hover
                 ? {
@@ -54,20 +58,46 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
                   }),
             }}
             src={image}
-            width={424}
+            width={444}
             height={315}
             alt=""
           ></Image>
+           */}
+          <Box
+            width={"100%"}
+            height={"100%"}
+            // border={"1px solid red"}
+            sx={{
+              background: `url('${image}')`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              objectFit: "contain",
+              ...(hover
+                ? {
+                    transform: "scale(1.05)",
+                    msTransform: "scale(1.05)",
+                    transitionDuration: "500ms",
+                    transitionTimingFunction: "ease",
+                  }
+                : {
+                    transform: "scale(1)",
+                    msTransform: "scale(1)",
+                    transitionDuration: "500ms",
+                    transitionTimingFunction: "ease",
+                  }),
+            }}
+          ></Box>
         </Box>
         <Box
           sx={{
             background: "white",
-            height: forBlog ? "25%" : "35%",
+            height: forBlog ? "25%" : "25%",
             display: forBlog ? "" : "flex",
             alignItems: "center",
             justifyContent: "center",
             padding: "10px",
           }}
+          width={{ sm: "100%", md: "100%", lg: "100%", xl: "100%" }}
         >
           <Typography
             sx={{

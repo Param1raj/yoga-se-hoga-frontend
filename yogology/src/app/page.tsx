@@ -21,9 +21,9 @@ export default function Home() {
   return (
     <div className={styles.main}>
       <Box
-        padding={{ md: "5rem", lg: "5rem", xl: "7rem" }}
-        width={{ md: "70%", lg: "65%", xl: "50%" }}
-        marginTop={"0px"}
+        padding={{ sm: "3rem", md: "5rem", lg: "5rem", xl: "8rem" }}
+        width={{ sm: "100%", md: "70%", lg: "65%", xl: "50%" }}
+        marginTop={{ sm: "0px", md: "0px" }}
       >
         {/* <AudioPlayer /> */}
         <Box
@@ -38,7 +38,7 @@ export default function Home() {
             component={"h1"}
             fontWeight={"700"}
             fontFamily={"Kumbh Sans"}
-            fontSize={{ md: "2rem", lg: "2.0rem", xl: "3rem" }}
+            fontSize={{ sm: "1.8rem", md: "2rem", lg: "2.0rem", xl: "3rem" }}
             fontStyle={"normal"}
             color={"#322038"}
             lineHeight={"8rem"}
@@ -52,13 +52,16 @@ export default function Home() {
             component={"h1"}
             fontStyle={"normal"}
             fontWeight={"bold"}
-            fontSize  ={{ md: "6rem",lg: "6rem", xl: "7rem" }}
+            fontSize={{ sm: "4rem", md: "6rem", lg: "6rem", xl: "7rem" }}
             color={"#5F2C70"}
           >
             Mind
           </Typography>
         </Box>
-        <Box maxWidth={{ md: "80%", lg: "80%", xl: "70%" }} margin={"auto"}>
+        <Box
+          maxWidth={{ sm: "80%", md: "80%", lg: "80%", xl: "70%" }}
+          margin={"auto"}
+        >
           <Typography
             variant="subtitle2"
             textAlign={"center"}

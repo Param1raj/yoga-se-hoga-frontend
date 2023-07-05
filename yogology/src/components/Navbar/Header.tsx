@@ -80,6 +80,7 @@ function ResponsiveAppBar() {
       sx={{
         background: "#FFF8FD;",
         boxShadow: "none",
+        // border: "1px solid red",
       }}
       position="fixed"
     >
@@ -87,14 +88,15 @@ function ResponsiveAppBar() {
         // maxWidth={false}
         // border={"1px solid black"}
         sx={{
-          padding: "1.3rem",
+          padding: { sm: "0.8rem", md: "1.3rem" },
         }}
       >
         <Toolbar
           disableGutters
           sx={{
-            paddingInline: "80px",
-            display: { xs: "flex", justifyContent: "space-between" },
+            paddingInline: { sm: "30px", md: "80px" },
+            display: { xs: "flex" },
+            justifyContent: "space-between",
           }}
         >
           <a href="/">

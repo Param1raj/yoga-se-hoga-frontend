@@ -5,6 +5,7 @@
   align-items: center;
   min-height: 100vh;
   background-color: #FFF8FD;
+  margin-top: -15px;
 }
 
 .description {

@@ -16,10 +16,10 @@ function EmailSubscrib() {
     <Box
       sx={{ background: "#724D67" }}
       width={"100%"}
-      height={{ lg: "25rem", xl: "30rem" }}
+      height={{ sm: "25rem", md: "25rem", lg: "25rem", xl: "30rem" }}
     >
       <Stack
-        width={"65%"}
+        width={{ sm: "80%", md: "65%" }}
         // border={"1px solid blue"}
         height={"100%"}
         margin={"auto"}
@@ -55,7 +55,7 @@ function EmailSubscrib() {
               fontWeight={"700"}
               fontFamily={["Kumbh Sans", "sans-serif"]}
               //   textTransform={"uppercase"}
-              fontSize={{ lg: "2rem", xl: "3rem" }}
+              fontSize={{ sm: "1.5rem", md: "2rem", lg: "2rem", xl: "3rem" }}
             >
               Subscribe for the exclusive updates!
             </Typography>
@@ -65,7 +65,7 @@ function EmailSubscrib() {
             alignItems={"center"}
             height={"55%"}
             spacing={1}
-            width={{ lg: "50%", xl: "40%" }}
+            width={{ sm: "80%", md: "70%", lg: "50%", xl: "40%" }}
           >
             <Box display={"flex"} alignItems={"center"} width={"80%"}>
               <TextField
