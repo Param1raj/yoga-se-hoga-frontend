@@ -9,8 +9,10 @@ function Footer() {
   return (
     <Box
       width={"100%"}
-      height={{ sm: "30rem", md: "30rem" }}
+      height={{ xs: "50rem", sm: "30rem", md: "30rem" }}
       sx={{ background: "#1D0427" }}
+      // border={"1px solid yellow"}
+      padding={"30px"}
     >
       <Container
         sx={{
@@ -26,12 +28,16 @@ function Footer() {
           // border={"1px solid yellow"}
           // margin={"0px"}
           width={"100%"}
-          height={{ sm: "90%", md: "78%" }}
+          height={{ xs: "100%", sm: "90%", md: "78%" }}
         >
           <Grid
-            height={"75%"}
+            height={{ xs: "95%", sm: "75%" }}
             display={"grid"}
-            gridTemplateColumns={{ sm: "20% 35% 15% 30%", md: "repeat(4,1fr)" }}
+            gridTemplateColumns={{
+              xs: "1fr",
+              sm: "20% 35% 15% 30%",
+              md: "repeat(4,1fr)",
+            }}
             spacing={2}
             container
           >
@@ -39,14 +45,15 @@ function Footer() {
               item
               // xs={3}
               // border={"1px solid yellow"}
-              padding={"20px"}
-              height={"100%"}
+              padding={{ sm: "20px" }}
+              height={{ xs: "30%", sm: "100%" }}
               color={"white"}
             >
               <Box
-                width={{ sm: "100%", md: "40%" }}
-                height={{ sm: "30%", md: "25%" }}
+                width={{ xs: "50%", sm: "100%", md: "40%" }}
+                height={{ xs: "50%", md: "25%" }}
                 // border={"1px solid yellow"}
+                padding={{ xs: "20px", sm: "0px" }}
                 sx={{
                   background: `url('${logo.src}')`,
                   backgroundRepeat: "no-repeat",
@@ -195,8 +202,9 @@ function Footer() {
                 </Typography>
                 <Grid
                   container
-                  display={"grid"}
+                  display={{ xs: "flex", sm: "grid" }}
                   gridTemplateColumns={{
+                    // xs: "repeat(2,1fr)",
                     sm: "repeat(2,1fr)",
                     md: "repeat(4,1fr)",
                   }}
@@ -212,7 +220,7 @@ function Footer() {
             </Grid>
           </Grid>
           <Stack
-            height={"25%"}
+            height={{ xs: "10%", sm: "25%" }}
             borderTop={"1px solid #321E39"}
             justifyContent={"center"}
           >

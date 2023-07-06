@@ -32,22 +32,23 @@ function CardContainer() {
   return (
     <Box
       width={"100%"}
-      height={{ sm: "fit-content", md: "30rem" }}
+      height={{ xs: "fit-content", sm: "fit-content", md: "30rem" }}
       display={"flex"}
       justifyContent={"center"}
       alignItems={"center"}
-      padding={"3rem"}
+      padding={{ xs: "2rem", sm: "3rem" }}
     >
       <Grid
         container
         spacing={{ sm: 0, md: 0 }}
         display={"grid"}
         gridTemplateColumns={{
+          xs: "1fr",
           sm: "1fr",
           md: "repeat(2,1fr)",
           lg: "repeat(4,1fr)",
         }}
-        width={{ sm: "90%", md: "75%", lg: "95%", xl: "75%" }}
+        width={{ xs: "95%", sm: "90%", md: "75%", lg: "95%", xl: "75%" }}
         margin={"auto"}
         height={{ sm: "80%", md: "80%", lg: "63%", xl: "65%" }}
         // border={"1px solid black"}

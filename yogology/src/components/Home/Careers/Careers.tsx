@@ -32,7 +32,7 @@ function GridComp({ image, head, title, ButtonText }: GridCompProps) {
       >
         <Stack
           //   border={"1px solid red"}
-          width={"80%"}
+          width={{ xs: "90%", sm: "80%" }}
           height={"30%"}
           spacing={3}
         >
@@ -57,7 +57,13 @@ function GridComp({ image, head, title, ButtonText }: GridCompProps) {
             textAlign={"center"}
             fontFamily={["Kumbh Sans", "sans-serif"]}
             fontWeight={"700"}
-            fontSize={{ sm: "2rem", md: "2rem", lg: "2.5rem", xl: "3rem" }}
+            fontSize={{
+              xs: "2rem",
+              sm: "2rem",
+              md: "2rem",
+              lg: "2.5rem",
+              xl: "3rem",
+            }}
           >
             {title}{" "}
           </Typography>
@@ -75,9 +81,15 @@ function Careers() {
     <Grid
       container
       //   sx={{ border: "1px solid red" }}
-      height={{ sm: "55rem", md: "30rem", lg: "35rem", xl: "43rem" }}
+      height={{
+        xs: "45rem",
+        sm: "55rem",
+        md: "30rem",
+        lg: "35rem",
+        xl: "43rem",
+      }}
       display={"grid"}
-      gridTemplateColumns={{ sm: "1fr", md: "repeat(2,1fr)" }}
+      gridTemplateColumns={{ xs: "1fr", sm: "1fr", md: "repeat(2,1fr)" }}
       width={"100%"}
     >
       <GridComp

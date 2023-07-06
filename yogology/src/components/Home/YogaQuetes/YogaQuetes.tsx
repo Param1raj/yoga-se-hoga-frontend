@@ -8,7 +8,13 @@ function YogaQuetes() {
       // border={"1px solid  #5F2C70"}
       sx={{ background: " #5F2C70" }}
       width={"100%"}
-      height={{ sm: "20rem", md: "26rem", lg: "26rem", xl: "31rem" }}
+      height={{
+        xs: "20rem",
+        sm: "20rem",
+        md: "26rem",
+        lg: "26rem",
+        xl: "31rem",
+      }}
     >
       <Box
         width={{ sm: "100%", md: "70%" }}
@@ -21,43 +27,55 @@ function YogaQuetes() {
       >
         <Box
           textAlign={"center"}
-          width={"80%"}
+          width={{ xs: "90%", sm: "80%" }}
           // border={"1px solid red"}
           color={"#FFFFFF"}
           display={"flex"}
           flexDirection={"column"}
-          gap={"50px"}
+          // justifyContent={"center"}
+          gap={{ xs: "20px", sm: "50px" }}
         >
           <Typography
             variant="caption"
             fontFamily={"sans-serif"}
             textTransform={"uppercase"}
             fontWeight={700}
-            fontSize={"14px"}
+            fontSize={{ xs: "0.5rem", sm: "1rem" }}
           >
             The Ultimate wishdom
           </Typography>
           <Typography
             variant="h4"
             component={"h4"}
-            fontFamily={["kumbh Sans", "sans-serif"]}
+            fontFamily={["Kumbh Sans", "sans-serif"]}
             fontWeight={700}
-            fontSize={{ sm: "1rem", md: "1.2rem", lg: "1.5rem", xl: "2.1rem" }}
+            fontSize={{
+              xs: "1rem",
+              sm: "1rem",
+              md: "1.2rem",
+              lg: "1.5rem",
+              xl: "2.1rem",
+            }}
           >
             Awaken your true self through yoga. Find liberation, peace, and
             harmony as Mind, body.
             <Typography
               variant="h4"
               component={"h5"}
-              fontFamily={["kumbh Sans", "sans-serif"]}
+              fontFamily={["Kumbh Sans", "sans-serif"]}
               fontWeight={700}
-              sx={{ textDecoration: "underline", borderWidth: "5px" }}
+              sx={{
+                textDecoration: { xs: "none", sm: "underline" },
+                borderWidth: "5px",
+              }}
               fontSize={{
+                xs: "1rem",
                 sm: "1rem",
                 md: "1.2rem",
                 lg: "1.5rem",
                 xl: "2.1rem",
               }}
+              marginTop={{ xs: "20px", sm: "0px" }}
             >
               - buddha
             </Typography>

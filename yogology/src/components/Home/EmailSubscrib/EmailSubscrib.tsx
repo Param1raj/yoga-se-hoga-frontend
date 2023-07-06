@@ -16,7 +16,13 @@ function EmailSubscrib() {
     <Box
       sx={{ background: "#724D67" }}
       width={"100%"}
-      height={{ sm: "25rem", md: "25rem", lg: "25rem", xl: "30rem" }}
+      height={{
+        xs: "25rem",
+        sm: "25rem",
+        md: "25rem",
+        lg: "25rem",
+        xl: "30rem",
+      }}
     >
       <Stack
         width={{ sm: "80%", md: "65%" }}
@@ -27,15 +33,17 @@ function EmailSubscrib() {
       >
         <Stack
           height={"60%"}
-          //   border={"1px solid blue"}
+          // border={"1px solid blue"}
           spacing={4}
           alignItems={"center"}
+          textAlign={"center"}
         >
           <Stack
             // border={"1px solid blue"}
             alignItems={"center"}
             justifyContent={"space-between"}
             height={"37%"}
+            spacing={{ xs: 5 }}
           >
             <Typography
               variant="body1"
@@ -55,7 +63,13 @@ function EmailSubscrib() {
               fontWeight={"700"}
               fontFamily={["Kumbh Sans", "sans-serif"]}
               //   textTransform={"uppercase"}
-              fontSize={{ sm: "1.5rem", md: "2rem", lg: "2rem", xl: "3rem" }}
+              fontSize={{
+                xs: "1.5rem",
+                sm: "1.5rem",
+                md: "2rem",
+                lg: "2rem",
+                xl: "3rem",
+              }}
             >
               Subscribe for the exclusive updates!
             </Typography>
@@ -65,9 +79,16 @@ function EmailSubscrib() {
             alignItems={"center"}
             height={"55%"}
             spacing={1}
-            width={{ sm: "80%", md: "70%", lg: "50%", xl: "40%" }}
+            width={{ xs: "90%", sm: "80%", md: "70%", lg: "50%", xl: "40%" }}
           >
-            <Box display={"flex"} alignItems={"center"} width={"80%"}>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              paddingLeft={"30px"}
+              width={"80%"}
+              // border={"1px solid black"}
+            >
               <TextField
                 id="standard-basic"
                 label="Enter Your Email Address"
@@ -118,6 +139,8 @@ function EmailSubscrib() {
                   "&.Mui-checked": {
                     color: "#FEFCFF",
                   },
+                  // border: "1px solid red",
+                  padding: 0,
                 }}
                 icon={<CheckCircleOutlineIcon />}
                 checkedIcon={<CheckCircleIcon />}

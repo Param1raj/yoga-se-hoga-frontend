@@ -20,6 +20,7 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { AuthContext } from "@/app/app";
 import ButtonComp from "../ButtonComp";
+import { Drawer, Stack } from "@mui/material";
 const pages = ["Home", "About", "Contact", "Pain relief"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const container = {
@@ -55,11 +56,11 @@ const NavRoutes = [
 ];
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchor, setAnchor] = useState<boolean>(false);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenNavMenu = () => {
+    setAnchor(!anchor);
   };
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -68,7 +69,7 @@ function ResponsiveAppBar() {
   const Auth = useContext(AuthContext);
   // console.log("Auth", Auth);
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    setAnchor(!anchor);
   };
 
   const handleCloseUserMenu = () => {
@@ -88,7 +89,7 @@ function ResponsiveAppBar() {
         // maxWidth={false}
         // border={"1px solid black"}
         sx={{
-          padding: { sm: "0.8rem", md: "1.3rem" },
+          padding: { xs: "1.1rem", sm: "0.8rem", md: "1.3rem" },
         }}
       >
         <Toolbar
@@ -118,7 +119,67 @@ function ResponsiveAppBar() {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
+            <Drawer
+              anchor="left"
+              open={anchor}
+              onClose={() => setAnchor(false)}
+            >
+              <Box
+                width={"200px"}
+                height={"100vh"}
+                sx={{ background: "#FFF8FD" }}
+                padding={"20px 0px"}
+              >
+                <Stack
+                  // border={"1px solid red"}
+                  // spacing={3}
+                  height={"100%"}
+                  width={"100%"}
+                >
+                  {NavRoutes.map(({ name, pathName }) => (
+                    <Box
+                      height={"50px"}
+                      display={"flex"}
+                      alignItems={"center"}
+                      paddingLeft={"20px"}
+                      onClick={() => {
+                        router.replace(`${pathName}`);
+                        setAnchor(false);
+                      }}
+                      sx={{
+                        ":hover": {
+                          backgroundColor: "#e5dcdc",
+                        },
+                      }}
+                    >
+                      <Typography
+                        variant="body1"
+                        component={"p"}
+                        fontSize={"1rem"}
+                        fontWeight={"700"}
+                      >
+                        {name}
+                      </Typography>
+                    </Box>
+                  ))}
+                  <Stack
+                    spacing={1}
+                    // border={"1px solid black"}
+                    // alignItems={"center"}
+                    paddingLeft={"20px"}
+                    display={{ xs: "block", sm: "none" }}
+                  >
+                    <ButtonComp text="login" width={"70%"} link={"/login"} />
+                    <ButtonComp
+                      text="sign up"
+                      width={"75%"}
+                      link="/signup"
+                    ></ButtonComp>
+                  </Stack>
+                </Stack>
+              </Box>
+            </Drawer>
+            {/* <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -142,7 +203,7 @@ function ResponsiveAppBar() {
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
           </Box>
           <Box
             sx={{
@@ -189,9 +250,9 @@ function ResponsiveAppBar() {
               </Menu>
             </Box>
           ) : (
-            <Box display={"flex"} columnGap={"10px"}>
-              <ButtonComp text="Login" width={true} link="/login" />
-              <ButtonComp text="Sign up" width={true} link="/signup" />
+            <Box display={{ xs: "none", sm: "flex" }} columnGap={"10px"}>
+              <ButtonComp text="Login" width={"10rem"} link="/login" />
+              <ButtonComp text="Sign up" width={"10rem"} link="/signup" />
             </Box>
           )}
         </Toolbar>

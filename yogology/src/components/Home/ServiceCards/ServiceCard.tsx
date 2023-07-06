@@ -21,7 +21,7 @@ function ServiceCard({
     <Grid
       item
       // xs={count}
-      marginBottom={{ sm: "10px" }}
+      marginBottom={{ xs: "20px", sm: "10px" }}
       marginLeft={{ md: "20px" }}
       height={{ sm: "90%", md: "100%" }}
       onMouseEnter={(e) => {
@@ -42,7 +42,7 @@ function ServiceCard({
             ? "rgba(149, 157, 165, 0.2) 0px 8px 24px"
             : null,
           transition: "box-shadow 0.3s ease-out",
-          padding: { sm: "1.3rem", md: "1.5rem", lg: "2.5rem" },
+          padding: { xs: "1.4rem", sm: "1.3rem", md: "1.5rem", lg: "2.5rem" },
         }}
         elevation={0}
       >

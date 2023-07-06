@@ -16,6 +16,8 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
     <Grid
       item
       // xs={3.9}
+      height={"100%"}
+      // border={"1px solid black"}
       sx={{
         cursor: "pointer",
       }}
@@ -34,6 +36,7 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
         <Box
           width={{ md: "100%", lg: "100%", xl: "100%" }}
           height={forBlog ? "75%" : "75%"}
+          // border={"1px solid blue"}
           sx={{
             overflow: "hidden",
             boxShadow:

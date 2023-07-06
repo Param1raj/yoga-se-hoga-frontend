@@ -7,7 +7,7 @@ import HoverInput from "@/components/HoverInput";
 function ContactUs() {
   return (
     <Grid
-      height={"40rem"}
+      height={{ xs: "30rem", sm: "40rem" }}
       //   border={"1px solid red"}
       container
       sx={{
@@ -15,7 +15,12 @@ function ContactUs() {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         display: "grid",
-        gridTemplateColumns: { sm: "1fr", md: "40% 60%", lg: "repeat(2,1fr)" },
+        gridTemplateColumns: {
+          xs: "1fr",
+          sm: "1fr",
+          md: "40% 60%",
+          lg: "repeat(2,1fr)",
+        },
       }}
     >
       <Grid item></Grid>
@@ -31,7 +36,8 @@ function ContactUs() {
           width={{ sm: "90%", md: "85%", lg: "75%", xl: "60%" }}
           height={{ sm: "90%", md: "80%" }}
           sx={{ background: "#ffffff" }}
-          padding={{ sm: "40px", md: "50px" }}
+          // border={"1px solid black"}
+          padding={{ xs: "40px", sm: "40px", md: "50px" }}
           spacing={4}
         >
           <Typography
@@ -49,7 +55,13 @@ function ContactUs() {
               fontFamily={"Kumbh Sans"}
               //   textTransform={"uppercase"}
               fontWeight={"700"}
-              fontSize={{ sm: "2rem", md: "2.3rem", lg: "2.5rem", xl: "3rem" }}
+              fontSize={{
+                xs: "2rem",
+                sm: "2rem",
+                md: "2.3rem",
+                lg: "2.5rem",
+                xl: "3rem",
+              }}
             >
               Have questions?
             </Typography>
@@ -59,7 +71,13 @@ function ContactUs() {
               fontFamily={"Kumbh Sans"}
               //   textTransform={"uppercase"}
               fontWeight={"700"}
-              fontSize={{ sm: "2rem", md: "2.3rem", lg: "2.5rem", xl: "3rem" }}
+              fontSize={{
+                xs: "2rem",
+                sm: "2rem",
+                md: "2.3rem",
+                lg: "2.5rem",
+                xl: "3rem",
+              }}
             >
               Get in touch!
             </Typography>

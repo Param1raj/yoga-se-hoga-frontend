@@ -11,7 +11,7 @@ function ButtonComp({
   link,
 }: {
   text: string;
-  width?: boolean;
+  width?: string;
   link?: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -33,8 +33,8 @@ function ButtonComp({
       sx={{
         borderRadius: "0px",
         width: width
-          ? undefined
-          : { sm: "13rem", md: "14rem", lg: "13rem", xl: "15rem" },
+          ? width
+          : { xs: "13rem", md: "14rem", lg: "13rem", xl: "15rem" },
         backgroundColor: "#5F2C70",
         ":hover": {
           backgroundColor: "#5F2C70",
