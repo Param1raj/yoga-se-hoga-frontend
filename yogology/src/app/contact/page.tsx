@@ -4,55 +4,39 @@ import HoverInput from "@/components/HoverInput";
 import styles from "../page.module.css";
 import { Box, Breadcrumbs, Grid, Link, Stack, Typography } from "@mui/material";
 import ButtonComp from "@/components/ButtonComp";
+import PageHeader from "@/components/PageHeader/Header";
 
 export default function Home() {
   return (
     <main className={styles.main}>
+      <PageHeader title="Contact Us" linkData={[{ name: "Home", link: "/" }]} />
       <Box
-        display={"flex"}
-        alignItems={"center"}
-        justifyContent={"center"}
-        height={"30rem"}
-        width={"100%"}
-        sx={{
-          background: "#fff",
-        }}
-      >
-        <Stack rowGap={"-20px"}>
-          <Typography
-            variant="h1"
-            fontWeight={"700"}
-            fontFamily={["Kumbh Sans", "sans-serif"]}
-            fontSize={"2.9rem"}
-            component={"h1"}
-            color={"#322038"}
-          >
-            Contacts
-          </Typography>
-          <Breadcrumbs
-            sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Link underline="hover" href="/">
-              Home
-            </Link>
-            <Typography>Contacts</Typography>
-          </Breadcrumbs>
-        </Stack>
-      </Box>
-      <Box
-        height={"50rem"}
+        height={{ sm: "60rem", md: "50rem" }}
         width={"100%"}
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
+        // border={"1px solid black"}
       >
-        <Grid container width={"60%"} height={"80%"}>
-          <Grid item xs={6}>
-            <Stack spacing={"20px"}>
+        <Grid
+          display={"grid"}
+          gridTemplateColumns={{
+            xs: "1fr",
+            sm: "1fr",
+            md: "40% 60%",
+            lg: "repeat(2,1fr)",
+          }}
+          gridTemplateRows={{ xs: "20% 80%", sm: "20% 80%", md: "100%" }}
+          width={{ xs: "85%", sm: "80%", md: "80%", lg: "70%", xl: "60%" }}
+          height={{ xs: "90%", sm: "90%", md: "80%" }}
+          // border={"1px solid black"}
+        >
+          <Grid>
+            <Stack
+              // border={"1px solid black"}
+              spacing={"20px"}
+              padding={{ xs: "35px", sm: "35px", md: "0px" }}
+            >
               <Typography
                 fontFamily={["Nunito", "sans-serif"]}
                 fontSize={"0.8rem"}
@@ -66,7 +50,12 @@ export default function Home() {
               <Stack>
                 <Typography
                   fontWeight={"700"}
-                  fontSize={"2.5rem"}
+                  fontSize={{
+                    xs: "1.7rem",
+                    sm: "2rem",
+                    md: "2.0rem",
+                    lg: "2.5rem",
+                  }}
                   fontFamily={["Kumbh Sans", "sans-serif"]}
                   letterSpacing={"-0.9px"}
                   lineHeight={"2.5rem"}
@@ -75,7 +64,12 @@ export default function Home() {
                 </Typography>
                 <Typography
                   fontWeight={"700"}
-                  fontSize={"2.5rem"}
+                  fontSize={{
+                    xs: "1.7rem",
+                    sm: "2rem",
+                    md: "2.0rem",
+                    lg: "2.5rem",
+                  }}
                   fontFamily={["Kumbh Sans", "sans-serif"]}
                   letterSpacing={"-0.9px"}
                   lineHeight={"2.5rem"}
@@ -86,18 +80,18 @@ export default function Home() {
             </Stack>
           </Grid>
           <Grid
-            item
-            xs={6}
+            // item
+            // xs={6}
             // border={"1px solid black"}
             alignItems={"center"}
             justifyContent={"center"}
             display={"flex"}
           >
             <Stack
-              width={"90%"}
-              height={"96%"}
+              width={{ xs: "95%", sm: "90%" }}
+              height={{ xs: "90%", sm: "96%" }}
               sx={{ background: "#FFFFFF" }}
-              padding={"50px"}
+              padding={{ xs: "40px", sm: "50px" }}
               spacing={"40px"}
             >
               <HoverInput width={"100%"} label={"Name"} />

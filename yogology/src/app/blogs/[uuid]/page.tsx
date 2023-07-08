@@ -48,9 +48,14 @@ function page() {
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
-        padding={"100px"}
+        padding={{ xs: "30px", sm: "100px" }}
       >
-        <Stack width={"80%"} height={"fit-content"} spacing={"20px"}>
+        <Stack
+          width={{ xs: "95%", md: "80%" }}
+          height={"fit-content"}
+          spacing={"20px"}
+          // border={"1px solid blue"}
+        >
           {intro.map((text, index) => (
             <Typography
               variant="body1"

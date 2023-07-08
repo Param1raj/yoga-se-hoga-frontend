@@ -31,7 +31,7 @@ function Footer() {
           height={{ xs: "100%", sm: "90%", md: "78%" }}
         >
           <Grid
-            height={{ xs: "95%", sm: "75%" }}
+            height={{ xs: "95%", sm: "75%", lg: "85%" }}
             display={"grid"}
             gridTemplateColumns={{
               xs: "1fr",

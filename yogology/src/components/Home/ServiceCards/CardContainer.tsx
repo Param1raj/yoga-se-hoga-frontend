@@ -32,7 +32,12 @@ function CardContainer() {
   return (
     <Box
       width={"100%"}
-      height={{ xs: "fit-content", sm: "fit-content", md: "30rem" }}
+      height={{
+        xs: "fit-content",
+        sm: "fit-content",
+        md: "50rem",
+        lg: "35rem",
+      }}
       display={"flex"}
       justifyContent={"center"}
       alignItems={"center"}
@@ -48,9 +53,11 @@ function CardContainer() {
           md: "repeat(2,1fr)",
           lg: "repeat(4,1fr)",
         }}
-        width={{ xs: "95%", sm: "90%", md: "75%", lg: "95%", xl: "75%" }}
+        gridTemplateRows={{ sm: "repeat(4,1fr)" }}
+        rowGap={"20px"}
+        width={{ xs: "95%", sm: "70%", md: "75%", lg: "95%", xl: "75%" }}
         margin={"auto"}
-        height={{ sm: "80%", md: "80%", lg: "63%", xl: "65%" }}
+        height={{ xs: "90%", sm: "100%", md: "80%", lg: "63%", xl: "65%" }}
         // border={"1px solid black"}
       >
         {services.map(({ title, image, caption }) => {

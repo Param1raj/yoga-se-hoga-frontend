@@ -26,6 +26,7 @@ import { useState } from "react";
 import TestimonialSvgIcon from "../../assets/Iconsvg/TestimonialSvg";
 import { motion } from "framer-motion";
 import image1 from "../../assets/images/nature.avif";
+import PageHeader from "@/components/PageHeader/Header";
 // import CarouselFunction from "@/components/Carousel/Carousel";
 const services = [
   {
@@ -107,8 +108,9 @@ const ServiceCard = ({
   const [isHovering, setIsHovering] = useState(false);
   return (
     <Grid
-      item
-      xs={4}
+      // item
+      // xs={4}
+      // border={"1px solid black"}
       height={"100%"}
       onMouseEnter={(e) => {
         setIsHovering(true);
@@ -131,7 +133,12 @@ const ServiceCard = ({
         }}
         elevation={0}
       >
-        <Stack spacing={3} width={"100%"} height={"70%"} alignItems={"center"}>
+        <Stack
+          spacing={3}
+          width={"100%"}
+          height={{ sm: "90%", md: "70%" }}
+          alignItems={"center"}
+        >
           <Box textAlign={"center"} color={isHovering ? "#5F2C70" : "black"}>
             {image}
           </Box>
@@ -153,7 +160,7 @@ const ServiceCard = ({
             </Typography>
             <Typography
               fontFamily={["Nunito", "sans-serif"]}
-              fontSize={"17px"}
+              fontSize={"1rem"}
               color={" #847988"}
               fontWeight={"400"}
             >
@@ -171,54 +178,20 @@ export default function Home() {
   const [isHovering, setIsHovering] = useState(false);
   return (
     <main className={styles.main}>
-      <Box
-        display={"flex"}
-        alignItems={"center"}
-        justifyContent={"center"}
-        height={"30rem"}
-        width={"100%"}
-        sx={{
-          // background: `url('${background.src}')`,
-          // backgroundSize: "cover",
-          // backgroundRepeat: "no-repeat",
-          // backgroundPositionY: "-350px",
-          background: "#fff",
-        }}
-      >
-        <Stack rowGap={"-20px"}>
-          <Typography
-            variant="h1"
-            fontWeight={"700"}
-            fontFamily={["Kumbh Sans", "sans-serif"]}
-            fontSize={"2.9rem"}
-            component={"h1"}
-            color={"#322038"}
-          >
-            Who We Are
-          </Typography>
-          <Breadcrumbs
-            sx={{
-              width: "100%",
-              // border: "1px solid red",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Link underline="hover" href="/">
-              Home
-            </Link>
-            <Typography>Who we are</Typography>
-          </Breadcrumbs>
-        </Stack>
-      </Box>
+      <PageHeader title="Who We Are" linkData={[{ name: "Home", link: "/" }]} />
       {/* <Box height={"40rem"} border={"1px solid black"}>
         <CarouselFunction data={carouselData} />
       </Box> */}
-      <Stack width={"70%"} justifyContent={"center"} height={"46rem"}>
+      <Stack
+        width={{ xs: "75%", sm: "60%", md: "95%", lg: "85%", xl: "70%" }}
+        // border={"1px solid blue"}
+        justifyContent={"center"}
+        height={{ xs: "70rem", sm: "70rem", md: "46rem" }}
+      >
         <Stack
           // border={"1px solid blue"}
           width={"100%"}
-          height={"70%"}
+          height={{ xs: "95%", sm: "94%", md: "70%" }}
           alignItems={"center"}
           spacing={5}
         >
@@ -241,7 +214,7 @@ export default function Home() {
               textAlign={"center"}
               fontFamily={["Kumbh Sans", "sans-serif"]}
               fontWeight={"700"}
-              fontSize={"2.5rem"}
+              fontSize={{ xs: "1.2rem", sm: "2rem", md: "2.5rem" }}
               color={"#322038"}
               lineHeight={" 50px"}
             >
@@ -261,6 +234,14 @@ export default function Home() {
               width={"90%"}
               margin={"auto"}
               height={"100%"}
+              display={"grid"}
+              gridTemplateColumns={{
+                xs: "1fr",
+                sm: "1fr",
+                md: "repeat(3,1fr)",
+              }}
+              columnGap={"20px"}
+              rowGap={"20px"}
             >
               {services.map(({ title, image, caption }) => {
                 return (
@@ -277,9 +258,8 @@ export default function Home() {
         </Stack>
       </Stack>
       <Stack
-        height={"83rem"}
+        height={{ xs: "100rem", sm: "83rem" }}
         width={"100%"}
-        // border={"1px solid black"}
         sx={{ background: "#FFFFFF" }}
         display={"flex"}
         alignItems={"center"}
@@ -297,7 +277,7 @@ export default function Home() {
         <Typography
           color={"#322038"}
           fontFamily={["Kumbh Sans", "sans-serif"]}
-          fontSize={"2.93781rem"}
+          fontSize={{ xs: "2rem", sm: "2.93781rem" }}
           // textTransform={"uppercase"}
           fontWeight={"700"}
         >
@@ -305,12 +285,33 @@ export default function Home() {
         </Typography>
         <Box
           sx={{
-            width: "70%",
-            height: "74%",
+            width: { xs: "70%", sm: "90%", md: "85%", lg: "85%", xl: "70%" },
+            height: { xs: "90%", sm: "74%" },
             display: "grid",
-            gridTemplateAreas: `'one two two three'
-                                'four two two six'
-                                'four five five six'`,
+            gridTemplateAreas: {
+              xs: `'two'
+                   'two' 
+                   'three' 
+                   'three'
+                   'five'
+                   'five' 
+                   'six'
+                   'six'
+                   'four'
+                   'four'
+                   'one' 
+                   'one'`,
+              sm: `'two two three three'
+                   'five five six six'
+                   'four four one one'`,
+              md: `'two two three three'
+                    'two two six six'
+                    'four four one one'
+                    'five five one one'`,
+              lg: `'one two two three'
+                    'four two two six'
+                    'four five five six'`,
+            },
           }}
         >
           <Box sx={{ padding: "10px", gridArea: "one" }}>
@@ -323,7 +324,7 @@ export default function Home() {
                   background: `url('${backgroundOne.src}')`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
-                  backgroundPositionX: "-100px",
+                  backgroundPositionX: { sm: "-100px" },
                   ...animations(),
                 }}
               >
@@ -349,7 +350,7 @@ export default function Home() {
                   background: `url('${backgroundTwo.src}')`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
-                  backgroundPositionX: "-100px",
+                  backgroundPositionX: { sm: "0px", md: "-100px" },
                   ...animations(),
                 }}
               >
@@ -376,7 +377,7 @@ export default function Home() {
                   background: `url('${backgroundThree.src}')`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
-                  backgroundPositionX: "-100px",
+                  backgroundPositionX: { md: "0px", lg: "-100px" },
                   ...animations(),
                 }}
               >
@@ -403,7 +404,13 @@ export default function Home() {
                   background: `url('${backgroundForth.src}')`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
-                  backgroundPositionX: "-50px",
+                  backgroundPositionX: { md: "0px", lg: "-50px" },
+                  backgroundPositionY: {
+                    xs: "-80px",
+                    sm: "-80px",
+                    md: "-250px",
+                    lg: "0px",
+                  },
                   ...animations(),
                 }}
               >
@@ -477,16 +484,21 @@ export default function Home() {
       </Stack>
       <Box
         width={"100%"}
-        height={"53rem"}
+        height={{ xs: "90rem", sm: "90rem", md: "80rem", lg: "53rem" }}
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
+        // border={"1px solid red"}
       >
-        <Box width={"70%"} height={"75%"}>
+        <Box
+          width={{ xs: "80%", sm: "55%", md: "75%", lg: "80%", xl: "70%" }}
+          // border={"1px solid red"}
+          height={{ xs: "95%", sm: "90%", md: "75%" }}
+        >
           <Stack
+            // border={"1px solid red"}
             width={"100%"}
             height={"100%"}
-            // border={"1px solid red"}
             spacing={"20px"}
           >
             <Typography
@@ -501,16 +513,28 @@ export default function Home() {
             <Typography
               color={"#322038"}
               fontFamily={["Kumbh Sans", "sans-serif"]}
-              fontSize={"2.93781rem"}
+              fontSize={{ xs: "1.8rem", sm: "2rem", md: "2.93781rem" }}
               // textTransform={"uppercase"}
               fontWeight={"700"}
             >
               What people say
             </Typography>
-            <Grid container justifyContent={"space-between"} height={"75%"}>
+            <Grid
+              justifyContent={"space-between"}
+              height={{ xs: "100%", sm: "100%", md: "85%", lg: "75%" }}
+              display={"grid"}
+              // border={"1px solid red"}
+              gridTemplateColumns={{
+                sm: "1fr",
+                md: "repeat(2,1fr)",
+                lg: "repeat(3,1fr)",
+              }}
+              columnGap={"20px"}
+              rowGap={"20px"}
+            >
               <Grid
-                item
-                xs={3.7}
+                // item
+                // xs={3.7}
                 sx={
                   {
                     // background: "#FFF",
@@ -528,13 +552,23 @@ export default function Home() {
                   }}
                   whileHover={{ y: -10 }}
                 >
-                  <Stack width={"75%"} spacing={3} height={"75%"}>
+                  <Stack
+                    width={{
+                      xs: "85%",
+                      sm: "83%",
+                      md: "85%",
+                      lg: "85%",
+                      xl: "75%",
+                    }}
+                    spacing={3}
+                    height={"75%"}
+                  >
                     <Box>
                       <TestimonialSvgIcon />
                     </Box>
                     <Typography
                       fontFamily={"Nunito"}
-                      fontSize={"1.18rem"}
+                      fontSize={{ md: "1rem", lg: "1.18rem" }}
                       color={"#322038"}
                       lineHeight={"2.12rem"}
                       letterSpacing={"0.000625rem"}
@@ -567,8 +601,8 @@ export default function Home() {
                 </motion.div>
               </Grid>
               <Grid
-                item
-                xs={3.7}
+                // item
+                // xs={3.7}
                 // border={"1px solid blue"}
                 display={"flex"}
                 justifyContent={"center"}
@@ -586,13 +620,23 @@ export default function Home() {
                   }}
                   whileHover={{ y: -10 }}
                 >
-                  <Stack width={"75%"} spacing={3} height={"75%"}>
+                  <Stack
+                    width={{
+                      xs: "85%",
+                      sm: "83%",
+                      md: "85%",
+                      lg: "85%",
+                      xl: "75%",
+                    }}
+                    spacing={3}
+                    height={"75%"}
+                  >
                     <Box>
                       <TestimonialSvgIcon />
                     </Box>
                     <Typography
                       fontFamily={"Nunito"}
-                      fontSize={"1.18rem"}
+                      fontSize={{ md: "1rem", lg: "1.18rem" }}
                       color={"#322038"}
                       lineHeight={"2.12rem"}
                       letterSpacing={"0.000625rem"}
@@ -625,8 +669,8 @@ export default function Home() {
                 </motion.div>
               </Grid>
               <Grid
-                item
-                xs={3.7}
+                // item
+                // xs={3.7}
                 // border={"1px solid blue"}
                 display={"flex"}
                 justifyContent={"center"}
@@ -641,16 +685,27 @@ export default function Home() {
                     width: "100%",
                     height: "100%",
                     background: "#FFF",
+                    // border: "1px solid black",
                   }}
                   whileHover={{ y: -10 }}
                 >
-                  <Stack width={"75%"} spacing={3} height={"75%"}>
+                  <Stack
+                    width={{
+                      xs: "85%",
+                      sm: "83%",
+                      md: "85%",
+                      lg: "85%",
+                      xl: "75%",
+                    }}
+                    spacing={3}
+                    height={"75%"}
+                  >
                     <Box>
                       <TestimonialSvgIcon />
                     </Box>
                     <Typography
                       fontFamily={"Nunito"}
-                      fontSize={"1.18rem"}
+                      fontSize={{ md: "1rem", lg: "1.18rem" }}
                       color={"#322038"}
                       lineHeight={"2.12rem"}
                       letterSpacing={"0.000625rem"}

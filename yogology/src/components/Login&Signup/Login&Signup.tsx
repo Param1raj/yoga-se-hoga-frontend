@@ -1,6 +1,6 @@
 "use client";
 import React, { useCallback } from "react";
-import { Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import HoverInput from "@/components/HoverInput";
 import ButtonComp from "@/components/ButtonComp";
 import { motion } from "framer-motion";
@@ -15,13 +15,25 @@ function LoginSgnup({
   const Login = useCallback(() => {}, []);
   const { replace } = useRouter();
   return (
-    <Grid container>
+    <Grid
+      display={"grid"}
+      gridTemplateColumns={{
+        xs: "1fr",
+        sm: "55% 45%",
+        md: "repeat(2,1fr)",
+      }}
+      rowGap={"10px"}
+      gridTemplateRows={{ xs: "40% 60%", sm: "none" }}
+      width={"100%"}
+      height={{ xs: "100vh ", sm: "60vh", md: "80vh", lg: "100vh" }}
+    >
       <Grid
-        item
-        xs={6}
+        // item
+        // xs={6}
         sx={{
-          minHeight: "100vh",
+          // minHeight: "100vh",
           width: "100%",
+          height: "100%",
         }}
       >
         <motion.div
@@ -33,19 +45,36 @@ function LoginSgnup({
           style={{
             width: "100%",
             height: "100%",
-            background: `url('${image}')`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
           }}
-        ></motion.div>
+        >
+          <Box
+            sx={{
+              width: "100%",
+              height: "100%",
+              background: `url('${image}')`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: { xs: "", sm: "center" },
+              backgroundPositionX: {
+                // xs: "-50px",
+                sm: "-130px",
+                md: "-100px",
+                lg: "-100px",
+              },
+            }}
+            // border={"1px solid black"}
+          ></Box>
+        </motion.div>
       </Grid>
       <Grid
-        item
-        xs={6}
+        // item
+        // xs={6}
         sx={{
-          minHeight: "100vh",
+          // minHeight: "100vh",
+          height: "100%",
           width: "100%",
         }}
+        // border={"1px solid blue"}
       >
         <Stack
           width={"100%"}
@@ -54,9 +83,9 @@ function LoginSgnup({
           justifyContent={"center"}
         >
           <Stack
-            width={"60%"}
+            width={{ xs: "80%", sm: "90%", md: "90%", lg: "75%", xl: "60%" }}
             height={"60%"}
-            spacing={3}
+            spacing={{ xs: 0.5, sm: 1, md: 1.1, lg: 3 }}
             // border={"1px solid blue"}
           >
             <motion.h2
@@ -88,7 +117,7 @@ function LoginSgnup({
                   component={"p"}
                   fontFamily={"Kumbh Sans"}
                   fontWeight={"700"}
-                  fontSize={"3rem"}
+                  fontSize={{ sm: "2rem", md: "3rem" }}
                 >
                   {isForLogin ? "Have Account?" : "Don't have account?"}
                 </Typography>
@@ -106,7 +135,7 @@ function LoginSgnup({
                   fontFamily={"Kumbh Sans"}
                   //   textTransform={"uppercase"}
                   fontWeight={"700"}
-                  fontSize={"3rem"}
+                  fontSize={{ sm: "2rem", md: "3rem" }}
                 >
                   {isForLogin ? "Login!" : "Signup!"}
                 </Typography>
@@ -141,7 +170,7 @@ function LoginSgnup({
             </motion.div>
             <motion.div
               initial={{ y: "100px", opacity: 0 }}
-              animate={{ y: [, "0px"], opacity: 1 }}
+              animate={{ y: ["50px"], opacity: 1 }}
             >
               <Typography
                 variant="body1"

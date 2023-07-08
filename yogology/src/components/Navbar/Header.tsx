@@ -89,7 +89,7 @@ function ResponsiveAppBar() {
         // maxWidth={false}
         // border={"1px solid black"}
         sx={{
-          padding: { xs: "1.1rem", sm: "0.8rem", md: "1.3rem" },
+          padding: { xs: "1.5rem", sm: "0.8rem", md: "1.3rem" },
         }}
       >
         <Toolbar
