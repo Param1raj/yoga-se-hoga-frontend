@@ -15,7 +15,7 @@ const VideoList = [
   "SomeListed Video",
   "SomeListed Video",
 ];
-function page() {
+function Page() {
   return (
     <Grid container height={"100vh"} className={styles.main}>
       <Grid item xs={3}>
@@ -51,4 +51,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

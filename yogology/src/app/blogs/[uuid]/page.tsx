@@ -5,7 +5,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import PageHeader from "@/components/PageHeader/Header";
 import BackgrooundImage from "../../../assets/images/BlogImage.jpeg";
 
-function page() {
+function Page() {
   const [blogName, setBlogName] = useState("Blog1");
   const [intro, setIntro] = useState([
     "QProin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a accumsan. Cras sollicitudin, ipsum eget blandit pulvinar. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.",
@@ -60,6 +60,7 @@ function page() {
             <Typography
               variant="body1"
               component={"p"}
+              key={text}
               color={"#847988"}
               fontSize={"1.06rem"}
               fontFamily={["Nunito", "sans-serif"]}
@@ -86,6 +87,7 @@ function page() {
                 variant="body1"
                 component={"p"}
                 color={"#322038"}
+                key={heading}
                 fontSize={"1.41631rem"}
                 fontWeight={"700"}
                 letterSpacing={"-0.015rem"}
@@ -95,6 +97,7 @@ function page() {
               </Typography>
               {content.map((text, index) => (
                 <Typography
+                  key={text}
                   variant="body1"
                   component={"p"}
                   color={"#847988"}
@@ -125,4 +128,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

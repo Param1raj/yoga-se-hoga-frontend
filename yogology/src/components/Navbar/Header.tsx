@@ -142,6 +142,7 @@ function ResponsiveAppBar() {
                       display={"flex"}
                       alignItems={"center"}
                       paddingLeft={"20px"}
+                      key={name}
                       onClick={() => {
                         router.replace(`${pathName}`);
                         setAnchor(false);
@@ -215,7 +216,7 @@ function ResponsiveAppBar() {
             }}
           >
             {NavRoutes.map(({ pathName, name }) => (
-              <NavbarElement pathName={pathName} name={name} />
+              <NavbarElement key={name} pathName={pathName} name={name} />
             ))}
           </Box>
 

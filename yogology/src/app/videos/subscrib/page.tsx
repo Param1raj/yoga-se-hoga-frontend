@@ -41,7 +41,7 @@ const VideoList = [
   "SomeListed Video",
   "SomeListed Video",
 ];
-function page() {
+function Page() {
   const [value, setValue] = useState("2");
   const forPreview = true;
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -67,7 +67,7 @@ function page() {
             variant="h2"
             component="h2"
             fontSize={"3.5rem"}
-            fontFamily={("Kumbh Sans", "sans-serif")}
+            fontFamily={["Kumbh Sans", "sans-serif"]}
             fontWeight={"500"}
             color={"#ffffff"}
           >
@@ -76,7 +76,7 @@ function page() {
           <Typography
             variant="body1"
             component={"p"}
-            fontFamily={("Nunito", "sans-serif")}
+            fontFamily={["Nunito", "sans-serif"]}
             fontSize={"1.5rem"}
             color={"#ffffff"}
           >
@@ -121,7 +121,7 @@ function page() {
                 <Box>
                   <Typography
                     fontSize={"1.3rem"}
-                    fontFamily={("Nunito", "sans-serif")}
+                    fontFamily={["Nunito", "sans-serif"]}
                     fontWeight={"500"}
                     color={"#5F2C70"}
                   >
@@ -129,7 +129,7 @@ function page() {
                   </Typography>
                   <Typography
                     fontSize={"1.3rem"}
-                    fontFamily={("Nunito", "sans-serif")}
+                    fontFamily={["Nunito", "sans-serif"]}
                     fontWeight={"500"}
                     // color={"#5F2C70"}
                     lineHeight={"1rem"}
@@ -148,7 +148,7 @@ function page() {
               >
                 <Typography
                   fontSize={"2.5rem"}
-                  fontFamily={("Kumbh Sans", "sans-serif")}
+                  fontFamily={["Kumbh Sans", "sans-serif"]}
                   fontWeight={"500"}
                   // color={"#FFF"}
                   variant="h2"
@@ -158,7 +158,7 @@ function page() {
                 </Typography>
                 <Typography
                   fontSize={"1.3rem"}
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                   fontWeight={"500"}
                   // color={"#FFF"}
                   variant="body1"
@@ -168,7 +168,7 @@ function page() {
                 </Typography>
                 <Typography
                   fontSize={"1rem"}
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                   fontWeight={"500"}
                   color={"#5E5E5E"}
                   textAlign={"justify"}
@@ -196,7 +196,7 @@ function page() {
                       variant="body2"
                       component={"p"}
                       fontSize={"1rem"}
-                      fontFamily={("Nunito", "sans-serif")}
+                      fontFamily={["Nunito", "sans-serif"]}
                       fontWeight={"500"}
                       // color={"#5E5E5E"}
                     >
@@ -206,7 +206,7 @@ function page() {
                       variant="body2"
                       component={"p"}
                       fontSize={"1rem"}
-                      fontFamily={("Nunito", "sans-serif")}
+                      fontFamily={["Nunito", "sans-serif"]}
                       fontWeight={"500"}
                       color={"#5E5E5E"}
                     >
@@ -227,7 +227,7 @@ function page() {
                       variant="body2"
                       component={"p"}
                       fontSize={"1rem"}
-                      fontFamily={("Nunito", "sans-serif")}
+                      fontFamily={["Nunito", "sans-serif"]}
                       fontWeight={"500"}
                       // color={"#5E5E5E"}
                     >
@@ -237,7 +237,7 @@ function page() {
                       variant="body2"
                       component={"p"}
                       fontSize={"1rem"}
-                      fontFamily={("Nunito", "sans-serif")}
+                      fontFamily={["Nunito", "sans-serif"]}
                       fontWeight={"500"}
                       color={"#5E5E5E"}
                     >
@@ -258,7 +258,7 @@ function page() {
                       variant="body2"
                       component={"p"}
                       fontSize={"1.125rem"}
-                      fontFamily={("Nunito", "sans-serif")}
+                      fontFamily={["Nunito", "sans-serif"]}
                       fontWeight={"500"}
                       // color={"#5E5E5E"}
                     >
@@ -284,7 +284,7 @@ function page() {
               >
                 <Typography
                   fontSize={"4.5rem"}
-                  fontFamily={("Kumbh Sans", "sans-serif")}
+                  fontFamily={["Kumbh Sans", "sans-serif"]}
                   fontWeight={"500"}
                   color={"#5F2C70"}
                 >
@@ -293,7 +293,7 @@ function page() {
                 <ButtonComp text="Start Now" />
                 <Typography
                   fontSize={"1rem"}
-                  fontFamily={("Nunito", "sans-serif")}
+                  fontFamily={["Nunito", "sans-serif"]}
                   color={"#5F2C70"}
                   textAlign={"center"}
                 >
@@ -540,7 +540,7 @@ function page() {
               component={"h5"}
               fontWeight={"700"}
               color={"#5F2C70"}
-              fontFamily={("Kumbh Sans", "sans-serif")}
+              fontFamily={["Kumbh Sans", "sans-serif"]}
             >
               Blogs you might like
             </Typography>
@@ -561,4 +561,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

@@ -87,8 +87,9 @@ export default function Home() {
           // border={"1px solid black"}
           padding={{ x: "5px", sm: "10px", md: "10px", lg: "30px" }}
         >
-          {demoArray.map((_, index) => (
+          {demoArray.map((data, index) => (
             <Box
+              key={data}
               height={{ xs: "60%", sm: "60%", md: "50%" }}
               marginBottom={"50px"}
               sx={{ cursor: "pointer" }}

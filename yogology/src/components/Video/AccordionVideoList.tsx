@@ -56,6 +56,7 @@ function AccordionVideoList({
         >
           {List.map((VideoTitle, i) => (
             <motion.div
+              key={VideoTitle}
               variants={item}
               onClick={() => {
                 replace("/videos");

@@ -60,6 +60,7 @@ function PageHeader({ backgroundImage, title, linkData }: HeaderProps) {
         >
           {linkData.map(({ link, name }) => (
             <Link
+              key={name}
               underline="hover"
               href={link}
               color={backgroundImage ? "#322038" : ""}
