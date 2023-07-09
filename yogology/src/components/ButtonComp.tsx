@@ -39,6 +39,7 @@ function ButtonComp({
         ":hover": {
           backgroundColor: "#5F2C70",
         },
+        marginTop: "20px",
       }}
       onClick={() => {
         if (link) replace(link);

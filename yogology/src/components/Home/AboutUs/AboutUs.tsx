@@ -99,7 +99,7 @@ function AboutUs() {
             secrets of living in harmony amidst the bustling material world.{" "}
           </Typography>
 
-          <ButtonComp text={"About"} />
+          <ButtonComp text={"About"} link="/about" />
         </Stack>
       </Grid>
     </Grid>

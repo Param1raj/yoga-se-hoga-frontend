@@ -101,7 +101,7 @@ function WhatWeDo() {
             <HoverImage key={title} image={image} title={title} />
           ))}
         </Grid>
-        <ButtonComp text={"More About Us"} />
+        <ButtonComp text={"More About Us"} link="/about" />
       </Stack>
     </Stack>
   );

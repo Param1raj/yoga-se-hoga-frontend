@@ -21,6 +21,7 @@ function GridComp({ image, head, title, ButtonText }: GridCompProps) {
         background: `url('${image}')`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
       }}
     >
       <Stack
@@ -68,7 +69,7 @@ function GridComp({ image, head, title, ButtonText }: GridCompProps) {
             {title}{" "}
           </Typography>
           <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
-            <ButtonComp text={ButtonText} />
+            <ButtonComp text={ButtonText} link="/contact" />
           </Box>
         </Stack>
       </Stack>
@@ -82,14 +83,14 @@ function Careers() {
       container
       //   sx={{ border: "1px solid red" }}
       height={{
-        xs: "45rem",
-        sm: "55rem",
-        md: "30rem",
-        lg: "35rem",
+        xs: "25rem",
+        sm: "35rem",
+        md: "38rem",
+        lg: "40rem",
         xl: "43rem",
       }}
       display={"grid"}
-      gridTemplateColumns={{ xs: "1fr", sm: "1fr", md: "repeat(2,1fr)" }}
+      gridTemplateColumns={{ xs: "1fr", sm: "1fr", md: "1fr" }}
       width={"100%"}
     >
       <GridComp
@@ -98,12 +99,12 @@ function Careers() {
         ButtonText={"contact us"}
         image={image1.src}
       />
-      <GridComp
+      {/* <GridComp
         title={"Want to join us?"}
         head={"Careers"}
         ButtonText={"Read More"}
         image={image2.src}
-      />
+      /> */}
     </Grid>
   );
 }

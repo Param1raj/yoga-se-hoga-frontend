@@ -19,7 +19,7 @@ function LoginSgnup({
       display={"grid"}
       gridTemplateColumns={{
         xs: "1fr",
-        sm: "55% 45%",
+        sm: isForLogin ? "55% 45%" : "50% 50%",
         md: "repeat(2,1fr)",
       }}
       rowGap={"10px"}
@@ -37,7 +37,7 @@ function LoginSgnup({
         }}
       >
         <motion.div
-          initial={{ opacity: 0, x: "500px" }}
+          initial={{ opacity: 0, x: "100px" }}
           whileInView={{
             x: ["200px", "0px"],
             opacity: [0.4, 1],
@@ -84,7 +84,7 @@ function LoginSgnup({
         >
           <Stack
             width={{ xs: "80%", sm: "90%", md: "90%", lg: "75%", xl: "60%" }}
-            height={"60%"}
+            height={{ xs: "80%", sm: isForLogin ? "60%" : "90%" }}
             spacing={{ xs: 0.5, sm: 1, md: 1.1, lg: 3 }}
             // border={"1px solid blue"}
           >

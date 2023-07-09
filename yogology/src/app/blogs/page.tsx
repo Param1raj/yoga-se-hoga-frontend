@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import blogImage from "../../assets/images/BlogImage.jpeg";
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 import PageHeader from "@/components/PageHeader/Header";
+import { useRouter } from "next/navigation";
 const demoArray = [1, 2, 3, 4];
 
 function HoverScaleImage() {
@@ -62,12 +63,13 @@ function ToLeftTextAnimation() {
 }
 
 export default function Home() {
+  const router = useRouter();
   return (
     <main className={styles.main}>
       <PageHeader title="Blogs" linkData={[{ name: "Home", link: "/" }]} />
       <Box
         width={"100%"}
-        height={"100vh"}
+        height={"fit-content"}
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
@@ -76,8 +78,8 @@ export default function Home() {
           width={{ xs: "97%", sm: "95%", md: "95%", lg: "90%", xl: "70%" }}
           height={"100%"}
           overflow={"scroll"}
-          position={"sticky"}
-          top={"100px"}
+          // position={"sticky"}
+          // top={"100px"}
           sx={{
             scrollBehavior: "smooth",
             "&::-webkit-scrollbar": {
@@ -91,14 +93,15 @@ export default function Home() {
             <Box
               key={data}
               height={{ xs: "60%", sm: "60%", md: "50%" }}
-              marginBottom={"50px"}
+              marginBottom={{ xs: "160px", md: "50px" }}
               sx={{ cursor: "pointer" }}
+              onClick={() => {
+                router.replace(`/blogs/${data}`);
+              }}
             >
               {index % 2 == 0 ? (
                 <>
                   <Grid
-                    // container
-                    // border={"1px solid black"}
                     display={"grid"}
                     gridTemplateColumns={{
                       xs: "1fr",
@@ -170,8 +173,9 @@ export default function Home() {
                       // border={"1px solid black"}
                     >
                       <Stack
-                        spacing={{ sm: "10px", md: "20px" }}
+                        spacing={{ xs: "10px", sm: "10px", md: "20px" }}
                         padding={"10px"}
+                        // border={"1px solid black"}
                       >
                         <Typography
                           variant="h1"

@@ -13,6 +13,7 @@ function ContactUs() {
       sx={{
         background: `url('${images.src}')`,
         backgroundSize: "cover",
+        backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         display: "grid",
         gridTemplateColumns: {
@@ -23,9 +24,9 @@ function ContactUs() {
         },
       }}
     >
-      <Grid item></Grid>
+      <Grid></Grid>
       <Grid
-        item
+        // item
         // border={"1px solid red"}
         display={"flex"}
         alignItems={{ sm: "none", md: "center" }}
