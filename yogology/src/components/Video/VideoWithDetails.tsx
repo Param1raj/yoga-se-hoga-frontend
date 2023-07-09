@@ -66,7 +66,7 @@ function VideoWithDetails({
               variant="h4"
               component={"h4"}
               fontSize={"40px"}
-              fontFamily={("Nunito", "sans-serif")}
+              fontFamily={["Nunito", "sans-serif"]}
               fontWeight={"700"}
             >
               {" "}
@@ -78,7 +78,7 @@ function VideoWithDetails({
               variant="body1"
               component={"p"}
               fontSize={"24px"}
-              fontFamily={("Nunito", "sans-serif")}
+              fontFamily={["Nunito", "sans-serif"]}
               fontWeight={"500"}
               color={"#847988"}
             >
@@ -92,9 +92,9 @@ function VideoWithDetails({
                 height="550"
                 src={videoLink}
                 title="Asteya"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
+                allowFullScreen
                 autoCapitalize="true"
               ></iframe>
             </Box>

@@ -23,7 +23,7 @@ function Page() {
           <Typography
             variant={"h5"}
             component={"h5"}
-            fontFamily={("Nunito", "sans-serif")}
+            fontFamily={["Nunito", "sans-serif"]}
             fontWeight={"600"}
             marginBottom={"30px"}
             color={"#5F2C70"}

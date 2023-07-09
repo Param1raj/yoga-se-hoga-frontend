@@ -41,7 +41,7 @@ function ButtonComp({
         },
       }}
       onClick={() => {
-        replace(link);
+        if (link) replace(link);
       }}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}

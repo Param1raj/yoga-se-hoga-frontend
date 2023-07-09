@@ -16,28 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin={"anonymous"}
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Birthstone+Bounce&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+      <head></head>
       <body className={inter.className}>
-        <App children={children} />
+        <App>{children}</App>
       </body>
     </html>
   );
