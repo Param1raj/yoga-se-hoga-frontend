@@ -14,8 +14,11 @@ import { AuthContext } from "./app";
 // import { useEffect } from "react";
 
 export default function Home() {
-  const { isAuth } = useContext(AuthContext);
-  console.log("+++++++++++++++++AUTH CONTEXT+++++++++++++++++++++", isAuth);
+  const {
+    auth: { isAuth, hasSubscribed },
+    setAuth,
+  } = useContext(AuthContext);
+  console.log("++++++++++++++++++AUTH++++++++++++++++++++++", isAuth);
   return (
     <div className={styles.main}>
       <Box

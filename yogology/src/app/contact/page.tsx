@@ -7,6 +7,7 @@ import ButtonComp from "@/components/ButtonComp";
 import PageHeader from "@/components/PageHeader/Header";
 
 export default function Home() {
+  const handleChange = () => {};
   return (
     <main className={styles.main}>
       <PageHeader title="Contact Us" linkData={[{ name: "Home", link: "/" }]} />
@@ -94,14 +95,35 @@ export default function Home() {
               padding={{ xs: "40px", sm: "50px" }}
               spacing={"40px"}
             >
-              <HoverInput width={"100%"} label={"Name"} />
-              <HoverInput width={"100%"} label={"Phone"} />
-              <HoverInput width={"100%"} label={"Email"} />
-              <HoverInput width={"100%"} label={"Subject"} />
+              <HoverInput
+                width={"100%"}
+                label={"Name"}
+                handleChange={handleChange}
+                name="name"
+              />
+              <HoverInput
+                width={"100%"}
+                label={"Phone"}
+                handleChange={handleChange}
+                name="phone"
+              />
+              <HoverInput
+                width={"100%"}
+                label={"Email"}
+                handleChange={handleChange}
+                name="email"
+              />
+              <HoverInput
+                width={"100%"}
+                label={"Subject"}
+                handleChange={handleChange}
+                name="subject"
+              />
               <HoverInput
                 width={"100%"}
                 label={"How can help you? feel free to get in touch!"}
-                // label=""
+                handleChange={handleChange}
+                name="query"
               />
               <ButtonComp text="Get in touch" />
             </Stack>

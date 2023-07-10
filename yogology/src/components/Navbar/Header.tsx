@@ -66,7 +66,10 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const Auth = useContext(AuthContext);
+  const {
+    auth: { isAuth, hasSubscribed },
+    setAuth,
+  } = useContext(AuthContext);
   // console.log("Auth", Auth);
   const handleCloseNavMenu = () => {
     setAnchor(!anchor);
@@ -220,7 +223,7 @@ function ResponsiveAppBar() {
             ))}
           </Box>
 
-          {Auth.isAuth ? (
+          {isAuth ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
