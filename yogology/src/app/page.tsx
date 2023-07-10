@@ -9,9 +9,13 @@ import WhatWeDo from "@/components/Home/WhatWeDo/WhatWeDo";
 import Careers from "@/components/Home/Careers/Careers";
 import EmailSubscrib from "@/components/Home/EmailSubscrib/EmailSubscrib";
 import ContactUs from "@/components/Home/ContactUs/ContactUs";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "./app";
 // import { useEffect } from "react";
 
 export default function Home() {
+  const { isAuth } = useContext(AuthContext);
+  console.log("+++++++++++++++++AUTH CONTEXT+++++++++++++++++++++", isAuth);
   return (
     <div className={styles.main}>
       <Box

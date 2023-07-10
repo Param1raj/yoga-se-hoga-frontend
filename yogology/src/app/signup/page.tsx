@@ -6,7 +6,11 @@ import background from "../../assets/images/singupbackground1.jpg";
 function Page() {
   return (
     <div className={style.main}>
-      <LoginSgnup image={background.src} isForLogin={false} />
+      <LoginSgnup
+        redirectTo="/login"
+        image={background.src}
+        isForLogin={false}
+      />
     </div>
   );
 }

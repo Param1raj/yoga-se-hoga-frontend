@@ -5,10 +5,14 @@ function HoverInput({
   label,
   width,
   placeholder,
+  name,
+  handleChange,
 }: {
   label: string;
   width: string;
   placeholder?: string;
+  handleChange: any;
+  name: string;
 }) {
   return (
     <TextField
@@ -16,6 +20,11 @@ function HoverInput({
       label={label}
       variant="standard"
       placeholder={placeholder}
+      name={name}
+      onChange={(e: any) => {
+        console.log("value++++++++++++++++++++++++", e.target.value);
+        handleChange(e);
+      }}
       sx={{
         "& #standard-basic": {
           color: "#847988",

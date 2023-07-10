@@ -5,6 +5,7 @@ import ButtonComp from "@/components/ButtonComp";
 import HoverInput from "@/components/HoverInput";
 
 function ContactUs() {
+  const handleChange = () => {};
   return (
     <Grid
       height={{ xs: "30rem", sm: "40rem" }}
@@ -85,13 +86,28 @@ function ContactUs() {
           </Stack>
           <Grid container spacing={1} paddingLeft={"-10px"}>
             <Grid item xs={5}>
-              <HoverInput width={"100%"} label={"Name"} />
+              <HoverInput
+                width={"100%"}
+                label={"Name"}
+                name="name"
+                handleChange={handleChange}
+              />
             </Grid>
             <Grid item xs={5}>
-              <HoverInput width={"100%"} label={"Last Name"} />
+              <HoverInput
+                width={"100%"}
+                label={"Last Name"}
+                name="last-name"
+                handleChange={handleChange}
+              />
             </Grid>
             <Grid item xs={5}>
-              <HoverInput width={"100%"} label={"Email"} />
+              <HoverInput
+                width={"100%"}
+                label={"Email"}
+                name="email"
+                handleChange={handleChange}
+              />
             </Grid>
           </Grid>
           <ButtonComp text={"Get In touch"} />

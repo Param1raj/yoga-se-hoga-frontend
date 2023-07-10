@@ -9,10 +9,12 @@ function ButtonComp({
   text,
   width,
   link,
+  handleClick,
 }: {
   text: string;
   width?: string;
   link?: string;
+  handleClick?: any;
 }) {
   const [open, setOpen] = useState(false);
   const IconAnimation = {
@@ -41,8 +43,9 @@ function ButtonComp({
         },
         marginTop: "20px",
       }}
-      onClick={() => {
+      onClick={(e: any) => {
         if (link) replace(link);
+        if (handleClick) handleClick(e);
       }}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
