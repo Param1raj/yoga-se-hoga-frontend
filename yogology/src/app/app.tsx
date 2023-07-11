@@ -9,8 +9,8 @@ export const AuthContext = createContext({
     isAuth,
     hasSubscribed,
   }: {
-    isAuth: boolean;
-    hasSubscribed: boolean;
+    isAuth?: boolean;
+    hasSubscribed?: boolean;
   }) => {},
 });
 

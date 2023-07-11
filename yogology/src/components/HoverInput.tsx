@@ -7,12 +7,16 @@ function HoverInput({
   placeholder,
   name,
   handleChange,
+  value,
+  type,
 }: {
   label: string;
   width: string;
   placeholder?: string;
   handleChange: any;
   name: string;
+  value?: string;
+  type?: string;
 }) {
   return (
     <TextField
@@ -21,10 +25,11 @@ function HoverInput({
       variant="standard"
       placeholder={placeholder}
       name={name}
+      value={value}
       onChange={(e: any) => {
-        console.log("value++++++++++++++++++++++++", e.target.value);
         handleChange(e);
       }}
+      type={type}
       sx={{
         "& #standard-basic": {
           color: "#847988",

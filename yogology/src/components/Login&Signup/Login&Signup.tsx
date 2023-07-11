@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/app/app";
 import { Login_Api, Signup_Api } from "../../../apis.";
+import CustomSnackbar from "../Snackbar";
 function LoginSgnup({
   isForLogin,
   image,
@@ -17,7 +18,9 @@ function LoginSgnup({
   redirectTo?: string;
 }) {
   const { back, replace } = useRouter();
-  // let { isAuth, hasSubscribed } = useContext(AuthContext);
+  let { setAuth } = useContext(AuthContext);
+  const [OpenSuccess, setOpenSuccess] = useState(false);
+  const [OpenError, setOpenError] = useState(false);
   const [formData, setFormData] = useState(
     isForLogin
       ? {
@@ -44,9 +47,19 @@ function LoginSgnup({
       },
     });
     const result = await res.json();
-    isForLogin ? replace("/") : redirectTo ? replace(redirectTo) : null;
-    console.log(res, result);
-  }, [formData.email, formData.password]);
+    if (result.message !== "error") {
+      setOpenSuccess(true);
+    } else {
+      setOpenError(true);
+    }
+    setFormData(
+      isForLogin
+        ? { email: "", password: "" }
+        : { email: "", name: "", phone: "", password: "" }
+    );
+    console.log(result);
+    setAuth({ isAuth: true });
+  }, [formData, isForLogin]);
 
   return (
     <Grid
@@ -59,13 +72,15 @@ function LoginSgnup({
       rowGap={"10px"}
       gridTemplateRows={{ xs: "40% 60%", sm: "none" }}
       width={"100%"}
-      height={{ xs: "100vh", sm: "60vh", md: "80vh", lg: "100vh" }}
+      height={{
+        xs: isForLogin ? "100vh" : "120vh",
+        sm: "60vh",
+        md: "80vh",
+        lg: "100vh",
+      }}
     >
       <Grid
-        // item
-        // xs={6}
         sx={{
-          // minHeight: "100vh",
           width: "100%",
           height: "100%",
         }}
@@ -98,6 +113,20 @@ function LoginSgnup({
             }}
             // border={{ xs: "1px solid black" }}
           ></Box>
+          {OpenSuccess && (
+            <CustomSnackbar
+              Open={OpenSuccess}
+              varient={"success"}
+              message="Login Successfully"
+            />
+          )}
+          {OpenError && (
+            <CustomSnackbar
+              Open={OpenError}
+              varient={"error"}
+              message="Login failed!"
+            />
+          )}
         </motion.div>
       </Grid>
       <Grid
@@ -118,7 +147,7 @@ function LoginSgnup({
           <Stack
             width={{ xs: "80%", sm: "90%", md: "90%", lg: "75%", xl: "60%" }}
             height={{
-              xs: isForLogin ? "75%" : "85%",
+              xs: isForLogin ? "75%" : "95%",
               sm: isForLogin ? "60%" : "95%",
             }}
             spacing={{ xs: 1, sm: 1, md: 1.1, lg: 3 }}
@@ -190,6 +219,8 @@ function LoginSgnup({
                       label={isForLogin ? "Email" : "Phone"}
                       handleChange={handleChange}
                       name="email"
+                      value={formData.email}
+                      type="email"
                     />
                   </motion.div>
                 </Grid>
@@ -203,6 +234,8 @@ function LoginSgnup({
                       label={"Password"}
                       handleChange={handleChange}
                       name="password"
+                      value={formData.password}
+                      type="password"
                     />
                   </motion.div>
                 </Grid>
@@ -215,6 +248,7 @@ function LoginSgnup({
                     label={"Name"}
                     handleChange={handleChange}
                     name="name"
+                    value={formData.name || ""}
                   />
                 </Grid>
                 <Grid item xs={12} marginTop={{ xs: "10px", md: "30px" }}>
@@ -223,6 +257,7 @@ function LoginSgnup({
                     label={"Email"}
                     handleChange={handleChange}
                     name="email"
+                    value={formData.email}
                   />
                 </Grid>
                 <Grid item xs={12} marginTop={{ xs: "10px", md: "30px" }}>
@@ -231,6 +266,7 @@ function LoginSgnup({
                     label={"Password"}
                     handleChange={handleChange}
                     name="password"
+                    value={formData.password}
                   />
                 </Grid>
                 <Grid item xs={12} marginTop={{ xs: "10px", md: "30px" }}>
@@ -239,6 +275,7 @@ function LoginSgnup({
                     label={"Phone"}
                     handleChange={handleChange}
                     name="phone"
+                    value={formData.phone || ""}
                   />
                 </Grid>
               </Grid>
