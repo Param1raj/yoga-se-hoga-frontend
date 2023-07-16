@@ -76,7 +76,12 @@ function Feedback() {
           >
             {FeedbackData.map(({ feedback, from, name }) => {
               return (
-                <FeedbackCard feedback={feedback} name={name} from={from} />
+                <FeedbackCard
+                  key={feedback}
+                  feedback={feedback}
+                  name={name}
+                  from={from}
+                />
               );
             })}
           </Grid>

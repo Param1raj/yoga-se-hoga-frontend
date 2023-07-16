@@ -51,6 +51,7 @@ function Gallery() {
       {gallary.map(({ text, gridArea, background }) => {
         return (
           <GallaryItem
+            key={text}
             text={text}
             gridArea={gridArea}
             background={background}
