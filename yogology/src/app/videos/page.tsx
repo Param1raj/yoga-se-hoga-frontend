@@ -6,6 +6,7 @@ import styles from "./page.module.css";
 import ButtonComp from "@/components/ButtonComp";
 import AccordionVideoList from "@/components/Video/AccordionVideoList";
 import VideoWithDetails from "@/components/Video/VideoWithDetails";
+import CustomDrawer from "@/components/Video/CustomDrawer";
 const VideoList = [
   "SomeListed Video",
   "SomeListed Video",
@@ -17,9 +18,23 @@ const VideoList = [
 ];
 function Page() {
   return (
-    <Grid container height={"100vh"} className={styles.main}>
-      <Grid item xs={3}>
-        <Box padding={"20px"} height={"100vh"} overflow={"auto"}>
+    <Grid
+      // container
+      height={"100vh"}
+      className={styles.main}
+      mt={"82px"}
+      display={"grid"}
+      // gridTemplateColumns={{ xs: "100%" }}
+      // gridTemplateRows={"2% 98%"}
+      // border={"1px solid blue"}
+    >
+      <Grid>
+        <Box
+          padding={{ sm: "10px", md: "20px", lg: "35px", xl: "40px" }}
+          display={{ xs: "none", md: "block" }}
+          height={"100vh"}
+          overflow={"auto"}
+        >
           <Typography
             variant={"h5"}
             component={"h5"}
@@ -28,14 +43,15 @@ function Page() {
             marginBottom={"30px"}
             color={"#5F2C70"}
           >
-            Course Name
+            Asteya
           </Typography>
           <AccordionVideoList title={"Beginner"} List={VideoList} />
           <AccordionVideoList title={"Intermediate"} List={VideoList} />
           <AccordionVideoList title={"Advance"} List={VideoList} />
         </Box>
+        <CustomDrawer />
       </Grid>
-      <Grid item xs={9}>
+      <Grid>
         <VideoWithDetails
           title={"Asteya"}
           ShortDescription={

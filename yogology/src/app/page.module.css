@@ -5,9 +5,15 @@
   align-items: center;
   /* min-height: 100vh; */
   background-color: #FFF8FD;
-  margin-top: -15px;
+  margin-top: 85px;
 }
 
+@media screen and (max-width:600px) {
+  .main{
+    margin-top: 65px;
+  }
+  
+}
 .description {
   display: inherit;
   justify-content: inherit;

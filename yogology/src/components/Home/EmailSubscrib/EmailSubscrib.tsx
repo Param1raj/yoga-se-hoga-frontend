@@ -1,3 +1,4 @@
+"use client";
 import { SpatialTracking } from "@mui/icons-material";
 import {
   Box,

@@ -27,7 +27,7 @@ function ButtonComp({
       opacity: 1,
     },
   };
-  const { replace } = useRouter();
+  const { push } = useRouter();
   return (
     <Button
       variant="contained"
@@ -41,10 +41,10 @@ function ButtonComp({
         ":hover": {
           backgroundColor: "#5F2C70",
         },
-        marginTop: "20px",
+        marginY: "20px",
       }}
       onClick={(e: any) => {
-        if (link) replace(link);
+        if (link) push(link);
         if (handleClick) handleClick(e);
       }}
       onMouseEnter={() => setOpen(true)}

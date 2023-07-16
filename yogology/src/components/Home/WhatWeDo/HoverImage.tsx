@@ -1,7 +1,5 @@
 "use client";
-
 import { Box, Grid, Typography } from "@mui/material";
-import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 type HoverImageProps = {
@@ -14,7 +12,7 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
   const [hover, setHover] = useState(false);
   return (
     <Grid
-      item
+      // item
       // xs={3.9}
       height={"100%"}
       // border={"1px solid black"}
@@ -44,28 +42,6 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
             transition: "box-shadow 0.3s ease-out",
           }}
         >
-          {/* <Image
-            style={{
-              ...(hover
-                ? {
-                    transform: "scale(1.05)",
-                    msTransform: "scale(1.05)",
-                    transitionDuration: "500ms",
-                    transitionTimingFunction: "ease",
-                  }
-                : {
-                    transform: "scale(1)",
-                    msTransform: "scale(1)",
-                    transitionDuration: "500ms",
-                    transitionTimingFunction: "ease",
-                  }),
-            }}
-            src={image}
-            width={444}
-            height={315}
-            alt=""
-          ></Image>
-           */}
           <Box
             width={"100%"}
             height={"100%"}

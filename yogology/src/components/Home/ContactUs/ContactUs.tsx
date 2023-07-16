@@ -1,3 +1,4 @@
+"use client";
 import { Box, Grid, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
 import images from "./images/contactUs.jpeg";

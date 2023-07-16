@@ -1,13 +1,16 @@
 "use client";
 import React, { useCallback, useContext, useState } from "react";
-import { Box, Grid, Stack, Typography } from "@mui/material";
-import HoverInput from "@/components/HoverInput";
+import { Grid, Stack, Typography } from "@mui/material";
 import ButtonComp from "@/components/ButtonComp";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/app/app";
 import { Login_Api, Signup_Api } from "../../../apis.";
 import CustomSnackbar from "../Snackbar";
+import Image from "./Image";
+import LoginInput from "./Inputs/LoginInput";
+import SignupInput from "./Inputs/SignupInput";
+import Heading from "./Heading";
 function LoginSgnup({
   isForLogin,
   image,
@@ -17,7 +20,7 @@ function LoginSgnup({
   image: string;
   redirectTo?: string;
 }) {
-  const { back, replace } = useRouter();
+  const { push } = useRouter();
   let { setAuth } = useContext(AuthContext);
   const [OpenSuccess, setOpenSuccess] = useState(false);
   const [OpenError, setOpenError] = useState(false);
@@ -34,6 +37,7 @@ function LoginSgnup({
           password: "",
         }
   );
+  const [message, setMessage] = useState("");
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -48,8 +52,16 @@ function LoginSgnup({
     });
     const result = await res.json();
     if (result.message !== "error") {
+      if (isForLogin) {
+        document.cookie = "a_t_t=" + encodeURIComponent(result.data.token);
+        setAuth({ isAuth: true });
+        setMessage("Login Successfull!");
+      } else {
+        setMessage("Registered Successfully!");
+      }
       setOpenSuccess(true);
     } else {
+      setMessage(result.data);
       setOpenError(true);
     }
     setFormData(
@@ -57,8 +69,6 @@ function LoginSgnup({
         ? { email: "", password: "" }
         : { email: "", name: "", phone: "", password: "" }
     );
-    console.log(result);
-    setAuth({ isAuth: true });
   }, [formData, isForLogin]);
 
   return (
@@ -79,65 +89,27 @@ function LoginSgnup({
         lg: "100vh",
       }}
     >
+      <Image image={image} />
       <Grid
         sx={{
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <motion.div
-          initial={{ opacity: 0, x: "100px" }}
-          whileInView={{
-            opacity: 1,
-            x: "0px",
-          }}
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
-        >
-          <Box
-            sx={{
-              width: "100%",
-              height: "100%",
-              background: `url('${image}')`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              backgroundPosition: { xs: "", sm: "center" },
-              backgroundPositionX: {
-                // xs: "-50px",
-                sm: "-130px",
-                md: "-100px",
-                lg: "-100px",
-              },
-            }}
-            // border={{ xs: "1px solid black" }}
-          ></Box>
-          {OpenSuccess && (
-            <CustomSnackbar
-              Open={OpenSuccess}
-              varient={"success"}
-              message="Login Successfully"
-            />
-          )}
-          {OpenError && (
-            <CustomSnackbar
-              Open={OpenError}
-              varient={"error"}
-              message="Login failed!"
-            />
-          )}
-        </motion.div>
-      </Grid>
-      <Grid
-        // item
-        // xs={6}
-        sx={{
-          // minHeight: "100vh",
           height: "100%",
           width: "100%",
         }}
       >
+        {OpenSuccess && (
+          <CustomSnackbar
+            Open={OpenSuccess}
+            varient={"success"}
+            message={message}
+          />
+        )}
+        {OpenError && (
+          <CustomSnackbar
+            Open={OpenError}
+            varient={"error"}
+            message={message}
+          />
+        )}
         <Stack
           width={"100%"}
           height={"100%"}
@@ -149,6 +121,7 @@ function LoginSgnup({
             height={{
               xs: isForLogin ? "75%" : "95%",
               sm: isForLogin ? "60%" : "95%",
+              md: isForLogin ? "70%" : "70%",
             }}
             spacing={{ xs: 1, sm: 1, md: 1.1, lg: 3 }}
             // border={"1px solid blue"}
@@ -170,115 +143,15 @@ function LoginSgnup({
                 Welcome
               </Typography>
             </motion.h2>
-            <Stack>
-              <motion.h1
-                initial={{ x: "100px", opacity: 0 }}
-                whileInView={{
-                  x: ["70px", "0px"],
-                  opacity: [0.5, 1],
-                }}
-              >
-                <Typography
-                  variant="body1"
-                  component={"p"}
-                  fontFamily={"Kumbh Sans"}
-                  fontWeight={"700"}
-                  fontSize={{ sm: isForLogin ? "2rem" : "1.3rem", md: "3rem" }}
-                >
-                  {isForLogin ? "Have Account?" : "Don't have account?"}
-                </Typography>
-              </motion.h1>
-              <motion.h1
-                initial={{ x: "100px", opacity: 0 }}
-                whileInView={{
-                  x: ["70px", "0px"],
-                  opacity: [0.5, 1],
-                }}
-              >
-                <Typography
-                  variant="body1"
-                  component={"p"}
-                  fontFamily={"Kumbh Sans"}
-                  //   textTransform={"uppercase"}
-                  fontWeight={"700"}
-                  fontSize={{ sm: isForLogin ? "2rem" : "1.3rem", md: "3rem" }}
-                >
-                  {isForLogin ? "Login!" : "Signup!"}
-                </Typography>
-              </motion.h1>
-            </Stack>
+            <Heading isForLogin={isForLogin} />
             {isForLogin ? (
-              <Grid container>
-                <Grid item xs={12}>
-                  <motion.div
-                    initial={{ y: "100px", opacity: 0 }}
-                    animate={{ y: ["100px", "50px", "0px"], opacity: 1 }}
-                  >
-                    <HoverInput
-                      width={"80%"}
-                      label={isForLogin ? "Email" : "Phone"}
-                      handleChange={handleChange}
-                      name="email"
-                      value={formData.email}
-                      type="email"
-                    />
-                  </motion.div>
-                </Grid>
-                <Grid item xs={12} marginTop={{ xs: "10px", md: "30px" }}>
-                  <motion.div
-                    initial={{ y: "100px", opacity: 0 }}
-                    animate={{ y: ["100px", "50px", "0px"], opacity: 1 }}
-                  >
-                    <HoverInput
-                      width={"80%"}
-                      label={"Password"}
-                      handleChange={handleChange}
-                      name="password"
-                      value={formData.password}
-                      type="password"
-                    />
-                  </motion.div>
-                </Grid>
-              </Grid>
+              <LoginInput
+                isForLogin={isForLogin}
+                handleChange={handleChange}
+                formData={formData}
+              />
             ) : (
-              <Grid container>
-                <Grid item xs={12} marginTop={{ xs: "10px", md: "30px" }}>
-                  <HoverInput
-                    width={"80%"}
-                    label={"Name"}
-                    handleChange={handleChange}
-                    name="name"
-                    value={formData.name || ""}
-                  />
-                </Grid>
-                <Grid item xs={12} marginTop={{ xs: "10px", md: "30px" }}>
-                  <HoverInput
-                    width={"80%"}
-                    label={"Email"}
-                    handleChange={handleChange}
-                    name="email"
-                    value={formData.email}
-                  />
-                </Grid>
-                <Grid item xs={12} marginTop={{ xs: "10px", md: "30px" }}>
-                  <HoverInput
-                    width={"80%"}
-                    label={"Password"}
-                    handleChange={handleChange}
-                    name="password"
-                    value={formData.password}
-                  />
-                </Grid>
-                <Grid item xs={12} marginTop={{ xs: "10px", md: "30px" }}>
-                  <HoverInput
-                    width={"80%"}
-                    label={"Phone"}
-                    handleChange={handleChange}
-                    name="phone"
-                    value={formData.phone || ""}
-                  />
-                </Grid>
-              </Grid>
+              <SignupInput formData={formData} handleChange={handleChange} />
             )}
             <motion.div
               initial={{ y: "100px", opacity: 0 }}
@@ -301,7 +174,7 @@ function LoginSgnup({
                 {isForLogin ? "Don't have account?" : "Already Registered?"}
                 <span
                   onClick={() => {
-                    replace(isForLogin ? "/signup" : "/login");
+                    push(isForLogin ? "/signup" : "/login");
                   }}
                   style={{ color: "blue", cursor: "pointer" }}
                 >

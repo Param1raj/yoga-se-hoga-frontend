@@ -1,8 +1,6 @@
 "use client";
-import Footer from "@/components/Footer/Footer";
-import ResponsiveAppBar from "@/components/Navbar/Header";
-import { createContext, useState } from "react";
-
+import { ReactNode, createContext, useState } from "react";
+import Cookies from "js-cookie";
 export const AuthContext = createContext({
   auth: { isAuth: false, hasSubscribed: false },
   setAuth: ({
@@ -14,9 +12,12 @@ export const AuthContext = createContext({
   }) => {},
 });
 
-function App({ children }: { children: any }) {
+function AuthContextProvider({ children }: { children: ReactNode }) {
   const [auth, setAuth] = useState({
-    isAuth: false,
+    isAuth:
+      Cookies.get("a_t_t") !== "undefined" && Cookies.get("a_t_t")
+        ? true
+        : false,
     hasSubscribed: false,
   });
   const handle = ({
@@ -37,13 +38,9 @@ function App({ children }: { children: any }) {
   };
   return (
     <AuthContext.Provider value={{ auth, setAuth: handle }}>
-      <header>
-        <ResponsiveAppBar />
-      </header>
-      <main style={{ marginTop: "104px" }}>{children}</main>
-      <Footer />
+      {children}
     </AuthContext.Provider>
   );
 }
 
-export default App;
+export default AuthContextProvider;

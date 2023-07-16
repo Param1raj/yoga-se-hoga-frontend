@@ -20,7 +20,7 @@ function AccordionVideoList({
   title: string;
   List: string[];
 }) {
-  const { push, replace } = useRouter();
+  const { push } = useRouter();
   const list = {
     visible: {
       opacity: 1,
@@ -59,7 +59,7 @@ function AccordionVideoList({
               key={VideoTitle}
               variants={item}
               onClick={() => {
-                replace("/videos");
+                push("/videos");
                 setColored(i);
               }}
             >
