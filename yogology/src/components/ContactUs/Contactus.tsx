@@ -1,8 +1,11 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+"use client";
+import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
 import ButtonComp from "../ButtonComp";
 import HoverInput from "../HoverInput";
 import { LaptopChromebookRounded } from "@mui/icons-material";
+import { useForm } from "react-hook-form";
+import { animation } from "./utils";
 
 const FormdataArray = [
   {
@@ -28,7 +31,15 @@ const FormdataArray = [
 ];
 
 function Contactus() {
-  const handleChange = () => {};
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const handleChange = (data: any) => {
+    console.log(data);
+  };
   return (
     <Box
       height={{ sm: "60rem", md: "50rem" }}
@@ -48,7 +59,6 @@ function Contactus() {
         gridTemplateRows={{ xs: "20% 80%", sm: "20% 80%", md: "100%" }}
         width={{ xs: "85%", sm: "80%", md: "80%", lg: "70%", xl: "60%" }}
         height={{ xs: "90%", sm: "90%", md: "80%" }}
-        // border={"1px solid black"}
       >
         <Grid>
           <Stack
@@ -111,19 +121,58 @@ function Contactus() {
             sx={{ background: "#FFFFFF" }}
             padding={{ xs: "40px", sm: "50px" }}
             spacing={"40px"}
+            component={"form"}
+            onSubmit={handleSubmit(handleChange)}
           >
-            {FormdataArray.map(({ name, label }) => {
-              return (
-                <HoverInput
-                  key={name}
-                  handleChange={handleChange}
-                  name={name}
-                  label={label}
-                  width={"100%"}
-                />
-              );
-            })}
-            <ButtonComp text="Get in touch" />
+            <TextField
+              id="standard-basic"
+              label={"Name"}
+              variant="standard"
+              placeholder={"Name"}
+              type={"text"}
+              {...register("name", { required: true })}
+              sx={animation}
+            />
+            <TextField
+              id="standard-basic"
+              label={"Phone"}
+              variant="standard"
+              placeholder={"Phone"}
+              {...register("phone", { required: true, maxLength: 10 })}
+              sx={animation}
+            />
+            <TextField
+              id="standard-basic"
+              label={"Email"}
+              variant="standard"
+              placeholder={"Email"}
+              type={"text"}
+              {...register("email", { required: true })}
+              sx={animation}
+            />
+            <TextField
+              id="standard-basic"
+              label={"Subject"}
+              variant="standard"
+              placeholder={"Subject"}
+              type={"text"}
+              sx={animation}
+              {...register("subject", { required: true })}
+            />
+            <TextField
+              id="standard-basic"
+              label={"How can help you? feel free to get in touch!"}
+              variant="standard"
+              type={"text"}
+              {...register("Query", { required: true })}
+              sx={animation}
+            />
+
+            {/* <ButtonComp type="submit" text="Get in touch" />
+             */}
+            <Button type="submit" value="Get in touch">
+              Get in touch
+            </Button>
           </Stack>
         </Grid>
       </Grid>

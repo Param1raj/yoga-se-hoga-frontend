@@ -1,0 +1,8 @@
+.main{
+    /* min-height: 100vh; */
+    background-color: #FFF8FD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 105px;
+}

@@ -10,11 +10,13 @@ function ButtonComp({
   width,
   link,
   handleClick,
+  type,
 }: {
   text: string;
   width?: string;
   link?: string;
   handleClick?: any;
+  type?: string;
 }) {
   const [open, setOpen] = useState(false);
   const IconAnimation = {
@@ -31,6 +33,7 @@ function ButtonComp({
   return (
     <Button
       variant="contained"
+      type={type ? "submit" : "button"}
       size="large"
       sx={{
         borderRadius: "0px",

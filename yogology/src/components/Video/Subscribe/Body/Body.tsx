@@ -30,8 +30,58 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
 import LockIcon from "@mui/icons-material/Lock";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
+import Link from "next/link";
+// import { intializeRazorpay } from "./utils";
+// import Script from "next/script";
 
 function Body() {
+  async function intializeRazorpay() {
+    return new Promise((resolve) => {
+      const form = document.createElement("form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+      });
+      // form.action = "";
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      // script[data-payment_button_id]= "pl_MFggYUrkakZvQg";
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      form.appendChild(script);
+      document.body.appendChild(form);
+    });
+  }
+
+  const makePayment = async () => {
+    const res = await intializeRazorpay();
+
+    if (!res) {
+      alert("Razorpay SDK Failed to load");
+      return;
+    }
+
+    const data = await fetch("/api", { method: "POST" }).then((t) => t.json());
+    console.log(data, "data");
+    var options = {
+      key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
+      name: "Yogaratha",
+      currency: data.currency,
+      amount: data.amount,
+      order_id: data.id,
+      handler: function (response: any) {
+        // Validate payment at server - using webhooks is a better idea.
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+      },
+    };
+    const paymentObject = (window as any).Razorpay(options);
+    paymentObject.open();
+  };
   const [value, setValue] = useState("2");
   const forPreview = true;
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -54,10 +104,10 @@ function Body() {
           // container
           // border={"1px solid blue"}
           width={"100%"}
-          height={{ xs: "50rem", sm: "fit-content" }}
+          height={{ xs: "45rem", sm: "fit-content" }}
           display={"grid"}
           gridTemplateColumns={{ sm: "100%", md: "65% 35%", lg: "70% 30%" }}
-          gridTemplateRows={{ xs: "60% 40%", sm: "50% 50%", md: "100%" }}
+          gridTemplateRows={{ xs: "55% 45%", sm: "50% 50%", md: "100%" }}
           rowGap={"15px"}
         >
           <Grid>
@@ -65,7 +115,7 @@ function Body() {
               width={{ xs: "80%", sm: "50%" }}
               // margin={"auto"}
               // border={"1px solid blue"}
-              height={{ xs: "10%", sm: "13%" }}
+              height={{ xs: "15%", sm: "13%" }}
               display={"flex"}
               columnGap={"5px"}
             >
@@ -124,7 +174,7 @@ function Body() {
                 Learn the foundations of yoga in this online course
               </Typography>
               <Typography
-                fontSize={{ sm: "0.7rem", md: "1rem" }}
+                fontSize={{ xs: "0.7rem", sm: "0.7rem", md: "1rem" }}
                 fontFamily={["Nunito", "sans-serif"]}
                 fontWeight={"500"}
                 color={"#5E5E5E"}
@@ -271,9 +321,28 @@ function Body() {
               >
                 Free
               </Typography>
+
               <Box width={"100%"}>
-                <ButtonComp width="11rem" text="Start Now" />
+                <Link
+                  href={"https://pages.razorpay.com/pl_MFgcnv4ZsQncBl/view"}
+                >
+                  <Button
+                    // onClick={makePayment}
+                    // data-payment_button_id="pl_MFggYUrkakZvQg"
+                    variant="contained"
+                  >
+                    buy now
+                  </Button>
+                </Link>
+                {/* <form>
+                  <Script
+                    src="https://checkout.razorpay.com/v1/payment-button.js"
+                    data-payment_button_id="pl_MFggYUrkakZvQg"
+                    async
+                  ></Script>
+                </form> */}
               </Box>
+              {/* </Button> */}
               <Typography
                 fontSize={{
                   xs: "0.7rem",
@@ -566,9 +635,14 @@ function Body() {
           </Typography>
           <Grid
             display={"grid"}
-            gridTemplateColumns={{ md: "repeat(3,1fr)" }}
+            gridTemplateColumns={{
+              xs: "1fr",
+              sm: "repeat(2,1fr)",
+              md: "repeat(3,1fr)",
+            }}
             columnGap={"10px"}
-            height={"50vh"}
+            rowGap={"20px"}
+            height={{ xs: "100rem", sm: "50rem", md: "50vh" }}
             justifyContent={"space-between"}
           >
             <HoverImage forBlog={true} image={image1.src} title="Blog 1" />

@@ -50,6 +50,7 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
               background: `url('${image}')`,
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
               objectFit: "contain",
               ...(hover
                 ? {
