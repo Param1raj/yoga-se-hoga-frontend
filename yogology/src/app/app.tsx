@@ -1,46 +1,30 @@
 "use client";
-import { ReactNode, createContext, useState } from "react";
-import Cookies from "js-cookie";
-export const AuthContext = createContext({
-  auth: { isAuth: false, hasSubscribed: false },
-  setAuth: ({
-    isAuth,
-    hasSubscribed,
-  }: {
-    isAuth?: boolean;
-    hasSubscribed?: boolean;
-  }) => {},
-});
+import React, { ReactNode } from "react";
+import ResponsiveAppBar from "@/components/Navbar/Header";
+import Footer from "@/components/Footer/Footer";
+import { usePathname, useRouter } from "next/navigation";
+import Sidebar from "@/components/Admin/pannel/Sidebar";
 
-function AuthContextProvider({ children }: { children: ReactNode }) {
-  const [auth, setAuth] = useState({
-    isAuth:
-      Cookies.get("a_t_t") !== "undefined" && Cookies.get("a_t_t")
-        ? true
-        : false,
-    hasSubscribed: false,
-  });
-  const handle = ({
-    isAuth,
-    hasSubscribed,
-  }: {
-    isAuth?: boolean;
-    hasSubscribed?: boolean;
-  }) => {
-    setAuth(() => {
-      if (isAuth && hasSubscribed)
-        return { ...auth, isAuth: isAuth, hasSubscribed: hasSubscribed };
-      else if (isAuth && !hasSubscribed) return { ...auth, isAuth: isAuth };
-      else if (hasSubscribed && !isAuth)
-        return { ...auth, hasSubscribed: hasSubscribed };
-      else return { ...auth };
-    });
-  };
+const AdminPath = "/admin/pannel";
+
+function app({ children }: { children: ReactNode }) {
+  const pathName = usePathname().split("/");
+  console.log(`PathName:{${pathName}}`);
   return (
-    <AuthContext.Provider value={{ auth, setAuth: handle }}>
-      {children}
-    </AuthContext.Provider>
+    <>
+      {pathName[1] === "admin" && pathName[2] === "pannel" ? (
+        <>
+          <Sidebar>{children}</Sidebar>
+        </>
+      ) : (
+        <>
+          <ResponsiveAppBar />
+          {children}
+        </>
+      )}
+      {pathName[1] === "admin" && pathName[2] === "pannel" ? <></> : <Footer />}
+    </>
   );
 }
 
-export default AuthContextProvider;
+export default app;

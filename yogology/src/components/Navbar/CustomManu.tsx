@@ -1,5 +1,5 @@
 "use client";
-import { AuthContext } from "@/app/app";
+import { AuthContext } from "@/app/AuthProvider";
 import {
   Avatar,
   Box,

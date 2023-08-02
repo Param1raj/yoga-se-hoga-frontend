@@ -4,7 +4,7 @@ import { Grid, Stack, Typography } from "@mui/material";
 import ButtonComp from "@/components/ButtonComp";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "@/app/app";
+import { AuthContext } from "@/app/AuthProvider";
 import { Login_Api, Signup_Api } from "../../../apis.";
 import CustomSnackbar from "../Snackbar";
 import Image from "./Image";

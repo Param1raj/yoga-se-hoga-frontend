@@ -8,7 +8,7 @@ export const POST = async (req: Request) => {
     key_secret: process.env.KEY_SECRET,
   });
   const payment_capture = 1;
-  const amount = 499;
+  const amount = 700;
   const currency = "INR";
   const options = {
     amount: (amount * 100).toString(),

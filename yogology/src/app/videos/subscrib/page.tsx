@@ -1,18 +1,12 @@
-"use client";
 import React from "react";
 import style from "./page.module.css";
 import Header from "@/components/Video/Subscribe/Header";
 import Body from "@/components/Video/Subscribe/Body/Body";
+export const metadata = {
+  title: "Yogaratha - Subscribe",
+  description: "Watch videos in details!",
+};
 
-const VideoList = [
-  "SomeListed Video",
-  "SomeListed Video",
-  "SomeListed Video",
-  "SomeListed Video",
-  "SomeListed Video",
-  "SomeListed Video",
-  "SomeListed Video",
-];
 function Page() {
   return (
     <div className={style.main}>

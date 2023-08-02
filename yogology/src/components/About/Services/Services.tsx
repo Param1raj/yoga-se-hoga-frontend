@@ -1,3 +1,4 @@
+"use client";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import ServiceCard from "./ServiceCard";

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import {
   Accordion,
@@ -323,17 +324,18 @@ function Body() {
               </Typography>
 
               <Box width={"100%"}>
-                <Link
+                {/* <Link
                   href={"https://pages.razorpay.com/pl_MFgcnv4ZsQncBl/view"}
+                > */}
+                <Button
+                  onClick={makePayment}
+                  // data-payment_button_id="pl_MFggYUrkakZvQg"
+                  variant="contained"
+                  sx={{ borderRadius: "0px", background: "#5F2C70" }}
                 >
-                  <Button
-                    // onClick={makePayment}
-                    // data-payment_button_id="pl_MFggYUrkakZvQg"
-                    variant="contained"
-                  >
-                    buy now
-                  </Button>
-                </Link>
+                  buy now
+                </Button>
+                {/* </Link> */}
                 {/* <form>
                   <Script
                     src="https://checkout.razorpay.com/v1/payment-button.js"

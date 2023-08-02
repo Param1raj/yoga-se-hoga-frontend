@@ -1,13 +1,12 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import AuthProvider from "./AuthProvider";
 import App from "./app";
-import ResponsiveAppBar from "@/components/Navbar/Header";
-import Footer from "@/components/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "YogaRatha",
+  title: "Yogaratha - Home",
   description: "Your online yoga institute!",
 };
 
@@ -39,13 +38,9 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <App>
-          <>
-            <ResponsiveAppBar />
-            {children}
-            <Footer />
-          </>
-        </App>
+        <AuthProvider>
+          <App>{children}</App>
+        </AuthProvider>
       </body>
     </html>
   );

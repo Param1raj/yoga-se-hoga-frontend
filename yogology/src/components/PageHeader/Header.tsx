@@ -1,5 +1,5 @@
+"use client";
 import { Box, Breadcrumbs, Stack, Typography, Link } from "@mui/material";
-// import  from "next/link";
 import React from "react";
 
 type HeaderProps = {

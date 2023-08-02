@@ -1,0 +1,12 @@
+.main{
+    height: 100vh;
+    margin-top: 100px;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(./images/adminlogin.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

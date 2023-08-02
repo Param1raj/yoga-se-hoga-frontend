@@ -4,5 +4,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 105px;
+    margin-top: 65px;
+    /* border: 1px solid black; */
 }

@@ -92,7 +92,7 @@ function EmailSubscrib() {
             >
               <TextField
                 id="standard-basic"
-                label="Enter Your Email Address"
+                label="Enter Your Mobile Number"
                 variant="standard"
                 sx={{
                   "& #standard-basic": {

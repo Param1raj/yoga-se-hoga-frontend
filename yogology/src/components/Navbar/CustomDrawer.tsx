@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 // import Container from "@mui/material/Container";
 import { Box, Drawer, Stack, Typography } from "@mui/material";
 import ButtonComp from "../ButtonComp";
-import { AuthContext } from "@/app/app";
+import { AuthContext } from "@/app/AuthProvider";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 const NavRoutes = [

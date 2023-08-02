@@ -36,9 +36,28 @@ function Contactus() {
     handleSubmit,
     watch,
     formState: { errors },
+    reset,
   } = useForm();
-  const handleChange = (data: any) => {
-    console.log(data);
+  const handleChange = async (data: any) => {
+    try {
+      let res = await fetch("/api/email", {
+        method: "POST",
+        body: JSON.stringify({
+          subject: data.subject,
+          query: data.Query,
+          email: data.email,
+          phone: data.phone,
+          name: data.name,
+        }),
+        headers: {
+          contentType: "application/json",
+        },
+      });
+      const result = await res.json();
+      reset();
+    } catch (error) {
+      console.log({ error: errors });
+    }
   };
   return (
     <Box
@@ -162,15 +181,25 @@ function Contactus() {
             <TextField
               id="standard-basic"
               label={"How can help you? feel free to get in touch!"}
-              variant="standard"
+              // variant="standard"
               type={"text"}
+              multiline
+              rows={4}
               {...register("Query", { required: true })}
               sx={animation}
             />
-
-            {/* <ButtonComp type="submit" text="Get in touch" />
-             */}
-            <Button type="submit" value="Get in touch">
+            <Button
+              type="submit"
+              value="Get in touch"
+              variant="contained"
+              sx={{
+                padding: "20px",
+                backgroundColor: "#5F2C70",
+                ":hover": {
+                  backgroundColor: "#5F2C70",
+                },
+              }}
+            >
               Get in touch
             </Button>
           </Stack>
