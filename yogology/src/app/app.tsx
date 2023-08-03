@@ -7,7 +7,7 @@ import Sidebar from "@/components/Admin/pannel/Sidebar";
 
 const AdminPath = "/admin/pannel";
 
-function app({ children }: { children: ReactNode }) {
+function App({ children }: { children: ReactNode }) {
   const pathName = usePathname().split("/");
   console.log(`PathName:{${pathName}}`);
   return (
@@ -27,4 +27,4 @@ function app({ children }: { children: ReactNode }) {
   );
 }
 
-export default app;
+export default App;

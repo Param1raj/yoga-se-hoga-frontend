@@ -1,13 +1,16 @@
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+// import { NextApiRequest } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend("re_iYg8bCoE_9SiiTPPZzbsjqPigHHQYvr2i");
 
-export const POST = async (req: NextApiRequest) => {
+export const POST = async (req: Request | NextRequest) => {
   const body = req.body;
-  let reader = await body.getReader().read();
-  const uint8Array = new Uint8Array(reader.value);
+  let reader = await body?.getReader().read();
+  let uint8Array;
+  if (reader && reader.value) {
+    uint8Array = new Uint8Array(reader.value);
+  }
   const decoder = new TextDecoder();
   const data = JSON.parse(decoder.decode(uint8Array));
   console.log({
