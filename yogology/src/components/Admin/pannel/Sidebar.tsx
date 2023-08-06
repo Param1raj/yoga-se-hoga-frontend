@@ -25,6 +25,9 @@ import BookIcon from "@mui/icons-material/Book";
 import PaidIcon from "@mui/icons-material/Paid";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import { usePathname, useRouter } from "next/navigation";
+import { CircularProgress } from "@mui/material";
+
+const DASHBOARD_URL = "https://dashboard.razorpay.com/app/dashboard";
 
 const PrimaryData = [
   {
@@ -132,6 +135,7 @@ export default function MiniDrawer({
 }: {
   children: React.ReactNode;
 }) {
+  const [modal, setModal] = React.useState(false);
   const pathName = usePathname();
   const pathNameArray = pathName.split("/");
   console.log("PathName Array:", pathNameArray);
@@ -146,6 +150,11 @@ export default function MiniDrawer({
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  React.useEffect(() => {
+    let timeout = setTimeout(() => {
+      setModal(false);
+    }, 3000);
+  }, [modal]);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -176,8 +185,8 @@ export default function MiniDrawer({
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} sx={{ border: "1px solid red" }}>
-        <DrawerHeader sx={{ paddingY: "22px" }}>
+      <Drawer variant="permanent" open={open} sx={{ border: "0px" }}>
+        <DrawerHeader sx={{ paddingY: "22px", background: "#5F2C70" }}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
@@ -211,7 +220,9 @@ export default function MiniDrawer({
                 if (name === "Dashboard") {
                   push(`/admin/pannel`);
                 } else {
+                  setModal(true);
                   push(`/admin/pannel/${name.toLowerCase()}`);
+                  // alert(modal);
                 }
               }}
             >
@@ -241,7 +252,34 @@ export default function MiniDrawer({
         <Divider />
         <List>
           {SecodaryData.map(({ name, icon }, index) => (
-            <ListItem key={name} disablePadding sx={{ display: "block" }}>
+            <ListItem
+              key={name}
+              disablePadding
+              sx={{
+                display: "block",
+                color:
+                  pathNameArray.length === 3 && index === 0
+                    ? "#5F2C70"
+                    : pathNameArray[3] === name.toLowerCase()
+                    ? "#5F2C70"
+                    : "",
+                backgroundColor:
+                  pathNameArray.length === 3 && index === 0
+                    ? "#875d959c"
+                    : pathNameArray[3] === name.toLowerCase()
+                    ? "#875d959c"
+                    : "",
+              }}
+              onClick={() => {
+                if (name === "Dashboard") {
+                  push(`/admin/pannel`);
+                } else {
+                  setModal(true);
+                  push(`/admin/pannel/${name.toLowerCase()}`);
+                  // alert(modal);
+                }
+              }}
+            >
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -258,7 +296,16 @@ export default function MiniDrawer({
                 >
                   {icon}
                 </ListItemIcon>
-                <ListItemText primary={name} sx={{ opacity: open ? 1 : 0 }} />
+                {name === "Payments" ? (
+                  <a href={DASHBOARD_URL} target="_blank">
+                    <ListItemText
+                      primary={name}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </a>
+                ) : (
+                  <ListItemText primary={name} sx={{ opacity: open ? 1 : 0 }} />
+                )}
               </ListItemButton>
             </ListItem>
           ))}
@@ -267,6 +314,17 @@ export default function MiniDrawer({
       <Box component="main" sx={{ flexGrow: 1 }}>
         {/* <DrawerHeader /> */}
         {children}
+        {modal && (
+          <CircularProgress
+            color="secondary"
+            sx={{
+              // border: "1px solid black",
+              position: "absolute",
+              top: "40vh",
+              left: "50vw",
+            }}
+          />
+        )}
       </Box>
     </Box>
   );

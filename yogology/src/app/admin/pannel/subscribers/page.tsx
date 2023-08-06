@@ -1,8 +1,8 @@
-import Videos from "@/components/Admin/pannel/videos/videos";
+import Subscribers from "@/components/Admin/pannel/subscribers/subscribers";
 import React from "react";
 
 export const metadata = {
-  title: "Admin - Videos",
+  title: "Admin - Subscribers",
   description: "Admin Dashboard for management",
 };
 function page() {
@@ -15,7 +15,7 @@ function page() {
         marginTop: "80px",
       }}
     >
-      <Videos />
+      <Subscribers />
     </div>
   );
 }

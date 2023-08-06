@@ -9,10 +9,10 @@ function page() {
   return (
     <div
       style={{
-        height: "91vh",
+        height: "90.5vh",
         display: "flex",
         justifyContent: "center",
-        marginTop: "84px",
+        marginTop: "80px",
       }}
     >
       <Blogs />

@@ -1,0 +1,283 @@
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
+import CancelIcon from "@mui/icons-material/Cancel";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { IconButton, Menu, MenuItem } from "@mui/material";
+import ThreePIcon from "@mui/icons-material/ThreeP";
+import AddIcon from "@mui/icons-material/Add";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+import DeleteIcon from "@mui/icons-material/Delete";
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#5F2C70",
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
+function createData(
+  name: string,
+  email: string,
+  number: string,
+  subscribed: boolean,
+  protein: number,
+  subscriptionDate?: string,
+  subscriptionEndDate?: string
+) {
+  return {
+    name,
+    email,
+    number,
+    subscribed,
+    protein,
+    subscriptionDate,
+    subscriptionEndDate,
+  };
+}
+
+const rows = [
+  createData(
+    "Frozen yoghurt",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    4.0,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+  createData(
+    "Ice cream sandwich",
+    "xyz@email.com",
+    "7818869663",
+    false,
+    4.3
+    // `04 August 2023`,
+    // `05 August 2023`
+  ),
+  createData(
+    "Eclair",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    6.0,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+  createData(
+    "Cupcake",
+    "xyz@email.com",
+    "7818869663",
+    false,
+    4.3
+    // `04 August 2023`,
+    // `05 August 2023`
+  ),
+  createData(
+    "Gingerbread",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    3.9,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+  createData(
+    "Gingerbread",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    3.9,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+  ,
+  createData(
+    "Gingerbread",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    3.9,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+  ,
+  createData(
+    "Gingerbread",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    3.9,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+  ,
+  createData(
+    "Gingerbread",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    3.9,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+  ,
+  createData(
+    "Gingerbread",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    3.9,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+  ,
+  createData(
+    "Gingerbread",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    3.9,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+  ,
+  createData(
+    "Gingerbread",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    3.9,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+  ,
+  createData(
+    "Gingerbread",
+    "xyz@email.com",
+    "7818869663",
+    true,
+    3.9,
+    `04 August 2023`,
+    `05 August 2023`
+  ),
+];
+
+function UsersTable() {
+  const [open, setOpen] = React.useState(false);
+  const [encorElm, setEncorElm] = React.useState<null | HTMLButtonElement>(
+    null
+  );
+  return (
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell align="left">Email</StyledTableCell>
+            <StyledTableCell align="left">Phone</StyledTableCell>
+            <StyledTableCell align="left">Subscribed</StyledTableCell>
+            <StyledTableCell align="left">Subscription Date</StyledTableCell>
+            <StyledTableCell align="left">
+              Subscription End Date
+            </StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <StyledTableRow key={row?.name}>
+              <StyledTableCell
+                component="th"
+                scope="row"
+                sx={{ color: "#5F2C70" }}
+              >
+                {row?.name}
+              </StyledTableCell>
+              <StyledTableCell align="left">{row?.email}</StyledTableCell>
+              <StyledTableCell align="left">91+ {row?.number}</StyledTableCell>
+              <StyledTableCell align="left">
+                {row?.subscribed ? (
+                  <DoneAllIcon sx={{ color: "green" }} />
+                ) : (
+                  <CancelIcon sx={{ color: "red" }} />
+                )}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {row?.subscriptionDate}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {row?.subscriptionEndDate}
+              </StyledTableCell>
+              <StyledTableCell align="right">
+                <IconButton
+                  onClick={(event) => {
+                    setEncorElm(event.currentTarget);
+                    setOpen(true);
+                  }}
+                >
+                  <MoreVertIcon />
+                </IconButton>
+                {/* <Menu
+                  id="basic-menu"
+                  anchorEl={encorElm}
+                  open={open}
+                  onClose={() => setOpen(false)}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                  sx={{ right: "100px" }}
+                >
+                  <MenuItem onClick={() => {}}>
+                    {" "}
+                    <ThreePIcon
+                      sx={{ marginRight: "10px", color: "#5F2C70" }}
+                    />{" "}
+                    Profile
+                  </MenuItem>
+                  <MenuItem onClick={() => {}}>
+                    <AddIcon sx={{ marginRight: "10px", color: "#5F2C70" }} />
+                    Subscribe
+                  </MenuItem>
+                  <MenuItem onClick={() => {}}>
+                    <DeleteIcon
+                      sx={{ marginRight: "10px", color: "#5F2C70" }}
+                    />
+                    Delete
+                  </MenuItem>
+                  <MenuItem onClick={() => {}}>
+                    <BookmarkRemoveIcon
+                      sx={{ marginRight: "10px", color: "#5F2C70" }}
+                    />
+                    Unsubscribe
+                  </MenuItem>
+                </Menu> */}
+              </StyledTableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
+
+export default UsersTable;

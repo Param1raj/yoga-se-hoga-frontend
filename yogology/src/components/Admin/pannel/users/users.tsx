@@ -3,16 +3,17 @@ import React from "react";
 import HeaderLayoutWithCreateButton from "../layouts/HeaderLayoutWithCreateButton";
 import BodyLayout from "../layouts/BodyLayout";
 import Layout from "../layouts/layout";
-import BlogsTable from "../tables/BlogsTable";
-function Blogs() {
+import UsersTable from "../tables/UsersTable";
+
+function Users() {
   return (
     <Layout>
-      <HeaderLayoutWithCreateButton type="blog" />
+      <HeaderLayoutWithCreateButton type="user" />
       <BodyLayout>
-        <BlogsTable />
+        <UsersTable />
       </BodyLayout>
     </Layout>
   );
 }
 
-export default Blogs;
+export default Users;

@@ -3,16 +3,16 @@ import React from "react";
 import HeaderLayoutWithCreateButton from "../layouts/HeaderLayoutWithCreateButton";
 import BodyLayout from "../layouts/BodyLayout";
 import Layout from "../layouts/layout";
-import BlogsTable from "../tables/BlogsTable";
-function Blogs() {
+import VideosTable from "../tables/BlogsTable";
+function Videos() {
   return (
     <Layout>
-      <HeaderLayoutWithCreateButton type="blog" />
+      <HeaderLayoutWithCreateButton type="video" />
       <BodyLayout>
-        <BlogsTable />
+        <VideosTable />
       </BodyLayout>
     </Layout>
   );
 }
 
-export default Blogs;
+export default Videos;

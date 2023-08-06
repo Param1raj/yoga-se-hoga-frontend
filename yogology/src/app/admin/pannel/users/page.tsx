@@ -1,3 +1,4 @@
+import Users from "@/components/Admin/pannel/users/users";
 import React from "react";
 
 export const metadata = {
@@ -8,13 +9,13 @@ function page() {
   return (
     <div
       style={{
-        background: "teal",
-        border: "1px solid blue",
-        height: "80vh",
-        width: "100%",
+        height: "90.5vh",
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "80px",
       }}
     >
-      page
+      <Users />
     </div>
   );
 }

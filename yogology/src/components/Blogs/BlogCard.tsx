@@ -16,6 +16,7 @@ function BlogCard({
       // container
       display={"grid"}
       gridTemplateColumns={{
+        xs: "1fr",
         sm: "1fr",
         md: "50% 50%",
         lg: "repeat(2,1fr)",
@@ -50,6 +51,7 @@ function BlogCard({
               md: "2rem",
               lg: "2.18rem",
             }}
+            // border={"1px solid red"}
           >
             {title}
           </Typography>

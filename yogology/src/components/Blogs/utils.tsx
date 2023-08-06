@@ -12,6 +12,7 @@ export function HoverScaleImage() {
           background: `url('${blogImage.src}')`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          // border: "1px solid red",
         }}
         whileHover={{ scale: 1.2 }}
         transition={{ type: "tween" }}
