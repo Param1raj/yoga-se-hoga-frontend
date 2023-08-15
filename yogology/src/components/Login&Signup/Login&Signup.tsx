@@ -53,11 +53,21 @@ function LoginSgnup({
     const result = await res.json();
     if (result.message !== "error") {
       if (isForLogin) {
-        document.cookie = "a_t_t=" + encodeURIComponent(result.data.token);
+        let date = new Date();
+        date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+        const expires = "expires=" + date.toUTCString();
+        document.cookie =
+          "a_t_t=" +
+          encodeURIComponent(result.data.token) +
+          ";" +
+          "expires=" +
+          date.toUTCString() +
+          ";path=/";
         setAuth({ isAuth: true });
         setMessage("Login Successfull!");
       } else {
         setMessage("Registered Successfully!");
+        push("/login");
       }
       setOpenSuccess(true);
     } else {

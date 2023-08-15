@@ -1,0 +1,23 @@
+
+.main {
+    background-color: #FFF8FD;
+}
+
+@media screen and (min-width:1024px)  {
+  .main{
+    grid-template-columns:  80%;
+    justify-content: center;
+  }
+}
+@media screen and (min-width:900px) and (max-width:1024px)  {
+  .main{
+    grid-template-columns: 90%;
+    justify-content: center;
+  }
+}
+@media screen and (min-width:300px) and (max-width:900px)  {
+  .main{
+    grid-template-columns: 100%;
+    /* grid-template-rows: 2% 98%; */
+  }
+}

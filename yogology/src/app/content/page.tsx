@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./page.module.css";
 import { Content } from "@/components/Content/Content";
+import LoginProtects from "@/Utils/RouteProtects/LoginProtects";
+import SubscriptionProtect from "@/Utils/RouteProtects/SubscriptionProtect";
 export const metadata = {
   title: "Yogaratha - Content",
   description: "Your online yoga institute!",
@@ -21,7 +23,11 @@ function Page() {
         autoCapitalize="true"
         // autoFocus
       ></iframe> */}
-        <Content />
+        <LoginProtects>
+          {/* <SubscriptionProtect> */}
+          <Content />
+          {/* </SubscriptionProtect> */}
+        </LoginProtects>
       </div>
     </>
   );

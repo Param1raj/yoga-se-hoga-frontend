@@ -1,9 +1,34 @@
 "use client";
-import React from "react";
-import { Box, Typography } from "@mui/material";
+import React, { useEffect } from "react";
+import { Box, Modal, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import YouTube from "react-youtube";
 
+const style = {
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  outline: "none",
+  // p: 4,
+};
 function PlayButton() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+    // alert(open);
+  };
+  const handleClose = () => {
+    setOpen(false);
+    // alert(open);
+  };
+  const opts = {
+    height: "700",
+    width: "100%",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
   return (
     <Box
       padding={"70px"}
@@ -30,6 +55,9 @@ function PlayButton() {
           boxSizing: "border-box",
           border: "2px solid  white",
         }}
+        onClick={() => {
+          handleOpen();
+        }}
       >
         <Typography
           variant="subtitle1"
@@ -41,6 +69,36 @@ function PlayButton() {
           Play
         </Typography>
       </motion.div>
+      <Modal
+        // keepMounted
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box
+          sx={{
+            ...style,
+            width: { xs: "20rem", sm: "40.7rem", md: "68.7rem" },
+            height: "43.5rem",
+            position: "absolute" as "absolute",
+            top: { xs: "50%", sm: "50%", md: "50%", lg: "50%", xl: "50%" },
+            left: { xs: "50%", sm: "50%", md: "50%", lg: "50%", xl: "50%" },
+          }}
+        >
+          {/* <Box height={"10px"} width={"1px"}></Box> */}
+          <YouTube videoId="eoArxEXRNlA" opts={opts} />
+          {/* <iframe
+            width="1100"
+            height="700"
+            src="https://www.youtube.com/embed/eoArxEXRNlA"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe> */}
+        </Box>
+      </Modal>
     </Box>
   );
 }

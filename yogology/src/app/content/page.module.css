@@ -1,9 +1,7 @@
 .main{
-    /* min-height: 100vh; */
     background-color: #FFF8FD;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 65px;
-    /* border: 1px solid black; */
+    margin-top: 75px;
 }

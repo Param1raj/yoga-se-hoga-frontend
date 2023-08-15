@@ -14,10 +14,14 @@ function ForPhone({
   return (
     <>
       {/* <Grid display={{ xs: "block", md: "none" }}> */}
-      <Grid>
+      <Grid display={{ xs: "block", md: "none" }}>
         <HoverScaleImage />
       </Grid>
-      <Stack spacing={{ sm: "10px", md: "20px" }} padding={"10px"}>
+      <Stack
+        spacing={{ sm: "10px", md: "20px" }}
+        display={{ xs: "block", md: "none" }}
+        padding={"10px"}
+      >
         <Typography
           variant="h1"
           component={"h2"}

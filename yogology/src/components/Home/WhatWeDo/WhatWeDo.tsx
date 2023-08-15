@@ -11,15 +11,15 @@ import ButtonComp from "@/components/ButtonComp";
 const hoverData = [
   {
     image: image1.src,
-    title: "Sound bath",
+    title: "Meditation",
   },
   {
     image: image2.src,
-    title: "Healing session",
+    title: "Yoga Nidra",
   },
   {
     image: image3.src,
-    title: "Chakra drums",
+    title: "Matras",
   },
 ];
 

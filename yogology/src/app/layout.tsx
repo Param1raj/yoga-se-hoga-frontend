@@ -37,7 +37,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={inter.className}>
+      <body>
         <AuthProvider>
           <App>{children}</App>
         </AuthProvider>

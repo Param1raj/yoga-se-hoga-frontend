@@ -1,3 +1,4 @@
+"use client";
 import { Box } from "@mui/material";
 import React from "react";
 import GallaryItem from "./GallaryItem";
@@ -19,8 +20,14 @@ function Gallery() {
   return (
     <Box
       sx={{
-        width: { xs: "70%", sm: "90%", md: "85%", lg: "85%", xl: "70%" },
-        height: { xs: "90%", sm: "74%" },
+        width: { xs: "80%", sm: "90%", md: "85%", lg: "90%", xl: "70%" },
+        height: {
+          xs: "90rem",
+          sm: "50rem",
+          md: "70rem",
+          lg: "64rem",
+          xl: "65rem",
+        },
         display: "grid",
         gridTemplateAreas: {
           xs: `'two'

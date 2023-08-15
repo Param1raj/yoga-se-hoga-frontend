@@ -22,7 +22,7 @@ function GallaryItem({
             background: `url('${background}')`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            backgroundPositionX: { sm: "-100px", md: "none" },
+            backgroundPositionX: { md: "none" },
             backgroundPosition: { md: "center" },
             ...animations(),
           }}
@@ -34,7 +34,7 @@ function GallaryItem({
               fontWeight={"700"}
               fontSize={"1.1rem"}
             >
-              Holidays
+              {text}
             </Typography>
           </Box>
         </Box>

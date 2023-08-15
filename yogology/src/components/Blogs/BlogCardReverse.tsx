@@ -26,6 +26,7 @@ function BlogCardReverse({
       height={"100%"}
       width={"100%"}
       padding={{ sm: "5px", md: "5px", lg: "20px" }}
+      // border={"1px solid black"}
     >
       <ForPhone title={title} description={description} date={date} />
       <ForLaptop title={title} description={description} date={date} />

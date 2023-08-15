@@ -2,19 +2,22 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import ContentItems from "./ContentItems";
-import temple1 from "./images/temple4.avif";
-import temple2 from "./images/temple2.avif";
-import temple3 from "./images/temple3.avif";
+import course from "./images/course.avif";
+import meditation from "./images/meditation.avif";
+import solutions from "./images/problems.avif";
+import diets from "./images/diets.avif";
+import texts from "./images/vedas.avif";
+// import temple1 from "./images/yoga.avif";
 export function Content() {
   return (
     <Box
-      width={{ xs: "90%", sm: "80%", md: "70%", lg: "70%", xl: "80%" }}
+      width={{ xs: "90%", sm: "90%", md: "70%", lg: "70%", xl: "80%" }}
       height={{
-        xs: "113rem",
-        sm: "198rem",
-        md: "198rem",
-        lg: "100rem",
-        xl: "80rem",
+        xs: "100rem",
+        sm: "58rem",
+        md: "58rem",
+        lg: "75rem",
+        xl: "60rem",
       }}
       display={"flex"}
       flexDirection={"column"}
@@ -33,7 +36,6 @@ export function Content() {
         display={"flex"}
         alignItems={"end"}
         marginTop={{ xs: "10px", sm: "50px", md: "10px", xl: "150px" }}
-        // border={"1px solid blue"}
       >
         <Typography
           fontWeight={"700"}
@@ -48,10 +50,12 @@ export function Content() {
       <Box
         // border={"1px solid blue"}
         width={"100%"}
-        height={{ xs: "90%", md: "90%", lg: "90%", xl: "40%" }}
+        height={{ xs: "90%", md: "90%", lg: "90%", xl: "55%" }}
         display={"grid"}
         gridTemplateColumns={{
           xs: "100%",
+          sm: "repeat(2,1fr)",
+          md: "repeat(2,1fr)",
           lg: "repeat(2,1fr)",
           xl: "repeat(3,1fr)",
         }}
@@ -59,30 +63,33 @@ export function Content() {
         rowGap={{ xs: "0px", sm: "20px" }}
       >
         <ContentItems
-          title={"Yoga for well being"}
-          description="200 hotels, 345 local flights and 234 bus providers"
-          image={temple1.src}
+          title={"Yoga & Meditations"}
+          description="Yogas to enhance your life style"
+          image={meditation.src}
+          link="/content/yoga"
         />
         <ContentItems
-          title={"Daily life problems"}
-          description="200 hotels, 345 local flights and 234 bus providers"
-          image={temple2.src}
+          title={"Solutions"}
+          description="Find solutions for your daily life problems"
+          image={solutions.src}
+          link="content/solutions"
         />
+        {/* <ContentItems
+          title={"Diets"}
+          description="Find the best type of diets routiene you should follow!"
+          image={diets.src}
+        /> */}
         <ContentItems
-          title={"Yoga for well being"}
-          description="200 hotels, 345 local flights and 234 bus providers"
-          image={temple1.src}
+          title={"Course"}
+          description="A dedicated course to learn yoga!"
+          image={course.src}
+          link="/videos"
         />
-        <ContentItems
-          title={"Solutions life problems"}
-          description="200 hotels, 345 local flights and 234 bus providers"
-          image={temple2.src}
-        />
-        <ContentItems
-          title={"Diets for well being"}
-          description="200 hotels, 345 local flights and 234 bus providers"
-          image={temple3.src}
-        />
+        {/* <ContentItems
+          title={"Spiritual texts"}
+          description="Easy access to spirituality"
+          image={texts.src}
+        /> */}
       </Box>
     </Box>
   );

@@ -1,6 +1,6 @@
 "use client";
 import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import ButtonComp from "../ButtonComp";
 import HoverInput from "../HoverInput";
 import { LaptopChromebookRounded } from "@mui/icons-material";
@@ -59,6 +59,7 @@ function Contactus() {
       console.log({ error: errors });
     }
   };
+
   return (
     <Box
       height={{ sm: "60rem", md: "50rem" }}
@@ -136,58 +137,112 @@ function Contactus() {
         >
           <Stack
             width={{ xs: "95%", sm: "90%" }}
-            height={{ xs: "90%", sm: "96%" }}
+            height={{ xs: "90%", sm: "96%", xl: "98%" }}
             sx={{ background: "#FFFFFF" }}
-            padding={{ xs: "40px", sm: "50px" }}
-            spacing={"40px"}
+            padding={{ xs: "40px", sm: "50px", xl: "30px" }}
+            spacing={"30px"}
             component={"form"}
             onSubmit={handleSubmit(handleChange)}
           >
-            <TextField
-              id="standard-basic"
-              label={"Name"}
-              variant="standard"
-              placeholder={"Name"}
-              type={"text"}
-              {...register("name", { required: true })}
-              sx={animation}
-            />
-            <TextField
-              id="standard-basic"
-              label={"Phone"}
-              variant="standard"
-              placeholder={"Phone"}
-              {...register("phone", { required: true, maxLength: 10 })}
-              sx={animation}
-            />
-            <TextField
-              id="standard-basic"
-              label={"Email"}
-              variant="standard"
-              placeholder={"Email"}
-              type={"text"}
-              {...register("email", { required: true })}
-              sx={animation}
-            />
-            <TextField
-              id="standard-basic"
-              label={"Subject"}
-              variant="standard"
-              placeholder={"Subject"}
-              type={"text"}
-              sx={animation}
-              {...register("subject", { required: true })}
-            />
-            <TextField
-              id="standard-basic"
-              label={"How can help you? feel free to get in touch!"}
-              // variant="standard"
-              type={"text"}
-              multiline
-              rows={4}
-              {...register("Query", { required: true })}
-              sx={animation}
-            />
+            <Box width={"100%"}>
+              <TextField
+                id="standard-basic"
+                label={"Name"}
+                fullWidth
+                variant="standard"
+                placeholder={"Name"}
+                type={"text"}
+                {...register("name", { required: true })}
+                sx={animation}
+                // onFocus={() => (errors.name = undefined)}
+                // autoFocus={false}
+              />
+              {errors.name && (
+                <Typography color={"red"} fontSize={"0.7rem"}>
+                  *This field is required
+                </Typography>
+              )}
+            </Box>
+            <Box>
+              <TextField
+                id="standard-basic"
+                label={"Phone"}
+                variant="standard"
+                placeholder={"Phone"}
+                fullWidth
+                {...register("phone", { required: true, maxLength: 10 })}
+                sx={animation}
+                // onFocus={() => {
+                //   errors.phone = undefined;
+                // }}
+              />
+              {errors.phone && (
+                <Typography color={"red"} fontSize={"0.7rem"}>
+                  *This field is required
+                </Typography>
+              )}
+            </Box>
+            <Box>
+              <TextField
+                id="standard-basic"
+                label={"Email"}
+                variant="standard"
+                placeholder={"Email"}
+                fullWidth
+                type={"text"}
+                {...register("email", { required: true })}
+                sx={animation}
+                // onFocus={() => {
+                //   errors.email = undefined;
+                // }}
+              />
+              {errors.email && (
+                <Typography color={"red"} fontSize={"0.7rem"}>
+                  *This field is required
+                </Typography>
+              )}
+            </Box>
+            <Box>
+              <TextField
+                id="standard-basic"
+                label={"Subject"}
+                variant="standard"
+                placeholder={"Subject"}
+                type={"text"}
+                sx={animation}
+                fullWidth
+                {...register("subject", { required: true })}
+                onFocus={() => {
+                  errors.subject = undefined;
+                }}
+              />
+              {errors.subject && (
+                <Typography color={"red"} fontSize={"0.7rem"}>
+                  *This field is required
+                </Typography>
+              )}
+            </Box>
+            <Box>
+              <TextField
+                id="standard-basic"
+                label={"How can help you? feel free to get in touch!"}
+                // variant="standard"
+                type={"text"}
+                multiline
+                rows={4}
+                fullWidth
+                {...register("Query", { required: true })}
+                sx={animation}
+                // onFocus={() => {
+                //   errors.Query = undefined;
+                // }}
+              />
+              {errors.Query && (
+                <Typography color={"red"} fontSize={"0.7rem"}>
+                  *This field is required
+                </Typography>
+              )}
+            </Box>
             <Button
               type="submit"
               value="Get in touch"

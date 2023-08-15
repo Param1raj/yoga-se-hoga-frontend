@@ -10,22 +10,25 @@ const services = [
     title: "Solutions",
     caption: "Solutions for daily life problems",
     image: <EmojiObjectsIcon sx={{ fontSize: "60px" }} />,
+    link: "/content/solutions?page=1",
   },
   {
     title: "Yoga",
     caption: "Various Kind of yoga exercises.",
     image: <SelfImprovementIcon sx={{ fontSize: "60px" }} />,
+    link: "/content/yoga?page=1",
   },
   {
     title: "Meditation",
     caption: "Deep meditations and relaxations",
     image: <SpaIcon sx={{ fontSize: "60px" }} />,
+    link: "./content/meditation?page=1",
   },
-  {
-    title: "Diets",
-    caption: "Health guidence with proper diets.",
-    image: <EmojiFoodBeverageIcon sx={{ fontSize: "60px" }} />,
-  },
+  // {
+  //   title: "Diets",
+  //   caption: "Health guidence with proper diets.",
+  //   image: <EmojiFoodBeverageIcon sx={{ fontSize: "60px" }} />,
+  // },
 ];
 
 function CardContainer() {
@@ -34,8 +37,8 @@ function CardContainer() {
       width={"100%"}
       height={{
         xs: "fit-content",
-        sm: "fit-content",
-        md: "50rem",
+        sm: "70rem",
+        md: "30rem",
         lg: "35rem",
       }}
       display={"flex"}
@@ -45,28 +48,29 @@ function CardContainer() {
     >
       <Grid
         container
-        spacing={{ sm: 0, md: 0 }}
+        // spacing={{ sm: 0, md: 0 }}
         display={"grid"}
         gridTemplateColumns={{
           xs: "1fr",
           sm: "1fr",
-          md: "repeat(2,1fr)",
-          lg: "repeat(4,1fr)",
+          md: "repeat(3,1fr)",
+          lg: "repeat(3,1fr)",
         }}
-        gridTemplateRows={{ sm: "repeat(4,1fr)" }}
+        gridTemplateRows={{ sm: "repeat(3,1fr)", md: "1fr" }}
         rowGap={"20px"}
-        width={{ xs: "95%", sm: "70%", md: "75%", lg: "95%", xl: "75%" }}
+        width={{ xs: "85%", sm: "60%", md: "90%", lg: "85%", xl: "60%" }}
         margin={"auto"}
-        height={{ xs: "90%", sm: "100%", md: "80%", lg: "63%", xl: "65%" }}
+        height={{ xs: "90%", sm: "100%", md: "77%", lg: "63%", xl: "70%" }}
         // border={"1px solid black"}
       >
-        {services.map(({ title, image, caption }) => {
+        {services.map(({ title, image, caption, link }) => {
           return (
             <ServiceCard
               key={title}
               title={title}
               caption={caption}
               image={image}
+              link={link}
             />
           );
         })}

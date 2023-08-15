@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import ButtonComp from "../ButtonComp";
 
@@ -8,11 +8,13 @@ function VideoWithDetails({
   ShortDescription,
   LongDescription,
   videoLink,
+  forSingle,
 }: {
   title: string;
   ShortDescription: string;
   LongDescription: string;
   videoLink: string;
+  forSingle?: boolean;
 }) {
   const list = {
     visible: {
@@ -30,12 +32,18 @@ function VideoWithDetails({
     visible: { opacity: 1, x: 0 },
     hidden: { opacity: 0, x: 200 },
   };
+  // const [mute, setMute] = useState(1);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setMute(0);
+  //   }, 1000);
+  // }, []);
   return (
     <Box
       display={"flex"}
       justifyContent={"center"}
       width={"100%"}
-      height={"100vh"}
+      height={forSingle ? "100%" : "100vh"}
       overflow={"auto"}
       padding={{ xs: "1.5rem", sm: "1.8rem", md: "1.3rem", lg: "3rem" }}
       //   zIndex={1}
@@ -43,9 +51,10 @@ function VideoWithDetails({
         "::-webkit-scrollbar": {
           display: "none",
         },
+        // border: "1px solid red",
       }}
     >
-      <Box width={{ lg: "85%", xl: "65%" }}>
+      <Box width={{ lg: "90%", xl: "70%" }}>
         <motion.div
           initial="hidden"
           animate="visible"
@@ -58,23 +67,19 @@ function VideoWithDetails({
           }}
         >
           <Stack
-            // border={"1px solid blue"}
-            //   position={"relative"}
-            //   top={"100px"}
             width={"100%"}
             height={"100%"}
-            rowGap={"20px"}
+            rowGap={forSingle ? "30px" : "20px"}
             paddingBottom={"50px"}
           >
             <motion.div variants={item}>
               <Typography
                 variant="h4"
                 component={"h4"}
-                fontSize={{ md: "2.1rem", lg: "2.5" }}
+                fontSize={{ md: "2.1rem", lg: "2.5rem" }}
                 fontFamily={["Nunito", "sans-serif"]}
                 fontWeight={"700"}
               >
-                {" "}
                 {title}
               </Typography>
             </motion.div>
@@ -82,9 +87,14 @@ function VideoWithDetails({
               <Typography
                 variant="body1"
                 component={"p"}
-                fontSize={{ md: "1.2rem", lg: "1.5rem" }}
-                fontFamily={["Nunito", "sans-serif"]}
-                fontWeight={"500"}
+                fontSize={{
+                  xs: forSingle ? "1rem" : "",
+                  sm: forSingle ? "1.3rem" : "",
+                  md: "1.2rem",
+                  lg: "1.5rem",
+                }}
+                fontFamily={["Kumbh Sans", "sans-serif"]}
+                fontWeight={forSingle ? "400" : "500"}
                 color={"#847988"}
               >
                 {ShortDescription}
@@ -98,7 +108,7 @@ function VideoWithDetails({
                 <iframe
                   width="100%"
                   height="100%"
-                  src={videoLink}
+                  src={videoLink + `?mute=1` + "&autoplay=1"}
                   title="Asteya"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -111,10 +121,16 @@ function VideoWithDetails({
               <Typography
                 variant="body1"
                 component={"p"}
-                fontSize={{ xs: "0.7rem", md: "0.8rem", lg: "1rem" }}
+                fontSize={{
+                  xs: forSingle ? "0.8rem" : "0.7rem",
+                  md: forSingle ? "1rem" : "0.8rem",
+                  lg: forSingle ? "1.2rem" : "1rem",
+                  xl: forSingle ? "1.3rem" : "1rem",
+                }}
                 fontFamily={"Nunito"}
                 fontWeight={"400"}
                 color={"#847988"}
+                mt={forSingle ? "30px" : "0px"}
               >
                 {LongDescription}
               </Typography>

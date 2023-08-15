@@ -21,10 +21,10 @@ const NavRoutes = [
     name: "Contact",
     pathName: "/contact",
   },
-  {
-    name: "Pain relief",
-    pathName: "/pain-relief",
-  },
+  // {
+  //   name: "Pain relief",
+  //   pathName: "/pain-relief",
+  // },
   {
     name: "Blogs",
     pathName: "/blogs",

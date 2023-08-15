@@ -51,7 +51,7 @@ function HoverImage({ image, title, forBlog }: HoverImageProps) {
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
-              objectFit: "contain",
+              // objectFit: "contain",
               ...(hover
                 ? {
                     transform: "scale(1.05)",

@@ -49,7 +49,7 @@ function AboutUs() {
             fontWeight: "700",
             fontStyle: "normal",
             position: "relative",
-            right: { md: "3rem", lg: "7rem", xl: "10rem" },
+            right: { md: "7rem", lg: "7rem", xl: "10rem" },
             fontSize: {
               xs: "1.4rem",
               sm: "1.4rem",
@@ -61,7 +61,7 @@ function AboutUs() {
           }}
           // border={'1px solid black'}
           component={"h4"}
-          textAlign={{ xs: "center", md: "left" }}
+          textAlign={{ xs: "left", md: "left" }}
         >
           Living in harmony: Krishna's spiritual teachings for modern life in
           the material world.
@@ -80,7 +80,7 @@ function AboutUs() {
             component={"p"}
             fontFamily={["Nunito", "sans-serif"]}
             fontSize={"1rem"}
-            textAlign={{ xs: "center", md: "left" }}
+            textAlign={{ xs: "left", md: "left" }}
           >
             Experience the synergy of ancient wisdom and contemporary living on
             our website, and allow Krishna's teachings to illuminate your path
@@ -91,7 +91,7 @@ function AboutUs() {
             component={"p"}
             fontFamily={["Nunito", "sans-serif"]}
             fontSize={"1rem"}
-            textAlign={{ xs: "center", md: "left" }}
+            textAlign={{ xs: "left", md: "left" }}
           >
             We invite you to embark on a transformative journey of
             self-discovery, guided by the timeless wisdom of Krishna. Embrace a

@@ -1,6 +1,13 @@
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import TransitionModal from "../Modal/TransitionModal";
+
+enum typeEnum {
+  yoga = "Yoga",
+  solution = "Solutions",
+  meditation = "Meditation",
+}
 
 const ServiceCard = ({
   image,
@@ -12,11 +19,10 @@ const ServiceCard = ({
   title: string;
 }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [type, setType] = useState<string | null>(null);
   return (
     <Grid
-      // item
-      // xs={4}
-      // border={"1px solid black"}
       height={"100%"}
       onMouseEnter={(e) => {
         setIsHovering(true);
@@ -25,6 +31,13 @@ const ServiceCard = ({
         setIsHovering(false);
       }}
     >
+      <TransitionModal
+        type={type}
+        modal={open}
+        handleClose={() => {
+          setOpen(false);
+        }}
+      />
       <Paper
         sx={{
           display: "flex",
@@ -38,6 +51,18 @@ const ServiceCard = ({
           transition: "box-shadow 0.3s ease-out",
         }}
         elevation={0}
+        onClick={() => {
+          setOpen(true);
+          setType(() => {
+            return title === typeEnum.yoga
+              ? typeEnum.yoga
+              : title === typeEnum.meditation
+              ? typeEnum.meditation
+              : title === typeEnum.solution
+              ? typeEnum.solution
+              : null;
+          });
+        }}
       >
         <Stack
           spacing={3}

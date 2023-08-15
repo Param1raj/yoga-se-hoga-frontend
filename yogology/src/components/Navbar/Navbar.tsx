@@ -8,6 +8,7 @@ import ButtonComp from "../ButtonComp";
 import CustomDrawer from "./CustomDrawer";
 import CustomManu from "./CustomManu";
 import NavbarElement from "./NavElement";
+import "./navbar.css";
 const NavRoutes = [
   {
     name: "Home",
@@ -22,10 +23,6 @@ const NavRoutes = [
     pathName: "/contact",
   },
   {
-    name: "Pain relief",
-    pathName: "/pain-relief",
-  },
-  {
     name: "Blogs",
     pathName: "/blogs",
   },
@@ -38,6 +35,7 @@ function Navbar() {
         boxShadow: "none",
         // border: "1px solid black",
         display: "flex",
+        maxWidth: "100vw",
       }}
       position="fixed"
     >
@@ -45,6 +43,8 @@ function Navbar() {
         sx={{
           padding: { xs: "0.8rem", sm: "0.8rem", md: "0.5rem" },
         }}
+        // border={"1px solid red"}
+        width={"100%"}
       >
         <Toolbar
           disableGutters
@@ -63,7 +63,7 @@ function Navbar() {
               display: { xs: "none", lg: "flex" },
               justifyContent: "space-between",
               margin: "auto",
-              width: { xs: "0%", sm: "20%", md: "45%", lg: "35%", xl: "25%" },
+              width: { xs: "0%", sm: "20%", md: "45%", lg: "35%", xl: "20%" },
             }}
           >
             {NavRoutes.map(({ pathName, name }) => (
