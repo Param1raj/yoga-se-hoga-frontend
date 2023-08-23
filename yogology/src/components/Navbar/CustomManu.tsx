@@ -76,7 +76,7 @@ function CustomManu({ children }: { children: ReactNode }) {
           mt: "45px",
           borderRadius: 0,
           // border: "1px solid red",
-          width: "90%",
+          width: "350px",
         }}
         id="menu-appbar"
         anchorEl={anchorElUser}
@@ -105,6 +105,7 @@ function CustomManu({ children }: { children: ReactNode }) {
               }
               handleCloseUserMenu();
             }}
+            sx={{ width: "100%" }}
           >
             <Typography textAlign="center">{setting}</Typography>
           </MenuItem>

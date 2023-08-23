@@ -10,11 +10,13 @@ import Paper from "@mui/material/Paper";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import CancelIcon from "@mui/icons-material/Cancel";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import { Box, IconButton, Menu, MenuItem, Pagination } from "@mui/material";
 import ThreePIcon from "@mui/icons-material/ThreeP";
 import AddIcon from "@mui/icons-material/Add";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+// import { useRouter } from "next/router";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#5F2C70",
@@ -187,6 +189,17 @@ function UsersTable() {
   const [encorElm, setEncorElm] = React.useState<null | HTMLButtonElement>(
     null
   );
+  let count = 10;
+  const searchParams = useSearchParams();
+  const [page, setPage] = React.useState<number>(
+    +searchParams.toString().split("=")[1]
+  );
+  const pathName = usePathname();
+  const { push } = useRouter();
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+    push(pathName + "?page=" + value);
+  };
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -276,6 +289,22 @@ function UsersTable() {
           ))}
         </TableBody>
       </Table>
+      <Box
+        // border={"1px solid red"}
+        width={"100%"}
+        display={"flex"}
+        justifyContent={"center"}
+        padding={"20px"}
+      >
+        <Pagination
+          count={count}
+          size={"large"}
+          variant="outlined"
+          color="secondary"
+          page={page}
+          onChange={handleChange}
+        />
+      </Box>
     </TableContainer>
   );
 }

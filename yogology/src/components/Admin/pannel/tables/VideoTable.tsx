@@ -10,13 +10,25 @@ import Paper from "@mui/material/Paper";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import CancelIcon from "@mui/icons-material/Cancel";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Box, IconButton, Menu, MenuItem } from "@mui/material";
-import ThreePIcon from "@mui/icons-material/ThreeP";
+import {
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  Pagination,
+  Typography,
+} from "@mui/material";
+// import ThreePIcon from "@mui/icons-material/ThreeP";
 import AddIcon from "@mui/icons-material/Add";
 // import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+// import { All_Video } from "../../../../../apis.";
+import { AuthContext } from "@/app/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import { getVideos } from "@/Utils/query/getVideos";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#5F2C70",
@@ -36,107 +48,84 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
-function createData(
-  thumbnail: string,
-  title: string,
-  category: string,
-  problemOriented: boolean,
-  instructor: string,
-  url: string,
-  subscriptionDate?: string
-) {
-  return {
-    thumbnail,
-    title,
-    category,
-    problemOriented,
-    instructor,
-    url,
-    subscriptionDate,
+export type Video = {
+  _id: string;
+  thumbnail: string;
+  title: string;
+  category: string;
+  isSolution: boolean;
+  isPaid: boolean;
+  url: string;
+  createdBy: {
+    _id: string;
+    name: string;
   };
-}
+  Short_Description: string;
+  Long_Description: string;
+};
+// function createData({
+//   thumbnail,
+//   title,
+//   Long_Description,
+//   Short_Description,
+//   category,
+//   isSolution,
+//   isPaid,
+//   url,
+//   createdBy,
+// }: Video) {
+//   return {
+//     thumbnail,
+//     title,
+//     category,
+//     isSolution,
+//     isPaid,
+//     url,
+//     createdBy,
+//     Short_Description,
+//     Long_Description,
+//   };
+// }
 
-const rows = [
-  createData(
-    "https://img.freepik.com/free-vector/flat-abstract-business-youtube-thumbnail-template_23-2148913303.jpg?w=1380&t=st=1691182036~exp=1691182636~hmac=8d164eb51915cea89121fc0aefb7bc42fa98833d61b0b49888f939e40bdfc65b",
-    "Youtube",
-    "Beginner",
-    true,
-    "Manish Kumar",
-    "https://www.youtube.com/embed/rJWdfDPZ9Ck",
-    `04 August 2023`
-  ),
-  createData(
-    "https://img.freepik.com/free-vector/flat-abstract-business-youtube-thumbnail-template_23-2148913303.jpg?w=1380&t=st=1691182036~exp=1691182636~hmac=8d164eb51915cea89121fc0aefb7bc42fa98833d61b0b49888f939e40bdfc65b",
-    "Youtube",
-    "Beginner",
-    true,
-    "Manish Kumar",
-    "https://www.youtube.com/embed/rJWdfDPZ9Ck",
-    `04 August 2023`
-  ),
-  createData(
-    "https://img.freepik.com/free-vector/flat-abstract-business-youtube-thumbnail-template_23-2148913303.jpg?w=1380&t=st=1691182036~exp=1691182636~hmac=8d164eb51915cea89121fc0aefb7bc42fa98833d61b0b49888f939e40bdfc65b",
-    "Youtube",
-    "Beginner",
-    false,
-    "Manish Kumar",
-    "https://www.youtube.com/embed/rJWdfDPZ9Ck",
-    `04 August 2023`
-  ),
-  createData(
-    "https://img.freepik.com/free-vector/flat-abstract-business-youtube-thumbnail-template_23-2148913303.jpg?w=1380&t=st=1691182036~exp=1691182636~hmac=8d164eb51915cea89121fc0aefb7bc42fa98833d61b0b49888f939e40bdfc65b",
-    "Youtube",
-    "Beginner",
-    false,
-    "Manish Kumar",
-    "https://www.youtube.com/embed/rJWdfDPZ9Ck",
-    `04 August 2023`
-  ),
-  createData(
-    "https://img.freepik.com/free-vector/flat-abstract-business-youtube-thumbnail-template_23-2148913303.jpg?w=1380&t=st=1691182036~exp=1691182636~hmac=8d164eb51915cea89121fc0aefb7bc42fa98833d61b0b49888f939e40bdfc65b",
-    "Youtube",
-    "Beginner",
-    false,
-    "Manish Kumar",
-    "https://www.youtube.com/embed/rJWdfDPZ9Ck",
-    `04 August 2023`
-  ),
-  createData(
-    "https://img.freepik.com/free-vector/flat-abstract-business-youtube-thumbnail-template_23-2148913303.jpg?w=1380&t=st=1691182036~exp=1691182636~hmac=8d164eb51915cea89121fc0aefb7bc42fa98833d61b0b49888f939e40bdfc65b",
-    "Youtube",
-    "Beginner",
-    true,
-    "Manish Kumar",
-    "https://www.youtube.com/embed/rJWdfDPZ9Ck",
-    `04 August 2023`
-  ),
-  createData(
-    "https://img.freepik.com/free-vector/flat-abstract-business-youtube-thumbnail-template_23-2148913303.jpg?w=1380&t=st=1691182036~exp=1691182636~hmac=8d164eb51915cea89121fc0aefb7bc42fa98833d61b0b49888f939e40bdfc65b",
-    "Youtube",
-    "Beginner",
-    true,
-    "Manish Kumar",
-    "https://www.youtube.com/embed/rJWdfDPZ9Ck",
-    `04 August 2023`
-  ),
-  createData(
-    "https://img.freepik.com/free-vector/flat-abstract-business-youtube-thumbnail-template_23-2148913303.jpg?w=1380&t=st=1691182036~exp=1691182636~hmac=8d164eb51915cea89121fc0aefb7bc42fa98833d61b0b49888f939e40bdfc65b",
-    "Youtube",
-    "Beginner",
-    true,
-    "Manish Kumar",
-    "https://www.youtube.com/embed/rJWdfDPZ9Ck",
-    `04 August 2023`
-  ),
-];
+let rows: Video[] = [];
 
-function BlogTable() {
+function VideosTable() {
   const [open, setOpen] = React.useState(false);
   const [encorElm, setEncorElm] = React.useState<null | HTMLButtonElement>(
     null
   );
+  const searchParams = useSearchParams();
+  const [page, setPage] = React.useState<number>(
+    +searchParams.toString().split("=")[1]
+  );
+  let count = 10;
+  const pathName = usePathname();
+  const { push } = useRouter();
+  const { auth } = React.useContext(AuthContext);
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+    push(pathName + "?page=" + value);
+  };
+
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ["videos", page],
+    queryFn: async () => {
+      return getVideos(page);
+    },
+  });
+
+  if (isLoading) {
+    return <Typography>Loading..... </Typography>;
+  }
+
+  if (isError) {
+    return <Typography>Error------ </Typography>;
+  }
+
+  if (data) {
+    rows = data.data.videos;
+    count = data.data.count;
+  }
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -146,8 +135,8 @@ function BlogTable() {
             <StyledTableCell align="left">Title</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Is Soluton</StyledTableCell>
+            <StyledTableCell align="center">Is Paid</StyledTableCell>
             <StyledTableCell align="center">Video Url</StyledTableCell>
-            <StyledTableCell align="center">Instructor</StyledTableCell>
             <StyledTableCell align="right">
               <AddIcon />
             </StyledTableCell>
@@ -177,16 +166,20 @@ function BlogTable() {
               <StyledTableCell align="left">{row?.title}</StyledTableCell>
               <StyledTableCell align="center">{row?.category}</StyledTableCell>
               <StyledTableCell align="center">
-                {row?.problemOriented ? (
+                {row?.isSolution ? (
+                  <DoneAllIcon sx={{ color: "green" }} />
+                ) : (
+                  <CancelIcon sx={{ color: "red" }} />
+                )}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                {row?.isPaid ? (
                   <DoneAllIcon sx={{ color: "green" }} />
                 ) : (
                   <CancelIcon sx={{ color: "red" }} />
                 )}
               </StyledTableCell>
               <StyledTableCell align="center">{row?.url}</StyledTableCell>
-              <StyledTableCell align="center">
-                {row?.instructor}
-              </StyledTableCell>
               <StyledTableCell align="right">
                 <IconButton
                   onClick={(event) => {
@@ -233,8 +226,24 @@ function BlogTable() {
           ))}
         </TableBody>
       </Table>
+      <Box
+        // border={"1px solid red"}
+        width={"100%"}
+        display={"flex"}
+        justifyContent={"center"}
+        padding={"20px"}
+      >
+        <Pagination
+          count={count}
+          size={"large"}
+          variant="outlined"
+          color="secondary"
+          page={page}
+          onChange={handleChange}
+        />
+      </Box>
     </TableContainer>
   );
 }
 
-export default BlogTable;
+export default VideosTable;

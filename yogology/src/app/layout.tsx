@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import AuthProvider from "./AuthProvider";
 import App from "./app";
+import QueryProvider from "./QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,7 +40,9 @@ export default function RootLayout({
       </head>
       <body>
         <AuthProvider>
-          <App>{children}</App>
+          <QueryProvider>
+            <App>{children}</App>
+          </QueryProvider>
         </AuthProvider>
       </body>
     </html>

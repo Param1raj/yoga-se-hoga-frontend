@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { Box, Typography } from "@mui/material";
+// import Particle from "@/components/Particle";
+import ParticleComp from "@/components/Particle";
 
 function Header() {
   return (
@@ -9,6 +11,9 @@ function Header() {
       width={{ xs: "100%", sm: "100%", md: "70%", lg: "65%", xl: "50%" }}
       marginTop={{ sm: "0px", md: "0px", lg: "100px" }}
     >
+      {/* <Box border={"1px solid red"} height={"500px"} width={"100%"}> */}
+      {/* <ParticleComp />   */}
+      {/* </Box> */}
       <Box
         display={"flex"}
         alignItems={"center"}

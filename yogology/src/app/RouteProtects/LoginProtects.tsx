@@ -11,7 +11,7 @@ function LoginProtects({ children }: { children: ReactNode }) {
   if (!isAuth) {
     push("/login");
   }
-  return <>{children}</>;
+  return children;
 }
 
 export default LoginProtects;

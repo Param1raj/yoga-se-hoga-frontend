@@ -1,20 +1,18 @@
 "use client";
 
-import LoginProtects from "@/Utils/RouteProtects/LoginProtects";
+import LoginProtects from "@/app/RouteProtects/LoginProtects";
 import Content from "@/components/Content/Content/Content";
-import { useParams } from "next/navigation";
 import React from "react";
 // import meditation from
 
-function page() {
-  const { content } = useParams();
+function Page() {
   return (
     <div style={{ marginTop: "80px" }}>
-      <LoginProtects>
-        <Content contentType={content} />
-      </LoginProtects>
+      {/* <LoginProtects> */}
+      <Content />
+      {/* </LoginProtects> */}
     </div>
   );
 }
 
-export default page;
+export default Page;

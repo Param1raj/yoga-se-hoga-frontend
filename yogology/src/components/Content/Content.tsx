@@ -7,9 +7,11 @@ import meditation from "./images/meditation.avif";
 import solutions from "./images/problems.avif";
 import diets from "./images/diets.avif";
 import texts from "./images/vedas.avif";
+import LoginProtects from "@/app/RouteProtects/LoginProtects";
 // import temple1 from "./images/yoga.avif";
 export function Content() {
   return (
+    // <LoginProtects>
     <Box
       width={{ xs: "90%", sm: "90%", md: "70%", lg: "70%", xl: "80%" }}
       height={{
@@ -92,5 +94,6 @@ export function Content() {
         /> */}
       </Box>
     </Box>
+    // </LoginProtects>
   );
 }

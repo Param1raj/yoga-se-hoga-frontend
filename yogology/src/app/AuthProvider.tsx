@@ -24,7 +24,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
         : false,
     hasSubscribed: Cookies.get("a_t_s") ? true : false,
     isAdmin: Cookies.get("a_d_t") ? true : false,
-    token: Cookies.get("a_t_t") || "",
+    token: Cookies.get("a_t_t") || Cookies.get("a_d_t") || "",
   });
   const handle = ({
     isAuth,

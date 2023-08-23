@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Button,
@@ -14,6 +14,9 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
+import { Create_Video } from "../../../../../apis.";
+import CustomSnackbar from "@/components/Snackbar";
+import { AuthContext } from "@/app/AuthProvider";
 
 /*
   title={"Asteya"}
@@ -34,16 +37,36 @@ function VideoModal({
   onClose: () => void;
   type: string;
 }) {
-  const HeadingAndContentArray = [1, 1, 1, 1];
+  const [OpenSuccess, setOpenSuccess] = useState(false);
+  const [OpenError, setOpenError] = useState(false);
+  const [message, setMessage] = useState("");
+  let { auth } = useContext(AuthContext);
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const Submit = (data: any) => {
-    console.log(data, "++++++++++++++data+++++++++++++++");
-    reset();
+  const Submit = async (data: any) => {
+    try {
+      const result = await fetch(Create_Video, {
+        method: "POST",
+        body: JSON.stringify({ ...data }),
+        headers: {
+          "content-Type": "application/json",
+          authorization: `bearer ${auth.token}`,
+        },
+      });
+      const res = await result.json();
+      if (res.message !== "error") {
+        setMessage("Created Successfully!");
+        setOpenSuccess(true);
+        reset();
+      }
+    } catch (error) {
+      setMessage("Failed to Add");
+      setOpenError(true);
+    }
   };
   return (
     <Modal
@@ -60,7 +83,7 @@ function VideoModal({
     >
       <Box
         width={"50%"}
-        height={"85vh"}
+        height={"90vh"}
         sx={{
           background: "white",
           padding: "30px",
@@ -72,22 +95,44 @@ function VideoModal({
           alignItems: "center",
           justifyContent: "center",
         }}
+        // border={"1px solid red"}
       >
         <Box
           width={"80%"}
           display={"flex"}
           justifyContent={"center"}
-          // border={"1px solid red"}
           flexDirection={"column"}
-          // pt={"60px"}
+          pt={"30px"}
           height={"100%"}
-          sx={{
-            overflowY: "auto",
-            "::-webkit-scrollbar": {
-              display: "none",
-            },
-          }}
+          sx={
+            {
+              // overflowY: "auto",
+              // "::-webkit-scrollbar": {
+              //   display: "none",
+              // },
+            }
+          }
         >
+          {OpenSuccess && (
+            <CustomSnackbar
+              Open={OpenSuccess}
+              varient={"success"}
+              message={message}
+              setOpen={() => {
+                setOpenSuccess(false);
+              }}
+            />
+          )}
+          {OpenError && (
+            <CustomSnackbar
+              Open={OpenError}
+              varient={"error"}
+              message={message}
+              setOpen={() => {
+                setOpenError(false);
+              }}
+            />
+          )}
           <Typography
             id="keep-mounted-modal-title"
             variant="h6"
@@ -157,14 +202,29 @@ function VideoModal({
             <Box width={"100%"}>
               <TextField
                 label="Vide Link"
-                placeholder="https://www.youtube.com/watch?v=xyzlkjlasdf"
+                placeholder="https://www.youtube.com/embed/videoId"
                 color="secondary"
                 fullWidth
+                defaultValue={"https://www.youtube.com/embed/"}
                 {...register("url", { required: true })}
               />
               {errors.url && (
                 <Typography component={"p"} color={"red"}>
                   * Video Link is missing here.
+                </Typography>
+              )}
+            </Box>
+            <Box width={"100%"}>
+              <TextField
+                label="Thumbnail"
+                color="secondary"
+                type="text"
+                fullWidth
+                {...register("thumbnail", { required: true })}
+              />
+              {errors.title && (
+                <Typography component={"p"} color={"red"}>
+                  * Thumbnail is missing here.
                 </Typography>
               )}
             </Box>

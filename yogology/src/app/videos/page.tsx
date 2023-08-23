@@ -1,5 +1,5 @@
-import LoginProtects from "@/Utils/RouteProtects/LoginProtects";
-import SubscriptionProtect from "@/Utils/RouteProtects/SubscriptionProtect";
+// import LoginProtects from "@/Utils/RouteProtects/LoginProtects";
+// import SubscriptionProtect from "@/Utils/RouteProtects/SubscriptionProtect";
 import Video from "@/components/Video/Video";
 import React from "react";
 
@@ -9,13 +9,7 @@ export const metadata = {
 };
 
 function Page() {
-  return (
-    <LoginProtects>
-      {/* <SubscriptionProtect> */}
-      <Video />
-      {/* </SubscriptionProtect> */}
-    </LoginProtects>
-  );
+  return <Video />;
 }
 
 export default Page;

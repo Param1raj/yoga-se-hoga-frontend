@@ -111,6 +111,9 @@ function LoginSgnup({
             Open={OpenSuccess}
             varient={"success"}
             message={message}
+            setOpen={() => {
+              setOpenSuccess(false);
+            }}
           />
         )}
         {OpenError && (
@@ -118,6 +121,9 @@ function LoginSgnup({
             Open={OpenError}
             varient={"error"}
             message={message}
+            setOpen={() => {
+              setOpenError(false);
+            }}
           />
         )}
         <Stack

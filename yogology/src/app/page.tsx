@@ -9,6 +9,7 @@ import WhatWeDo from "@/components/Home/WhatWeDo/WhatWeDo";
 import Careers from "@/components/Home/Careers/Careers";
 import EmailSubscrib from "@/components/Home/EmailSubscrib/EmailSubscrib";
 import ContactUs from "@/components/Home/ContactUs/ContactUs";
+import ParticleComp from "@/components/Particle";
 
 export default function Home() {
   return (

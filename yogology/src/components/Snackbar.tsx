@@ -11,10 +11,10 @@ type SnackbarProps = {
   Open: boolean;
   varient: string;
   message: string;
+  setOpen: () => void;
 };
 
 function CustomSnackbar({ Open, varient, message }: SnackbarProps) {
-  console.log("++++++++++++++++Open+++++++++++++called", Open);
   const [open, setOpen] = useState<boolean>(Open);
   const handleClose = () => {
     setOpen(false);

@@ -3,7 +3,7 @@ import React from "react";
 import HeaderLayoutWithCreateButton from "../layouts/HeaderLayoutWithCreateButton";
 import BodyLayout from "../layouts/BodyLayout";
 import Layout from "../layouts/layout";
-import VideosTable from "../tables/BlogsTable";
+import VideosTable from "../tables/VideoTable";
 function Videos() {
   return (
     <Layout>

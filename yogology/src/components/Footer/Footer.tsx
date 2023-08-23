@@ -5,12 +5,13 @@ import logo from "../../assets/images/FooterLogo.png";
 // import CustomIcon from "./icons8-facebook.svg";
 import Facebookicon from "../../assets/Iconsvg/FacebookIcon";
 import Instagramicon from "../../assets/Iconsvg/InstagramIcon";
+// import ParticleComp from "../Particle";
 function Footer() {
   return (
     <Box
       width={"100%"}
       height={{ xs: "50rem", sm: "30rem", md: "30rem" }}
-      sx={{ background: "#1D0427" }}
+      sx={{ background: "#1D0427", zIndex: 10 }}
       // border={"1px solid yellow"}
       padding={"30px"}
     >

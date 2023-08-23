@@ -4,7 +4,7 @@ import ResponsiveAppBar from "@/components/Navbar/Header";
 import Footer from "@/components/Footer/Footer";
 import { usePathname, useRouter } from "next/navigation";
 import Sidebar from "@/components/Admin/pannel/Sidebar";
-import AdminLoginProtect from "@/Utils/RouteProtects/AdminLoginProtect";
+import AdminLoginProtect from "@/app/RouteProtects/AdminLoginProtect";
 
 const AdminPath = "/admin/pannel";
 

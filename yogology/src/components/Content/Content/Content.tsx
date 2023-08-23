@@ -1,85 +1,78 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Pagination, Typography } from "@mui/material";
 import MediaCard from "./YogaCrad";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-const data = [
-  {
-    title: "Lizard",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    uuid: "lasjflasjlfjasldflasdfa",
-  },
-  {
-    title: "Lizard",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    uuid: "lasjflasjlfjasldflasdfa",
-  },
-  {
-    title: "Lizard",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    uuid: "lasjflasjlfjasldflasdfa",
-  },
-  {
-    title: "Lizard",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    uuid: "lasjflasjlfjasldflasdfa",
-  },
-  {
-    title: "Lizard",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    uuid: "lasjflasjlfjasldflasdfa",
-  },
-  {
-    title: "Lizard",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    uuid: "lasjflasjlfjasldflasdfa",
-  },
-  {
-    title: "Lizard",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    uuid: "lasjflasjlfjasldflasdfa",
-  },
-  {
-    title: "Lizard",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    uuid: "lasjflasjlfjasldflasdfa",
-  },
-  {
-    title: "Lizard",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    uuid: "lasjflasjlfjasldflasdfa",
-  },
-  {
-    title: "Lizard",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    uuid: "lasjflasjlfjasldflasdfa",
-  },
-];
-function Content({ contentType }: { contentType: string }) {
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { getSolutionVideos } from "@/Utils/query/getSolutionVideos";
+import { getNotPaidYogaVideos } from "@/Utils/query/getNotPaidYogaVideos";
+import LoginProtects from "@/app/RouteProtects/LoginProtects";
+type Video = {
+  _id: string;
+  thumbnail: string;
+  createdBy: {
+    _id: string;
+    name: string;
+  };
+  isPaid: boolean;
+  category: string;
+  isSolution: boolean;
+  url: string;
+  Long_Description: string;
+  Short_Description: string;
+  title: string;
+};
+let data: Video[] = [];
+function Content() {
+  const { content: contentType } = useParams();
   const searchParams = useSearchParams();
   const [page, setPage] = useState<number>(
     +searchParams.toString().split("=")[1]
   );
-  const { push } = useRouter();
-  const pathName = usePathname();
+  let count = 10;
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
     push(pathName + "?page=" + value);
   };
-  useEffect(() => {
-    // console.log()
-    // here we have to call function for fetching data on first time and whenever page changes
-  }, []);
+  const { push } = useRouter();
+  const pathName = usePathname();
+  const {
+    isError,
+    isLoading,
+    data: loadedData,
+    isSuccess,
+    isPaused,
+    status,
+  } = useQuery({
+    queryKey: ["videos", page, contentType],
+    queryFn: () => {
+      return contentType === "yoga"
+        ? getNotPaidYogaVideos(page)
+        : getSolutionVideos(page);
+    },
+  });
+
+  if (isError) {
+    return <Typography>Something unexpected Error</Typography>;
+  }
+  if (isLoading) {
+    console.log(status);
+    return <Typography>Loading......</Typography>;
+  }
+  if (isSuccess) {
+    data = loadedData.data.data.videos || [];
+    console.log("############data##############", data);
+    count = loadedData.data.data.count;
+  }
+  if (isPaused) {
+    return <Typography>Please check network connection!</Typography>;
+  }
   return (
+    // <LoginProtects>
     <Box
       width={"100%"}
       height={{
@@ -132,16 +125,18 @@ function Content({ contentType }: { contentType: string }) {
           columnGap={"20px"}
           height={{ xs: "94%", sm: "86%", md: "80%", lg: "80%", xl: "75%" }}
           // border={"1px solid black"}
+          gridTemplateRows={{ xl: "repeat(2,1fr)" }}
         >
-          {data.map((item, i) => {
-            return (
-              <MediaCard
-                title={item.title}
-                description={item.description}
-                key={i}
-              />
-            );
-          })}
+          {data &&
+            data.map((item, i) => {
+              return (
+                <MediaCard
+                  title={item.title}
+                  description={item.Short_Description}
+                  key={i}
+                />
+              );
+            })}
         </Box>
         <Box
           // border={"1px solid black"}
@@ -152,7 +147,7 @@ function Content({ contentType }: { contentType: string }) {
           justifyContent={"center"}
         >
           <Pagination
-            count={10}
+            count={count}
             size={"large"}
             variant="outlined"
             color="secondary"
@@ -162,6 +157,7 @@ function Content({ contentType }: { contentType: string }) {
         </Box>
       </Box>
     </Box>
+    // </LoginProtects>
   );
 }
 

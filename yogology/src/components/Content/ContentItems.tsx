@@ -1,5 +1,5 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import temple from "./images/temple3.avif";
 import { motion } from "framer-motion";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";

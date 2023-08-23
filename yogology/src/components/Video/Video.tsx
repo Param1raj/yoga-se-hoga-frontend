@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import styles from "./Video.module.css";
 import AccordionVideoList from "./AccordionVideoList";
 import VideoWithDetails from "./VideoWithDetails";
 import CustomDrawer from "./CustomDrawer";
+import LoginProtects from "@/app/RouteProtects/LoginProtects";
 const VideoList = [
   "SomeListed Video",
   "SomeListed Video",
@@ -16,7 +17,12 @@ const VideoList = [
 ];
 
 function Video() {
+  const [id, setId] = useState<string>("");
+  const handleId = (_id: string) => {
+    setId(_id);
+  };
   return (
+    // <LoginProtects>
     <Grid
       // container
       height={"100vh"}
@@ -44,9 +50,9 @@ function Video() {
           >
             Asteya
           </Typography>
-          <AccordionVideoList title={"Beginner"} List={VideoList} />
-          <AccordionVideoList title={"Intermediate"} List={VideoList} />
-          <AccordionVideoList title={"Advance"} List={VideoList} />
+          <AccordionVideoList title={"Beginner"} setId={handleId} id={id} />
+          <AccordionVideoList title={"Intermediate"} setId={handleId} id={id} />
+          <AccordionVideoList title={"Advance"} setId={handleId} id={id} />
         </Box>
         <CustomDrawer />
       </Grid>
@@ -63,6 +69,7 @@ function Video() {
         />
       </Grid>
     </Grid>
+    // </LoginProtects>
   );
 }
 

@@ -221,7 +221,7 @@ export default function MiniDrawer({
                   push(`/admin/pannel`);
                 } else {
                   setModal(true);
-                  push(`/admin/pannel/${name.toLowerCase()}`);
+                  push(`/admin/pannel/${name.toLowerCase()}?page=1`);
                   // alert(modal);
                 }
               }}
