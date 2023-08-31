@@ -1,10 +1,10 @@
 // import LoginProtects from "@/Utils/RouteProtects/LoginProtects";
 // import SubscriptionProtect from "@/Utils/RouteProtects/SubscriptionProtect";
-import Video from "@/components/Video/Video";
 import React from "react";
+import Video from "@/components/Video/Video";
 
 export const metadata = {
-  title: "Yogaratha - Course",
+  title: "Yogaratha - Course/Video",
   description: "Watch videos in details!",
 };
 

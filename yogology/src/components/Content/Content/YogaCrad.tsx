@@ -7,12 +7,17 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import meditation from "../images/meditation.avif";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { useRouter } from "next/navigation";
 export default function MediaCard({
   title,
+  uuid,
 }: {
   title: string;
   description: string;
+  uuid: string;
 }) {
+  const { push } = useRouter();
+  const [index, setIndex] = React.useState(0);
   return (
     <Card
       sx={{
@@ -20,6 +25,10 @@ export default function MediaCard({
         ":hover": {
           cursor: "pointer",
         },
+      }}
+      onClick={() => {
+        // after solutions you should provide uuid of the video.
+        push(`/content/solutions/${uuid}`);
       }}
     >
       <CardMedia

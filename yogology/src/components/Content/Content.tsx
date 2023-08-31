@@ -86,6 +86,7 @@ export function Content() {
           description="A dedicated course to learn yoga!"
           image={course.src}
           link="/videos"
+          type="course"
         />
         {/* <ContentItems
           title={"Spiritual texts"}

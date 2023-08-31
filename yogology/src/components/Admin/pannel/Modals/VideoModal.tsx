@@ -17,6 +17,9 @@ import { useForm } from "react-hook-form";
 import { Create_Video } from "../../../../../apis.";
 import CustomSnackbar from "@/components/Snackbar";
 import { AuthContext } from "@/app/AuthProvider";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { VideoInput, addVideos } from "@/Utils/mutation/addVideo";
+import { useSearchParams } from "next/navigation";
 
 /*
   title={"Asteya"}
@@ -40,25 +43,37 @@ function VideoModal({
   const [OpenSuccess, setOpenSuccess] = useState(false);
   const [OpenError, setOpenError] = useState(false);
   const [message, setMessage] = useState("");
+  const searchParams = useSearchParams();
+  const page = +searchParams.toString().split("=")[1];
   let { auth } = useContext(AuthContext);
+  const queryClient = useQueryClient();
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const { mutate, isLoading, isError, isSuccess } = useMutation({
+    mutationFn: async (data: VideoInput) => {
+      addVideos(data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["videos", page] });
+    },
+  });
   const Submit = async (data: any) => {
     try {
-      const result = await fetch(Create_Video, {
-        method: "POST",
-        body: JSON.stringify({ ...data }),
-        headers: {
-          "content-Type": "application/json",
-          authorization: `bearer ${auth.token}`,
-        },
-      });
-      const res = await result.json();
-      if (res.message !== "error") {
+      mutate(data);
+      console.log(".....Intiated");
+
+      if (isError) {
+        console.log(".....error");
+        throw new Error("Faild to add!");
+      }
+      if (isSuccess) {
+        console.log(".....success");
+
         setMessage("Created Successfully!");
         setOpenSuccess(true);
         reset();
@@ -68,6 +83,7 @@ function VideoModal({
       setOpenError(true);
     }
   };
+
   return (
     <Modal
       keepMounted

@@ -141,6 +141,7 @@ function LoginSgnup({
             }}
             spacing={{ xs: 1, sm: 1, md: 1.1, lg: 3 }}
             // border={"1px solid blue"}
+            justifyContent={isForLogin ? "center" : "none"}
           >
             <motion.h2
               // style={{ opacity: 0 }}
@@ -162,22 +163,22 @@ function LoginSgnup({
             <Heading isForLogin={isForLogin} />
             {isForLogin ? (
               <LoginInput
-                isForLogin={isForLogin}
-                handleChange={handleChange}
-                formData={formData}
+                setOpenError={(val: boolean) => setOpenError(val)}
+                setOpenSuccess={(val: boolean) => setOpenSuccess(val)}
+                setMessage={(val: string) => {
+                  setMessage(val);
+                }}
               />
             ) : (
-              <SignupInput formData={formData} handleChange={handleChange} />
-            )}
-            <motion.div
-              initial={{ y: "100px", opacity: 0 }}
-              animate={{ y: ["100px", "50px", "0px"], opacity: 1 }}
-            >
-              <ButtonComp
-                text={isForLogin ? "Login" : "Sing up"}
-                handleClick={Login}
+              <SignupInput
+                setOpenError={(val: boolean) => setOpenError(val)}
+                setOpenSuccess={(val: boolean) => setOpenSuccess(val)}
+                setMessage={(val: string) => {
+                  setMessage(val);
+                }}
               />
-            </motion.div>
+            )}
+
             <motion.div
               initial={{ y: "100px", opacity: 0 }}
               animate={{ y: ["100px", "50px", "0px"], opacity: 1 }}
@@ -194,7 +195,7 @@ function LoginSgnup({
                   }}
                   style={{ color: "blue", cursor: "pointer" }}
                 >
-                  {isForLogin ? "Register." : " Login"}
+                  {isForLogin ? " Register." : " Login"}
                 </span>
               </Typography>
             </motion.div>

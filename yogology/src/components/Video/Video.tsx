@@ -6,21 +6,38 @@ import AccordionVideoList from "./AccordionVideoList";
 import VideoWithDetails from "./VideoWithDetails";
 import CustomDrawer from "./CustomDrawer";
 import LoginProtects from "@/app/RouteProtects/LoginProtects";
-const VideoList = [
-  "SomeListed Video",
-  "SomeListed Video",
-  "SomeListed Video",
-  "SomeListed Video",
-  "SomeListed Video",
-  "SomeListed Video",
-  "SomeListed Video",
-];
+import { usePathname, useSearchParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { getSingleVideo } from "@/Utils/query/getSingleVideo";
+// const VideoList = [
+//   "SomeListed Video",
+//   "SomeListed Video",
+//   "SomeListed Video",
+//   "SomeListed Video",
+//   "SomeListed Video",
+//   "SomeListed Video",
+//   "SomeListed Video",
+// ];
 
 function Video() {
   const [id, setId] = useState<string>("");
   const handleId = (_id: string) => {
     setId(_id);
   };
+  const videoUuid = usePathname().split("/")[2];
+  /*
+  make request to get next video
+  */
+  // request for current video
+  const { isLoading, isError, data } = useQuery({
+    queryKey: [videoUuid],
+    queryFn: async () => {
+      return await getSingleVideo(videoUuid);
+    },
+  });
+
+  // request for nextVideoUuid.
+
   return (
     // <LoginProtects>
     <Grid
@@ -29,9 +46,6 @@ function Video() {
       className={styles.main}
       mt={"82px"}
       display={"grid"}
-      // gridTemplateColumns={{ xs: "100%" }}
-      // gridTemplateRows={"2% 98%"}
-      // border={"1px solid blue"}
     >
       <Grid>
         <Box
@@ -50,22 +64,33 @@ function Video() {
           >
             Asteya
           </Typography>
-          <AccordionVideoList title={"Beginner"} setId={handleId} id={id} />
-          <AccordionVideoList title={"Intermediate"} setId={handleId} id={id} />
-          <AccordionVideoList title={"Advance"} setId={handleId} id={id} />
+          <AccordionVideoList
+            title={"Beginner"}
+            setId={handleId}
+            id={videoUuid}
+          />
+          <AccordionVideoList
+            title={"Intermediate"}
+            setId={handleId}
+            id={videoUuid}
+          />
+          <AccordionVideoList
+            title={"Advance"}
+            setId={handleId}
+            id={videoUuid}
+          />
         </Box>
         <CustomDrawer />
       </Grid>
       <Grid>
         <VideoWithDetails
-          title={"Asteya"}
-          ShortDescription={
-            "Learn the foundations of yoga in this online course"
-          }
-          LongDescription={
-            "According to Crangle, some researchers have favoured a linear theory,which attempts “to interpret the origin and early of Indian contemplative practices as a sequential growth from an Aryan genesis”, just like traditional Hinduism regards the Vedas to be the ultimate source of all spiritual knowledge."
-          }
-          videoLink={"https://www.youtube.com/embed/jyg8pft9gRY"}
+          title={data?.data.data.video.title}
+          ShortDescription={data?.data.data.video.Short_description}
+          LongDescription={data?.data.data.video.Long_description}
+          videoLink={data?.data.data.video.url}
+          nextId={id}
+          isLoading={isLoading}
+          // give a uuid for the next videos to be fetched.
         />
       </Grid>
     </Grid>

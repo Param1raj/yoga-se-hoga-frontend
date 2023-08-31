@@ -57,7 +57,7 @@ function createData(
   };
 }
 
-const rows = [
+let rows = [
   createData(
     "Frozen yoghurt",
     "xyz@email.com",

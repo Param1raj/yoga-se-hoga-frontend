@@ -123,8 +123,9 @@ function VideosTable() {
   }
 
   if (data) {
-    rows = data.data.videos;
-    count = data.data.count;
+    // console.log("########Videos########", data.data.data);
+    rows = data.data.data.videos;
+    count = data.data.data.count;
   }
   return (
     <TableContainer component={Paper}>
@@ -234,7 +235,7 @@ function VideosTable() {
         padding={"20px"}
       >
         <Pagination
-          count={count}
+          count={count / 10}
           size={"large"}
           variant="outlined"
           color="secondary"

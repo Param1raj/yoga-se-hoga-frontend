@@ -4,16 +4,20 @@ import temple from "./images/temple3.avif";
 import { motion } from "framer-motion";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { getFirstVideoByCategory } from "@/Utils/query/getFirstVideo";
 function ContentItems({
   title,
   description,
   image,
+  type,
   link,
 }: {
   title: string;
   description: string;
   image: string;
   link?: string;
+  type?: string;
 }) {
   const { push } = useRouter();
   const container = {
@@ -28,6 +32,15 @@ function ContentItems({
     hidden: { opacity: "1" },
     visible: { opacity: "0" },
   };
+
+  // getFirstVidoeUuid here and then redirect to the page.
+  const { data, isSuccess } = useQuery({
+    queryKey: ["Beginner"],
+    queryFn: async () => {
+      return await getFirstVideoByCategory("Beginner");
+    },
+  });
+  if (isSuccess) console.log("######isSuccess#######", data.data.data);
   return (
     <motion.div
       // style={{ height: "100%" }}
@@ -51,7 +64,11 @@ function ContentItems({
         height={{ xs: "90%", sm: "100%", md: "90%" }}
         onClick={() => {
           if (link) {
-            push(link + "?" + "page=" + "1");
+            if (type && type === "course") {
+              push(link + `/${data?.data.data}`);
+            } else {
+              push(link + "?" + "page=" + "1");
+            }
           }
         }}
       >

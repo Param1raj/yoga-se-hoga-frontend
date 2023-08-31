@@ -33,6 +33,7 @@ function Content() {
   const [page, setPage] = useState<number>(
     +searchParams.toString().split("=")[1]
   );
+
   let count = 10;
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -56,21 +57,12 @@ function Content() {
     },
   });
 
-  if (isError) {
-    return <Typography>Something unexpected Error</Typography>;
-  }
-  if (isLoading) {
-    console.log(status);
-    return <Typography>Loading......</Typography>;
-  }
   if (isSuccess) {
     data = loadedData.data.data.videos || [];
     console.log("############data##############", data);
     count = loadedData.data.data.count;
   }
-  if (isPaused) {
-    return <Typography>Please check network connection!</Typography>;
-  }
+
   return (
     // <LoginProtects>
     <Box
@@ -111,50 +103,59 @@ function Content() {
               : "Yoga & Meditations For Better Life Style"}
           </Typography>
         </Box>
-        <Box
-          width={"100%"}
-          display={"grid"}
-          gridTemplateColumns={{
-            xs: "repeat(1,1fr)",
-            sm: "repeat(2,1fr)",
-            md: "repeat(3,1fr)",
-            lg: "repeat(4,1fr)",
-            xl: "repeat(5,1fr)",
-          }}
-          rowGap={"20px"}
-          columnGap={"20px"}
-          height={{ xs: "94%", sm: "86%", md: "80%", lg: "80%", xl: "75%" }}
-          // border={"1px solid black"}
-          gridTemplateRows={{ xl: "repeat(2,1fr)" }}
-        >
-          {data &&
-            data.map((item, i) => {
-              return (
-                <MediaCard
-                  title={item.title}
-                  description={item.Short_Description}
-                  key={i}
-                />
-              );
-            })}
-        </Box>
-        <Box
-          // border={"1px solid black"}
-          height={{ xs: "4%", sm: "8%", md: "10%", lg: "10%", xl: "12%" }}
-          width={"100%"}
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
-          <Pagination
-            count={count}
-            size={"large"}
-            variant="outlined"
-            color="secondary"
-            page={page}
-            onChange={handleChange}
-          />
-        </Box>
+        {isLoading && <Typography>Loading...</Typography>}
+        {isError && (
+          <Typography color={"red"}>Something unexpected happend!</Typography>
+        )}
+        {isSuccess && (
+          <>
+            <Box
+              width={"100%"}
+              display={"grid"}
+              gridTemplateColumns={{
+                xs: "repeat(1,1fr)",
+                sm: "repeat(2,1fr)",
+                md: "repeat(3,1fr)",
+                lg: "repeat(4,1fr)",
+                xl: "repeat(5,1fr)",
+              }}
+              rowGap={"20px"}
+              columnGap={"20px"}
+              height={{ xs: "94%", sm: "86%", md: "80%", lg: "80%", xl: "75%" }}
+              // border={"1px solid black"}
+              gridTemplateRows={{ xl: "repeat(2,1fr)" }}
+            >
+              {data &&
+                data.map((item, i) => {
+                  return (
+                    <MediaCard
+                      title={item.title}
+                      description={item.Short_Description}
+                      key={i}
+                      uuid={item._id}
+                    />
+                  );
+                })}
+            </Box>
+            <Box
+              // border={"1px solid black"}
+              height={{ xs: "4%", sm: "8%", md: "10%", lg: "10%", xl: "12%" }}
+              width={"100%"}
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Pagination
+                count={count / 10}
+                size={"large"}
+                variant="outlined"
+                color="secondary"
+                page={page}
+                onChange={handleChange}
+              />
+            </Box>
+          </>
+        )}
       </Box>
     </Box>
     // </LoginProtects>
