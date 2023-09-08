@@ -19,3 +19,5 @@ const UserRoute = `${HostAndPort}/user`;
 
 export const User_Login = `${UserRoute}/login`;
 export const User_Signup = `${UserRoute}/signup`;
+export const All_Users = `${UserRoute}/users`;
+export const Delete_User = `${UserRoute}`;

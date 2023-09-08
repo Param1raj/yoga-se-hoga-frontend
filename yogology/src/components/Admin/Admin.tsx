@@ -136,7 +136,7 @@ function Admin() {
         </Box>
         <Box width={"100%"}>
           <TextField
-            type={visible ? "password" : "text"}
+            type={!visible ? "password" : "text"}
             variant="outlined"
             label="Password"
             color="secondary"
@@ -150,7 +150,7 @@ function Admin() {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={handleChange}>
-                    {visible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    {!visible ? <VisibilityOffIcon /> : <VisibilityIcon />}
                   </IconButton>
                 </InputAdornment>
               ),

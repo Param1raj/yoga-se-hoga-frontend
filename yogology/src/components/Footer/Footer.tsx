@@ -5,16 +5,26 @@ import logo from "../../assets/images/FooterLogo.png";
 // import CustomIcon from "./icons8-facebook.svg";
 import Facebookicon from "../../assets/Iconsvg/FacebookIcon";
 import Instagramicon from "../../assets/Iconsvg/InstagramIcon";
-// import ParticleComp from "../Particle";
+import ParticleComp from "@/components/Particle";
 function Footer() {
   return (
     <Box
       width={"100%"}
-      height={{ xs: "50rem", sm: "30rem", md: "30rem" }}
+      height={{ xs: "50rem", sm: "30rem", md: "31rem" }}
       sx={{ background: "#1D0427", zIndex: 10 }}
       // border={"1px solid yellow"}
-      padding={"30px"}
+      // padding={"30px"}
     >
+      <Box
+        position={"absolute"}
+        // left={"0px"}
+        // bottom={"0px"}
+        width={"100%"}
+        height={{ xs: "50rem", sm: "30rem", md: "30rem" }}
+        // border={"1px solid red"}
+      >
+        <ParticleComp />
+      </Box>
       <Container
         sx={{
           // border: "1px solid red",
@@ -23,15 +33,17 @@ function Footer() {
           width: { md: "100%", lg: "80%" },
           display: "flex",
           alignItems: { sm: "center", md: "flex-end" },
+          // position: "absolute",
         }}
       >
         <Stack
-          // border={"1px solid yellow"}
           // margin={"0px"}
+          // position={"relative"}
           width={"100%"}
           height={{ xs: "100%", sm: "90%", md: "78%" }}
         >
           <Grid
+            // border={"1px solid yellow"}
             height={{ xs: "95%", sm: "75%", lg: "85%" }}
             display={"grid"}
             gridTemplateColumns={{
@@ -54,6 +66,7 @@ function Footer() {
                 width={{ xs: "50%", sm: "100%", md: "40%" }}
                 height={{ xs: "50%", md: "25%" }}
                 // border={"1px solid yellow"}
+                position={"relative"}
                 padding={{ xs: "20px", sm: "0px" }}
                 sx={{
                   background: `url('${logo.src}')`,
@@ -62,10 +75,10 @@ function Footer() {
                 }}
               ></Box>
             </Grid>
-            <Grid item height={"100%"}>
+            <Grid position={"relative"} item height={"100%"}>
               <Stack
                 // border={"1px solid yellow"}
-                spacing={"20px"}
+                spacing={"15px"}
                 height={"100%"}
               >
                 <Typography
@@ -124,10 +137,10 @@ function Footer() {
                 </Typography>
               </Stack>
             </Grid>
-            <Grid item height={"100%"}>
+            <Grid position={"relative"} item height={"100%"}>
               <Stack
                 // border={"1px solid yellow"}
-                spacing={"20px"}
+                spacing={"10px"}
                 height={"100%"}
               >
                 <Typography
@@ -186,7 +199,7 @@ function Footer() {
                 </Typography>
               </Stack>
             </Grid>
-            <Grid item height={"100%"}>
+            <Grid position={"relative"} item height={"100%"}>
               <Stack
                 // border={"1px solid yellow"}
                 spacing={"20px"}

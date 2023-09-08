@@ -5,19 +5,11 @@ import styles from "./Video.module.css";
 import AccordionVideoList from "./AccordionVideoList";
 import VideoWithDetails from "./VideoWithDetails";
 import CustomDrawer from "./CustomDrawer";
-import LoginProtects from "@/app/RouteProtects/LoginProtects";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getSingleVideo } from "@/Utils/query/getSingleVideo";
-// const VideoList = [
-//   "SomeListed Video",
-//   "SomeListed Video",
-//   "SomeListed Video",
-//   "SomeListed Video",
-//   "SomeListed Video",
-//   "SomeListed Video",
-//   "SomeListed Video",
-// ];
+import LoginProtects from "@/app/RouteProtects/LoginProtects";
+import { getFirstVideoByCategory } from "@/Utils/query/getFirstVideo";
 
 function Video() {
   const [id, setId] = useState<string>("");
@@ -37,6 +29,19 @@ function Video() {
   });
 
   // request for nextVideoUuid.
+  const { data: Intermediate } = useQuery({
+    queryFn: async () => {
+      return await getFirstVideoByCategory("Intermediate");
+    },
+    queryKey: ["Intermediate", "single"],
+  });
+
+  const { data: Advance } = useQuery({
+    queryFn: async () => {
+      return await getFirstVideoByCategory("Advance");
+    },
+    queryKey: ["Advance", "single"],
+  });
 
   return (
     // <LoginProtects>
@@ -68,11 +73,13 @@ function Video() {
             title={"Beginner"}
             setId={handleId}
             id={videoUuid}
+            nextId={Intermediate?.data.data}
           />
           <AccordionVideoList
             title={"Intermediate"}
             setId={handleId}
             id={videoUuid}
+            nextId={Advance?.data.data}
           />
           <AccordionVideoList
             title={"Advance"}

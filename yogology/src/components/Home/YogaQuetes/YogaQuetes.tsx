@@ -1,7 +1,7 @@
 "use client";
 import { Box, Typography } from "@mui/material";
 import React from "react";
-// import Typical from "react-typical";
+import Typical from "react-typical";
 // import Typewriter from "typewriter-effect";
 function YogaQuetes() {
   return (
@@ -59,7 +59,12 @@ function YogaQuetes() {
             }}
           >
             Awaken your true self through yoga. Find liberation, peace, and
-            harmony as Mind, body.
+            harmony as{" "}
+            <Typical
+              steps={["Mind", 2000, "body!", 2000]}
+              loop={Infinity}
+              wrapper="span"
+            ></Typical>
             <Typography
               variant="h4"
               component={"h5"}

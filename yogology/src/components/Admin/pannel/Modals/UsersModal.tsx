@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Button,
@@ -17,6 +17,9 @@ function UsersModal({
   type: string;
 }) {
   const HeadingAndContentArray = [1, 1, 1, 1];
+
+  useEffect(() => {}, [HeadingAndContentArray.length]);
+
   return (
     <Modal
       keepMounted

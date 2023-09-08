@@ -38,12 +38,7 @@ function VideoWithDetails({
     visible: { opacity: 1, x: 0 },
     hidden: { opacity: 0, x: 200 },
   };
-  // const [mute, setMute] = useState(1);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setMute(0);
-  //   }, 1000);
-  // }, []);
+
   return (
     <Box
       display={"flex"}

@@ -16,20 +16,20 @@ function ParticleComp() {
       options={{
         particles: {
           number: {
-            value: 100,
+            value: 80,
             density: {
               enable: true,
-              value_area: 400,
+              value_area: 300,
             },
           },
           color: {
-            value: "#000000",
+            value: "#1bebff",
           },
           shape: {
             type: "circle",
             stroke: {
               width: 0,
-              color: "#000000",
+              color: "#fff",
             },
             polygon: {
               nb_sides: 2,
@@ -51,7 +51,7 @@ function ParticleComp() {
             },
           },
           size: {
-            value: 3,
+            value: 5,
             random: true,
             anim: {
               enable: false,
@@ -62,8 +62,8 @@ function ParticleComp() {
           },
           line_linked: {
             enable: true,
-            distance: 100,
-            color: "#000000",
+            distance: 130,
+            color: "#fff",
             opacity: 0.4,
             width: 2,
           },
@@ -123,12 +123,7 @@ function ParticleComp() {
         },
         smooth: true,
         retina_detect: true,
-        // style: {
-        //   height: "100%",
-        //   position: "absolute",
-        //   // zIndex: "1",
-        //   // top: "-400px",
-        // },
+        fullScreen: false,
       }}
     ></Particle>
   );

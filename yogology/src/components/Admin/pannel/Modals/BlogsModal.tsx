@@ -18,8 +18,10 @@ function ModalComp({
   onClose: () => void;
   type: string;
 }) {
-  const HeadingAndContentArray = [1, 1, 1, 1];
-  useEffect(() => {}, [HeadingAndContentArray.length]);
+  let HeadingAndContentArray = [1, 1, 1, 1];
+  useEffect(() => {
+    // alert(HeadingAndContentArray.length);
+  }, [HeadingAndContentArray.length]);
   return (
     <Modal
       keepMounted
@@ -61,6 +63,7 @@ function ModalComp({
           mt={"10px"}
           component={"form"}
           //   height={"100%"}
+          // border={"1px solid red"}
           paddingY={"20px"}
         >
           <Typography
@@ -74,6 +77,15 @@ function ModalComp({
           >
             Header
           </Typography>
+          {/* <Button
+            variant="outlined"
+            onClick={() => {
+              HeadingAndContentArray.push(1);
+              alert(HeadingAndContentArray.length);
+            }}
+          >
+            Add
+          </Button> */}
           <TextField
             fullWidth
             label="Your Image url"

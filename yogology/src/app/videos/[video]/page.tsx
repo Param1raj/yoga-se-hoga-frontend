@@ -4,7 +4,7 @@ import React from "react";
 import Video from "@/components/Video/Video";
 
 export const metadata = {
-  title: "Yogaratha - Course/Video",
+  title: "Yogaratha - Video",
   description: "Watch videos in details!",
 };
 

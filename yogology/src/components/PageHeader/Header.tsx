@@ -41,7 +41,7 @@ function PageHeader({ backgroundImage, title, linkData }: HeaderProps) {
           }}
           component={"h1"}
           color={backgroundImage ? "#322038" : "#322038"}
-          sx={{ filter: "brightness(2)" }}
+          sx={{ filter: "brightness(2)", backgroundColor: "white" }}
           textAlign={"center"}
         >
           {title ? title : "Who We Are"}
@@ -54,6 +54,8 @@ function PageHeader({ backgroundImage, title, linkData }: HeaderProps) {
             // textAlign: "center",
             alignItems: "cemter",
             flexWrap: "wrap",
+            color: "#322038",
+            backgroundColor: "white",
             // border: "1px solid black",
             // textDecoration:'wra'
           }}

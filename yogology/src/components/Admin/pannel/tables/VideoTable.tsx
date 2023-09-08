@@ -16,6 +16,7 @@ import {
   Menu,
   MenuItem,
   Pagination,
+  Skeleton,
   Typography,
 } from "@mui/material";
 // import ThreePIcon from "@mui/icons-material/ThreeP";
@@ -29,6 +30,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AuthContext } from "@/app/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import { getVideos } from "@/Utils/query/getVideos";
+import imageUrl from "../../../../assets/images/errors.webp";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#5F2C70",
@@ -63,29 +65,6 @@ export type Video = {
   Short_Description: string;
   Long_Description: string;
 };
-// function createData({
-//   thumbnail,
-//   title,
-//   Long_Description,
-//   Short_Description,
-//   category,
-//   isSolution,
-//   isPaid,
-//   url,
-//   createdBy,
-// }: Video) {
-//   return {
-//     thumbnail,
-//     title,
-//     category,
-//     isSolution,
-//     isPaid,
-//     url,
-//     createdBy,
-//     Short_Description,
-//     Long_Description,
-//   };
-// }
 
 let rows: Video[] = [];
 
@@ -107,26 +86,120 @@ function VideosTable() {
     push(pathName + "?page=" + value);
   };
 
-  const { isLoading, isError, data } = useQuery({
+  const { isLoading, isError, data, isSuccess } = useQuery({
     queryKey: ["videos", page],
     queryFn: async () => {
       return getVideos(page);
     },
   });
 
-  if (isLoading) {
-    return <Typography>Loading..... </Typography>;
-  }
-
   if (isError) {
-    return <Typography>Error------ </Typography>;
+    return (
+      <TableContainer
+        component={Paper}
+        sx={{
+          height: "100%",
+          // border: "1px solid red",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Table
+          sx={{
+            background: `url('${imageUrl.src}')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+            height: "80%",
+            border: "1px solid red",
+            width: "100%",
+            borderRadius: "50%",
+          }}
+        ></Table>
+      </TableContainer>
+    );
+  }
+  if (isLoading) {
+    return (
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="left">Thumbnail</StyledTableCell>
+              <StyledTableCell align="left">Title</StyledTableCell>
+              <StyledTableCell align="center">Category</StyledTableCell>
+              <StyledTableCell align="center">Is Soluton</StyledTableCell>
+              <StyledTableCell align="center">Is Paid</StyledTableCell>
+              <StyledTableCell align="center">Video Url</StyledTableCell>
+              <StyledTableCell align="right"></StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <StyledTableRow key={row?._id}>
+                <StyledTableCell
+                  component="th"
+                  scope="row"
+                  sx={{ color: "#5F2C70" }}
+                >
+                  <Skeleton variant="rectangular" />
+                  {/* {row?.name} */}
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <Skeleton variant="rectangular" />
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <Skeleton variant="rectangular" />
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <Skeleton variant="circular" width={50} height={50} />
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <Skeleton variant="rectangular" />
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <Skeleton variant="rectangular" />
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <IconButton
+                    onClick={(event) => {
+                      setEncorElm(event.currentTarget);
+                      setOpen(true);
+                    }}
+                  >
+                    <MoreVertIcon />
+                  </IconButton>
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <Box
+          // border={"1px solid red"}
+          width={"100%"}
+          display={"flex"}
+          justifyContent={"center"}
+          padding={"20px"}
+        >
+          <Pagination
+            count={count}
+            size={"large"}
+            variant="outlined"
+            color="secondary"
+            page={page}
+            onChange={handleChange}
+          />
+        </Box>
+      </TableContainer>
+    );
   }
 
-  if (data) {
-    // console.log("########Videos########", data.data.data);
+  if (isSuccess) {
     rows = data.data.data.videos;
     count = data.data.data.count;
   }
+  
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
