@@ -6,6 +6,7 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getFirstVideoByCategory } from "@/Utils/query/getFirstVideo";
+import { textFadeVariant } from "@/Utils/animations/variants/textVariant";
 function ContentItems({
   title,
   description,

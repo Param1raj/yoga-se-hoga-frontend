@@ -12,15 +12,15 @@ function Footer() {
       width={"100%"}
       height={{ xs: "50rem", sm: "30rem", md: "31rem" }}
       sx={{ background: "#1D0427", zIndex: 10 }}
-      // border={"1px solid yellow"}
+      // border={"1px solid white"}
       // padding={"30px"}
     >
       <Box
         position={"absolute"}
-        // left={"0px"}
+        left={"0px"}
         // bottom={"0px"}
         width={"100%"}
-        height={{ xs: "50rem", sm: "30rem", md: "30rem" }}
+        height={{ xs: "50rem", sm: "30rem", md: "30.6rem" }}
         // border={"1px solid red"}
       >
         <ParticleComp />
@@ -41,9 +41,17 @@ function Footer() {
           // position={"relative"}
           width={"100%"}
           height={{ xs: "100%", sm: "90%", md: "78%" }}
+          //
+          sx={
+            {
+              // backgroundColor: "#1D0427",
+              // border: "1px solid red",
+            }
+          }
         >
           <Grid
-            // border={"1px solid yellow"}
+            border={"1px solid white"}
+            borderRadius={"10px"}
             height={{ xs: "95%", sm: "75%", lg: "85%" }}
             display={"grid"}
             gridTemplateColumns={{
@@ -53,6 +61,8 @@ function Footer() {
             }}
             spacing={2}
             container
+            zIndex={10}
+            sx={{ backgroundColor: "#1D0427" }}
           >
             <Grid
               item

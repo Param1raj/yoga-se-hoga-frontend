@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
 import { useEffect } from "react";
 import {
   Box,
@@ -18,10 +18,12 @@ function ModalComp({
   onClose: () => void;
   type: string;
 }) {
-  let HeadingAndContentArray = [1, 1, 1, 1];
+  const [headingAndContentArray, setHeadingAndContentArray] = useState([
+    1, 1, 1, 1,
+  ]);
   useEffect(() => {
-    // alert(HeadingAndContentArray.length);
-  }, [HeadingAndContentArray.length]);
+    console.log(headingAndContentArray.length);
+  }, [headingAndContentArray]);
   return (
     <Modal
       keepMounted
@@ -113,21 +115,43 @@ function ModalComp({
             label="Give an intro to your blog"
             multiline
           />
-
-          <Typography
-            id="keep-mounted-modal-title"
-            variant="h6"
-            component="h2"
-            fontWeight={"bold"}
-            fontSize={"1.3rem"}
-            fontFamily={"Nunito"}
-            color={"#5F2C70"}
+          <Box
+            // border={"1px solid red"}
+            display={"flex"}
+            justifyContent={"space-between"}
           >
-            Content
-          </Typography>
+            <Typography
+              id="keep-mounted-modal-title"
+              variant="h6"
+              component="h2"
+              fontWeight={"bold"}
+              fontSize={"1.3rem"}
+              fontFamily={"Nunito"}
+              color={"#5F2C70"}
+            >
+              Content
+            </Typography>
+            <Button
+              variant="contained"
+              sx={{
+                marginRight: "10px",
+                background: "#5F2C70",
+                ":hover": {
+                  background: "#5F2C70",
+                },
+              }}
+              onClick={() => {
+                const array = [...headingAndContentArray, 1];
+                setHeadingAndContentArray(array);
+                // alert(headingAndContentArray.length);
+              }}
+            >
+              <AddIcon />
+            </Button>
+          </Box>
 
-          {HeadingAndContentArray &&
-            HeadingAndContentArray.map((data, index) => {
+          {headingAndContentArray &&
+            headingAndContentArray.map((data, index) => {
               return (
                 <>
                   <TextField fullWidth label={`Heading ${index + 1}`} />

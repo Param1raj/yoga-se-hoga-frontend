@@ -27,7 +27,7 @@ function ServiceCard({
       // xs={count}
       marginBottom={{ xs: "20px", sm: "10px", md: "0px" }}
       marginLeft={{ md: "20px" }}
-      height={{ sm: "90%", md: "100%" }}
+      height={"100%"}
       onMouseEnter={(e) => {
         setIsHovering(true);
       }}

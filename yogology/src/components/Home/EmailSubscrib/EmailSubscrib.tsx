@@ -12,10 +12,12 @@ import React from "react";
 import SendIcon from "@mui/icons-material/Send";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { motion } from "framer-motion";
+import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
+import { textUpVariant } from "@/Utils/animations/variants/textVariant";
 function EmailSubscrib() {
   return (
     <Box
-      sx={{ background: "#724D67" }}
       width={"100%"}
       height={{
         xs: "25rem",
@@ -25,148 +27,196 @@ function EmailSubscrib() {
         xl: "30rem",
       }}
     >
-      <Stack
-        width={{ sm: "80%", md: "65%" }}
-        // border={"1px solid blue"}
-        height={"100%"}
-        margin={"auto"}
-        justifyContent={"center"}
+      <motion.div
+        style={{ width: "100%", height: "100%" }}
+        variants={BoxVariant}
+        initial={"hidden"}
+        whileInView={"visible"}
+        viewport={{ once: true }}
       >
-        <Stack
-          height={"60%"}
-          // border={"1px solid blue"}
-          spacing={4}
-          alignItems={"center"}
-          textAlign={"center"}
-        >
+        <Box sx={{ background: "#724D67" }} width={"100%"} height={"100%"}>
           <Stack
+            width={{ sm: "80%", md: "65%" }}
             // border={"1px solid blue"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-            height={"37%"}
-            spacing={{ xs: 5 }}
+            height={"100%"}
+            margin={"auto"}
+            justifyContent={"center"}
           >
-            <Typography
-              variant="body1"
-              component={"p"}
-              color={"#FFFFFF"}
-              fontWeight={"700"}
-              fontFamily={["Kumbh Sans", "sans-serif"]}
-              textTransform={"uppercase"}
-              fontSize={"0.9rem"}
-            >
-              our newsletter
-            </Typography>
-            <Typography
-              variant="h2"
-              component={"h2"}
-              color={"#FFFFFF"}
-              fontWeight={"700"}
-              fontFamily={["Kumbh Sans", "sans-serif"]}
-              //   textTransform={"uppercase"}
-              fontSize={{
-                xs: "1.5rem",
-                sm: "1.5rem",
-                md: "2rem",
-                lg: "2rem",
-                xl: "3rem",
-              }}
-            >
-              Subscribe for the exclusive updates!
-            </Typography>
-          </Stack>
-          <Stack
-            // border={"1px solid blue"}
-            alignItems={"center"}
-            height={"55%"}
-            spacing={1}
-            width={{ xs: "90%", sm: "80%", md: "70%", lg: "50%", xl: "40%" }}
-          >
-            <Box
-              display={"flex"}
+            <Stack
+              height={"60%"}
+              // border={"1px solid blue"}
+              spacing={4}
               alignItems={"center"}
-              justifyContent={"center"}
-              paddingLeft={"30px"}
-              width={"80%"}
-              // border={"1px solid black"}
+              textAlign={"center"}
             >
-              <TextField
-                id="standard-basic"
-                label="Enter Your Mobile Number"
-                variant="standard"
-                sx={{
-                  "& #standard-basic": {
-                    color: "#FFFFFF",
-                  },
-                  "& #standard-basic-label": {
-                    color: "#FEFCFF",
-                    marginBottom: "20px",
-                    fontFamily: ["Nuito", "sans-serif"],
-                  },
-                  "& .css-v4u5dn-MuiInputBase-root-MuiInput-root::before": {
-                    borderBottom: "1px solid #ffffff",
-                  },
-                  "& .css-v4u5dn-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled, .Mui-error)::before":
-                    {
-                      borderBottom: "2px solid #FFFFFF",
-                    },
-                  "& .css-v4u5dn-MuiInputBase-root-MuiInput-root::after": {
-                    borderBottom: "1px solid #ffffff",
-                  },
-                  width: "100%",
-                }}
-              />
-              <SendIcon
-                sx={{
-                  position: "relative",
-                  right: "25px",
-                  top: "6px",
-                  color: "#FEFCFF",
-                  cursor: "pointer",
-                }}
-              />
-            </Box>
-            <Box
-              display={"flex"}
-              //   border={"1px solid red"}
-              alignItems={"center"}
-              //   margin={"auto"}
-              justifyContent={"center"}
-              width={"80%"}
-            >
-              <Checkbox
-                sx={{
-                  color: "#FEFCFF",
-                  "&.Mui-checked": {
-                    color: "#FEFCFF",
-                  },
-                  // border: "1px solid red",
-                  padding: 0,
-                }}
-                icon={<CheckCircleOutlineIcon />}
-                checkedIcon={<CheckCircleIcon />}
-              />
-              <Typography
-                variant="body1"
-                component={"p"}
-                display={"flex"}
-                color={"#FEFCFF"}
-                fontFamily={["Nunito", "sans-serif"]}
+              <Stack
+                // border={"1px solid blue"}
+                // alignItems={"center"}
+                justifyContent={"space-between"}
+                height={"37%"}
+                spacing={{ xs: 5 }}
               >
-                I agree to{" "}
-                <Typography
-                  marginLeft={"5px"}
-                  sx={{ textDecoration: "underline" }}
-                  fontFamily={["Nunito", "sans-serif"]}
+                <motion.div
+                  variants={textUpVariant}
+                  style={{ textAlign: "center", width: "100%", height: "100%" }}
                 >
-                  {" "}
-                  Privacy Policy
-                </Typography>
-              </Typography>
-            </Box>
+                  <Typography
+                    variant="body1"
+                    component={"p"}
+                    color={"#FFFFFF"}
+                    fontWeight={"700"}
+                    fontFamily={["Kumbh Sans", "sans-serif"]}
+                    textTransform={"uppercase"}
+                    fontSize={"0.9rem"}
+                  >
+                    our newsletter
+                  </Typography>
+                </motion.div>
+                <motion.div variants={textUpVariant}>
+                  <Typography
+                    variant="h2"
+                    component={"h2"}
+                    color={"#FFFFFF"}
+                    fontWeight={"700"}
+                    fontFamily={["Kumbh Sans", "sans-serif"]}
+                    //   textTransform={"uppercase"}
+                    fontSize={{
+                      xs: "1.5rem",
+                      sm: "1.5rem",
+                      md: "2rem",
+                      lg: "2rem",
+                      xl: "3rem",
+                    }}
+                  >
+                    Subscribe for the exclusive updates!
+                  </Typography>
+                </motion.div>
+              </Stack>
+              <Stack
+                // border={"1px solid blue"}
+                alignItems={"center"}
+                justifyContent={"center"}
+                height={"55%"}
+                spacing={1}
+                width={{
+                  xs: "90%",
+                  sm: "80%",
+                  md: "70%",
+                  lg: "50%",
+                  xl: "40%",
+                }}
+              >
+                <motion.div
+                  variants={textUpVariant}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    margin: "auto",
+                    // border: "1px solid red",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Box
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    paddingLeft={"30px"}
+                    width={"80%"}
+                    // border={"1px solid black"}
+                  >
+                    <TextField
+                      id="standard-basic"
+                      label="Enter Your Mobile Number"
+                      variant="standard"
+                      sx={{
+                        "& #standard-basic": {
+                          color: "#FFFFFF",
+                        },
+                        "& #standard-basic-label": {
+                          color: "#FEFCFF",
+                          marginBottom: "20px",
+                          fontFamily: ["Nuito", "sans-serif"],
+                        },
+                        "& .css-v4u5dn-MuiInputBase-root-MuiInput-root::before":
+                          {
+                            borderBottom: "1px solid #ffffff",
+                          },
+                        "& .css-v4u5dn-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled, .Mui-error)::before":
+                          {
+                            borderBottom: "2px solid #FFFFFF",
+                          },
+                        "& .css-v4u5dn-MuiInputBase-root-MuiInput-root::after":
+                          {
+                            borderBottom: "1px solid #ffffff",
+                          },
+                        width: "100%",
+                      }}
+                    />
+                    <SendIcon
+                      sx={{
+                        position: "relative",
+                        right: "25px",
+                        top: "6px",
+                        color: "#FEFCFF",
+                        cursor: "pointer",
+                      }}
+                    />
+                  </Box>
+                </motion.div>
+                <motion.div
+                  variants={textUpVariant}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Box
+                    display={"flex"}
+                    // border={"1px solid red"}
+                    alignItems={"center"}
+                    //   margin={"auto"}
+                    justifyContent={"center"}
+                    width={"80%"}
+                  >
+                    <Checkbox
+                      sx={{
+                        color: "#FEFCFF",
+                        "&.Mui-checked": {
+                          color: "#FEFCFF",
+                        },
+                        // border: "1px solid red",
+                        padding: 0,
+                      }}
+                      icon={<CheckCircleOutlineIcon />}
+                      checkedIcon={<CheckCircleIcon />}
+                    />
+                    <Typography
+                      variant="body1"
+                      component={"p"}
+                      display={"flex"}
+                      color={"#FEFCFF"}
+                      fontFamily={["Nunito", "sans-serif"]}
+                    >
+                      I agree to{" "}
+                      <Typography
+                        marginLeft={"5px"}
+                        sx={{ textDecoration: "underline" }}
+                        fontFamily={["Nunito", "sans-serif"]}
+                      >
+                        {" "}
+                        Privacy Policy
+                      </Typography>
+                    </Typography>
+                  </Box>
+                </motion.div>
+              </Stack>
+            </Stack>
           </Stack>
-        </Stack>
-      </Stack>
+        </Box>
+      </motion.div>
     </Box>
   );
 }
