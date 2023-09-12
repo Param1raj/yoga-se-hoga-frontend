@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { first_Video } from "../../../apis.";
+import { first_Video } from "../../../apis";
 import Cookies from "js-cookie";
 
 export const getFirstVideoByCategory = async (category: string) => {

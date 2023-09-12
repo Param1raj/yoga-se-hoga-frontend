@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { All_Video } from "../../../apis.";
+import { All_Video } from "../../../apis";
 import Cookies from "js-cookie";
 
 // this is for admin page on video pannel

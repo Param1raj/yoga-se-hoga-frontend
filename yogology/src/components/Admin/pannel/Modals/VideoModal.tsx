@@ -14,7 +14,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { Create_Video } from "../../../../../apis.";
+import { Create_Video } from "../../../../../apis";
 import CustomSnackbar from "@/components/Snackbar";
 import { AuthContext } from "@/app/AuthProvider";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

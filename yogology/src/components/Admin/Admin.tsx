@@ -14,7 +14,7 @@ import NoEncryptionIcon from "@mui/icons-material/NoEncryption";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useForm } from "react-hook-form";
-import { Admin_Login_Api } from "../../../apis.";
+import { Admin_Login_Api } from "../../../apis";
 import { AuthContext } from "@/app/AuthProvider";
 import CustomSnackbar from "../Snackbar";
 import { useRouter } from "next/navigation";

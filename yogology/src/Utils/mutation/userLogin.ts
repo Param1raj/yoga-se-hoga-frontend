@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { User_Login } from "../../../apis.";
+import { User_Login } from "../../../apis";
 // import Cookies from "js-cookie";
 
 export type UserInput = {

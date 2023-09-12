@@ -84,7 +84,7 @@ function CardContainer() {
           >
             {services.map(({ title, image, caption, link }) => {
               return (
-                <Box height={{ sm: "90%", md: "100%" }}>
+                <Box key={title} height={{ sm: "90%", md: "100%" }}>
                   <motion.div variants={ItemVariant} style={{ height: "100%" }}>
                     <ServiceCard
                       key={title}

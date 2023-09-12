@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { Create_Video } from "../../../apis.";
+import { Create_Video } from "../../../apis";
 import Cookies from "js-cookie";
 
 export type VideoInput = {

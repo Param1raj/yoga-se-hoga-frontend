@@ -19,7 +19,7 @@ import IconButton from "@mui/material/IconButton";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Me } from "../../../apis.";
+import { Me } from "../../../apis";
 const settings = ["Dashboard", "Logout"];
 
 // type User = {

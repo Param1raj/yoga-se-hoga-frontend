@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { All_Free_Videos } from "../../../apis.";
+import { All_Free_Videos } from "../../../apis";
 import Cookies from "js-cookie";
 
 export const getNotPaidYogaVideos = async (page: number) => {

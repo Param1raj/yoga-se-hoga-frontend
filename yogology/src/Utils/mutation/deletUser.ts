@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { Delete_User } from "../../../apis.";
+import { Delete_User } from "../../../apis";
 import Cookies from "js-cookie";
 
 export const deleteUser = async (_id: string) => {

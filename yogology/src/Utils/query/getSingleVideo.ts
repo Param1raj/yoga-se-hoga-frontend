@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { All_Video, Base_Single_Video } from "../../../apis.";
+import { All_Video, Base_Single_Video } from "../../../apis";
 import Cookies from "js-cookie";
 
 export const getSingleVideo = async (uuid: string) => {
