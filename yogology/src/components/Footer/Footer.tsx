@@ -10,7 +10,7 @@ function Footer() {
   return (
     <Box
       width={"100%"}
-      height={{ xs: "50rem", sm: "30rem", md: "31rem" }}
+      height={{ xs: "52rem", sm: "30rem", md: "31rem" }}
       sx={{ background: "#1D0427", zIndex: 10 }}
       // border={"1px solid white"}
       // padding={"30px"}
@@ -28,11 +28,11 @@ function Footer() {
       <Container
         sx={{
           // border: "1px solid red",
-          // padding: "0px",
+          // padding: "20px",
           height: "100%",
           width: { md: "100%", lg: "80%" },
           display: "flex",
-          alignItems: { sm: "center", md: "flex-end" },
+          alignItems: { xs: "center", md: "flex-end" },
           // position: "absolute",
         }}
       >
@@ -40,7 +40,7 @@ function Footer() {
           // margin={"0px"}
           // position={"relative"}
           width={"100%"}
-          height={{ xs: "100%", sm: "90%", md: "78%" }}
+          height={{ xs: "90%", sm: "90%", md: "78%" }}
           //
           sx={
             {
@@ -50,7 +50,7 @@ function Footer() {
           }
         >
           <Grid
-            border={"1px solid white"}
+            // border={"1px solid white"}
             borderRadius={"10px"}
             height={{ xs: "95%", sm: "75%", lg: "85%" }}
             display={"grid"}
@@ -60,16 +60,16 @@ function Footer() {
               md: "repeat(4,1fr)",
             }}
             spacing={2}
-            container
+            // container
             zIndex={10}
-            sx={{ backgroundColor: "#1D0427" }}
+            sx={{ backgroundColor: { xs: "none", md: "#1D0427" } }}
           >
             <Grid
-              item
+              // item
               // xs={3}
               // border={"1px solid yellow"}
-              padding={{ sm: "20px" }}
-              height={{ xs: "30%", sm: "100%" }}
+              paddingX={{ sm: "20px" }}
+              height={{ xs: "50%", sm: "100%" }}
               color={"white"}
             >
               <Box
@@ -77,7 +77,7 @@ function Footer() {
                 height={{ xs: "50%", md: "25%" }}
                 // border={"1px solid yellow"}
                 position={"relative"}
-                padding={{ xs: "20px", sm: "0px" }}
+                paddingX={{ xs: "20px", sm: "20px" }}
                 sx={{
                   background: `url('${logo.src}')`,
                   backgroundRepeat: "no-repeat",
@@ -225,18 +225,18 @@ function Footer() {
                   Get in touch
                 </Typography>
                 <Grid
-                  container
+                  // container
                   display={{ xs: "flex", sm: "grid" }}
                   gridTemplateColumns={{
-                    // xs: "repeat(2,1fr)",
-                    sm: "repeat(2,1fr)",
+                    xs: "repeat(2,1fr)",
+                    sm: "repeat(4,1fr)",
                     md: "repeat(4,1fr)",
                   }}
                 >
-                  <Grid item xs={4}>
+                  <Grid>
                     <Facebookicon />
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid>
                     <Instagramicon />
                   </Grid>
                 </Grid>
