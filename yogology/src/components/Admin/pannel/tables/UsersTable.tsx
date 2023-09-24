@@ -177,43 +177,43 @@ function UsersTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row?.name}>
-                <StyledTableCell
-                  component="th"
-                  scope="row"
-                  sx={{ color: "#5F2C70" }}
+            {/* {rows.map((row) => ( */}
+            <StyledTableRow>
+              <StyledTableCell
+                component="th"
+                scope="row"
+                sx={{ color: "#5F2C70" }}
+              >
+                <Skeleton variant="rectangular" />
+                {/* {row?.name} */}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <Skeleton variant="rectangular" />
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <Skeleton variant="rectangular" />
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <Skeleton variant="circular" width={50} height={50} />
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <Skeleton variant="rectangular" />
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <Skeleton variant="rectangular" />
+              </StyledTableCell>
+              <StyledTableCell align="right">
+                <IconButton
+                  onClick={(event) => {
+                    setEncorElm(event.currentTarget);
+                    setOpen(true);
+                  }}
                 >
-                  <Skeleton variant="rectangular" />
-                  {/* {row?.name} */}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Skeleton variant="rectangular" />
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Skeleton variant="rectangular" />
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Skeleton variant="circular" width={50} height={50} />
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Skeleton variant="rectangular" />
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Skeleton variant="rectangular" />
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  <IconButton
-                    onClick={(event) => {
-                      setEncorElm(event.currentTarget);
-                      setOpen(true);
-                    }}
-                  >
-                    <MoreVertIcon />
-                  </IconButton>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+                  <MoreVertIcon />
+                </IconButton>
+              </StyledTableCell>
+            </StyledTableRow>
+            {/* ))} */}
           </TableBody>
         </Table>
         <Box
@@ -250,6 +250,7 @@ function UsersTable() {
           // onClose={() => {
           //   setAlert(false);
           // }}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
         >
           <Alert
             onClose={() => {
@@ -269,6 +270,7 @@ function UsersTable() {
           onClose={() => {
             setAlert(false);
           }}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
         >
           <Alert
             onClose={() => {

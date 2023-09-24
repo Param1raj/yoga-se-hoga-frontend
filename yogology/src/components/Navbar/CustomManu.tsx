@@ -46,20 +46,6 @@ function CustomManu({ children }: { children: ReactNode }) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  // useEffect(() => {
-  //   console.log("token", token);
-  //   (async function me() {
-  //     let data = await fetch(Me, {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `bearer ${token}`,
-  //       },
-  //     });
-  //     const user = await data.json();
-  //     setUser(user);
-  //     console.log(user, "++++++++++++++User++++++++++++++++=");
-  //   })();
-  // }, []);
   return isAuth ? (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">

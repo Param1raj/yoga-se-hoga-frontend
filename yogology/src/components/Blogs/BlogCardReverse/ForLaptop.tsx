@@ -6,10 +6,12 @@ function ForLaptop({
   title,
   date,
   description,
+  image,
 }: {
   title: string;
   date: string;
   description: string;
+  image?: string;
 }) {
   return (
     <>
@@ -48,6 +50,12 @@ function ForLaptop({
             letterSpacing={"0.00625rem"}
             lineHeight={"1.72125rem"}
             fontSize={{ sm: "1rem", md: "1.06rem" }}
+            sx={{
+              display: "-webkit-box",
+              overflow: "hidden",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 5,
+            }}
           >
             {description}
           </Typography>
@@ -55,7 +63,7 @@ function ForLaptop({
         </Stack>
       </Grid>
       <Grid display={{ xs: "none", md: "block" }}>
-        <HoverScaleImage />
+        <HoverScaleImage image={image} />
       </Grid>
     </>
   );

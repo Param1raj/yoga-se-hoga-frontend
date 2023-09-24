@@ -1,11 +1,11 @@
 "use client";
-import React, { useCallback, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Stack, Typography } from "@mui/material";
-import ButtonComp from "@/components/ButtonComp";
+// import ButtonComp from "@/components/ButtonComp";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "@/app/AuthProvider";
-import { Login_Api, Signup_Api } from "../../../apis";
+// import { AuthContext } from "@/app/AuthProvider";
+// import { Login_Api, Signup_Api } from "../../../apis";
 import CustomSnackbar from "../Snackbar";
 import Image from "./Image";
 import LoginInput from "./Inputs/LoginInput";
@@ -21,65 +21,14 @@ function LoginSgnup({
   redirectTo?: string;
 }) {
   const { push } = useRouter();
-  let { setAuth } = useContext(AuthContext);
-  const [OpenSuccess, setOpenSuccess] = useState(false);
-  const [OpenError, setOpenError] = useState(false);
-  const [formData, setFormData] = useState(
-    isForLogin
-      ? {
-          email: "",
-          password: "",
-        }
-      : {
-          name: "",
-          email: "",
-          phone: "",
-          password: "",
-        }
-  );
-  const [message, setMessage] = useState("");
-  const handleChange = (e: any) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // let { setAuth } = useContext(AuthContext);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openError, setOpenError] = useState(false);
 
-  const Login = useCallback(async () => {
-    const res = await fetch(isForLogin ? Login_Api : Signup_Api, {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "content-Type": "application/json",
-      },
-    });
-    const result = await res.json();
-    if (result.message !== "error") {
-      if (isForLogin) {
-        let date = new Date();
-        date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
-        const expires = "expires=" + date.toUTCString();
-        document.cookie =
-          "a_t_t=" +
-          encodeURIComponent(result.data.token) +
-          ";" +
-          "expires=" +
-          date.toUTCString() +
-          ";path=/";
-        setAuth({ isAuth: true });
-        setMessage("Login Successfull!");
-      } else {
-        setMessage("Registered Successfully!");
-        push("/login");
-      }
-      setOpenSuccess(true);
-    } else {
-      setMessage(result.data);
-      setOpenError(true);
-    }
-    setFormData(
-      isForLogin
-        ? { email: "", password: "" }
-        : { email: "", name: "", phone: "", password: "" }
-    );
-  }, [formData, isForLogin]);
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    console.log("state - success", openSuccess);
+  }, [openSuccess]);
 
   return (
     <Grid
@@ -106,9 +55,9 @@ function LoginSgnup({
           width: "100%",
         }}
       >
-        {OpenSuccess && (
+        {openSuccess && (
           <CustomSnackbar
-            Open={OpenSuccess}
+            Open={openSuccess}
             varient={"success"}
             message={message}
             setOpen={() => {
@@ -116,9 +65,9 @@ function LoginSgnup({
             }}
           />
         )}
-        {OpenError && (
+        {openError && (
           <CustomSnackbar
-            Open={OpenError}
+            Open={openError}
             varient={"error"}
             message={message}
             setOpen={() => {

@@ -11,12 +11,14 @@ import DoneAllIcon from "@mui/icons-material/DoneAll";
 import CancelIcon from "@mui/icons-material/Cancel";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
+  Alert,
   Box,
   IconButton,
   Menu,
   MenuItem,
   Pagination,
   Skeleton,
+  Snackbar,
   Typography,
 } from "@mui/material";
 // import ThreePIcon from "@mui/icons-material/ThreeP";
@@ -28,9 +30,10 @@ import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 // import { All_Video } from "../../../../../apis.";
 import { AuthContext } from "@/app/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getVideos } from "@/Utils/query/getVideos";
 import imageUrl from "../../../../assets/images/errors.webp";
+import { deleteVideo } from "@/Utils/mutation/deleteVideo";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#5F2C70",
@@ -69,6 +72,7 @@ export type Video = {
 let rows: Video[] = [];
 
 function VideosTable() {
+  const queryClient = useQueryClient();
   const [open, setOpen] = React.useState(false);
   const [encorElm, setEncorElm] = React.useState<null | HTMLButtonElement>(
     null
@@ -81,15 +85,31 @@ function VideosTable() {
   const pathName = usePathname();
   const { push } = useRouter();
   const { auth } = React.useContext(AuthContext);
+  const [sltRow, setSltRow] = React.useState<Video>();
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
     push(pathName + "?page=" + value);
   };
+  const [alert, setAlert] = React.useState(true);
 
   const { isLoading, isError, data, isSuccess } = useQuery({
     queryKey: ["videos", page],
     queryFn: async () => {
       return getVideos(page);
+    },
+  });
+
+  const {
+    isError: deleteError,
+    isLoading: deleteLoading,
+    mutateAsync: deleteMutation,
+    isSuccess: deleteSuccess,
+  } = useMutation({
+    mutationFn: async (_id: string) => {
+      return await deleteVideo(_id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["videos", page] });
     },
   });
 
@@ -128,7 +148,7 @@ function VideosTable() {
             <TableRow>
               <StyledTableCell align="left">Thumbnail</StyledTableCell>
               <StyledTableCell align="left">Title</StyledTableCell>
-              <StyledTableCell align="center">Category</StyledTableCell>
+              <StyledTableCell align="left">Category</StyledTableCell>
               <StyledTableCell align="center">Is Soluton</StyledTableCell>
               <StyledTableCell align="center">Is Paid</StyledTableCell>
               <StyledTableCell align="center">Video Url</StyledTableCell>
@@ -136,43 +156,43 @@ function VideosTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row?._id}>
-                <StyledTableCell
-                  component="th"
-                  scope="row"
-                  sx={{ color: "#5F2C70" }}
+            {/* {rows.map((row) => ( */}
+            <StyledTableRow>
+              <StyledTableCell
+                component="th"
+                scope="row"
+                sx={{ color: "#5F2C70" }}
+              >
+                <Skeleton variant="rectangular" />
+                {/* {row?.name} */}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <Skeleton variant="rectangular" />
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <Skeleton variant="rectangular" />
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <Skeleton variant="circular" width={50} height={50} />
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <Skeleton variant="circular" width={50} height={50} />
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <Skeleton variant="rectangular" />
+              </StyledTableCell>
+              <StyledTableCell align="right">
+                <IconButton
+                  onClick={(event) => {
+                    setEncorElm(event.currentTarget);
+                    setOpen(true);
+                  }}
                 >
-                  <Skeleton variant="rectangular" />
-                  {/* {row?.name} */}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Skeleton variant="rectangular" />
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Skeleton variant="rectangular" />
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Skeleton variant="circular" width={50} height={50} />
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Skeleton variant="rectangular" />
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Skeleton variant="rectangular" />
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  <IconButton
-                    onClick={(event) => {
-                      setEncorElm(event.currentTarget);
-                      setOpen(true);
-                    }}
-                  >
-                    <MoreVertIcon />
-                  </IconButton>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+                  <MoreVertIcon />
+                </IconButton>
+              </StyledTableCell>
+            </StyledTableRow>
+            {/* ))} */}
           </TableBody>
         </Table>
         <Box
@@ -199,9 +219,49 @@ function VideosTable() {
     rows = data.data.data.videos;
     count = data.data.data.count;
   }
-  
+
   return (
     <TableContainer component={Paper}>
+      {deleteError && (
+        <Snackbar
+          open={alert}
+          autoHideDuration={3000}
+          onClose={() => {
+            setAlert(false);
+          }}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <Alert
+            onClose={() => {
+              setAlert(false);
+            }}
+            severity="error"
+            sx={{ width: "100%", padding: "10px" }}
+          >
+            Unable to delete User
+          </Alert>
+        </Snackbar>
+      )}
+      {deleteSuccess && (
+        <Snackbar
+          open={alert}
+          autoHideDuration={6000}
+          onClose={() => {
+            setAlert(false);
+          }}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <Alert
+            onClose={() => {
+              setAlert(false);
+            }}
+            severity="success"
+            sx={{ width: "100%", padding: "10px" }}
+          >
+            Deleted Successfully
+          </Alert>
+        </Snackbar>
+      )}
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -218,7 +278,7 @@ function VideosTable() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row?.title}>
+            <StyledTableRow key={row?._id}>
               <StyledTableCell
                 component="th"
                 scope="row"
@@ -258,6 +318,7 @@ function VideosTable() {
                 <IconButton
                   onClick={(event) => {
                     setEncorElm(event.currentTarget);
+                    setSltRow(row);
                     setOpen(true);
                   }}
                 >
@@ -285,7 +346,10 @@ function VideosTable() {
                     Edit
                   </MenuItem>
                   <MenuItem
-                    onClick={() => {
+                    onClick={async () => {
+                      const row = sltRow;
+                      if (row?._id) await deleteMutation(row._id);
+                      setAlert(true);
                       setOpen(false);
                     }}
                   >
@@ -308,7 +372,7 @@ function VideosTable() {
         padding={"20px"}
       >
         <Pagination
-          count={count / 10}
+          count={Math.ceil(count / 10)}
           size={"large"}
           variant="outlined"
           color="secondary"

@@ -20,7 +20,7 @@ function Footer() {
         left={"0px"}
         // bottom={"0px"}
         width={"100%"}
-        height={{ xs: "50rem", sm: "30rem", md: "30.6rem" }}
+        height={{ xs: "50rem", sm: "30rem", md: "30rem" }}
         // border={"1px solid red"}
       >
         <ParticleComp />
@@ -50,7 +50,7 @@ function Footer() {
           }
         >
           <Grid
-            // border={"1px solid white"}
+            border={"1px solid white"}
             borderRadius={"10px"}
             height={{ xs: "95%", sm: "75%", lg: "85%" }}
             display={"grid"}
@@ -59,23 +59,21 @@ function Footer() {
               sm: "20% 35% 15% 30%",
               md: "repeat(4,1fr)",
             }}
-            spacing={2}
+            // spacing={2}
+            padding={{ md: "20px" }}
             // container
             zIndex={10}
             sx={{ backgroundColor: { xs: "none", md: "#1D0427" } }}
           >
             <Grid
-              // item
-              // xs={3}
-              // border={"1px solid yellow"}
               paddingX={{ sm: "20px" }}
+              paddingY={{ sm: "0px" }}
               height={{ xs: "50%", sm: "100%" }}
               color={"white"}
             >
               <Box
                 width={{ xs: "50%", sm: "100%", md: "40%" }}
                 height={{ xs: "50%", md: "25%" }}
-                // border={"1px solid yellow"}
                 position={"relative"}
                 paddingX={{ xs: "20px", sm: "20px" }}
                 sx={{

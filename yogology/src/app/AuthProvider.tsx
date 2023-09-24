@@ -18,10 +18,7 @@ export const AuthContext = createContext({
 
 function AuthContextProvider({ children }: { children: ReactNode }) {
   const [auth, setAuth] = useState({
-    isAuth:
-      Cookies.get("a_t_t") !== "undefined" && Cookies.get("a_t_t")
-        ? true
-        : false,
+    isAuth: Cookies.get("a_t_t") || Cookies.get("a_d_t") ? true : false,
     hasSubscribed: Cookies.get("a_t_s") ? true : false,
     isAdmin: Cookies.get("a_d_t") ? true : false,
     token: Cookies.get("a_t_t") || Cookies.get("a_d_t") || "",
@@ -39,9 +36,14 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
       if (isAuth && hasSubscribed)
         return { ...auth, isAuth: isAuth, hasSubscribed: hasSubscribed };
       else if (isAuth && !hasSubscribed) return { ...auth, isAuth: isAuth };
-      else if (isAuth && isAdmin)
+      else if (isAuth && isAdmin) {
+        console.log(
+          "trying to modify admin authentication Auth, Admin",
+          isAuth,
+          isAdmin
+        );
         return { ...auth, isAuth: isAuth, isAdmin: isAdmin };
-      else if (isAuth && !isAdmin) {
+      } else if (isAuth && !isAdmin) {
         return { ...auth, isAuth: isAuth };
       } else return { ...auth };
     });

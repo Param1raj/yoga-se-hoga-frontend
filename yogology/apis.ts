@@ -14,6 +14,7 @@ export const All_Free_Videos = `${VideoRoute}/free`;
 export const Base_Single_Video = `${VideoRoute}`;
 export const first_Video = `${VideoRoute}/course/first`;
 export const Get_Next_Video = `${VideoRoute}/content`;
+export const Delete_Video = VideoRoute;
 
 const UserRoute = `${HostAndPort}/user`;
 
@@ -21,3 +22,6 @@ export const User_Login = `${UserRoute}/login`;
 export const User_Signup = `${UserRoute}/signup`;
 export const All_Users = `${UserRoute}/users`;
 export const Delete_User = `${UserRoute}`;
+
+export const BlogRoute = `${HostAndPort}/blog`;
+export const Add_Blog = `${BlogRoute}/add`;

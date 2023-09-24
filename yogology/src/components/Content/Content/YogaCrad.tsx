@@ -8,16 +8,30 @@ import Typography from "@mui/material/Typography";
 import meditation from "../images/meditation.avif";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useRouter } from "next/navigation";
+import LockIcon from "@mui/icons-material/Lock";
+import SubscriptionModal from "./modal/SubscriptionModal";
 export default function MediaCard({
   title,
   uuid,
+  paid,
+  description,
+  image,
+  setOpen,
 }: {
   title: string;
   description: string;
   uuid: string;
+  paid: boolean;
+  image: string;
+  setOpen: () => void;
 }) {
+  // const [open, setOpen] = React.useState(false);
   const { push } = useRouter();
-  const [index, setIndex] = React.useState(0);
+  // const [index, setIndex] = React.useState(0);
+  const handleClose = () => {
+    console.log("function is called !");
+    // setOpen(false);
+  };
   return (
     <Card
       sx={{
@@ -28,29 +42,33 @@ export default function MediaCard({
       }}
       onClick={() => {
         // after solutions you should provide uuid of the video.
-        push(`/content/solutions/${uuid}`);
+        if (paid) {
+          setOpen();
+        } else {
+          push(`/content/solutions/${uuid}`);
+        }
       }}
     >
-      <CardMedia
-        sx={{ height: 155 }}
-        image={meditation.src}
-        title="green iguana"
-      />
+      {/* {open && <SubscriptionModal open={open} onClose={handleClose} />} */}
+      <CardMedia sx={{ height: 155 }} image={image} title={title} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {title}
         </Typography>
         <Typography
           variant="body2"
           //   fontSize={{ md: "0.7rem", lg: "0.9rem", xl: "0.8rem" }}
           color="text.secondary"
         >
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {description}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="contained" startIcon={<PlayArrowIcon />}>
+        <Button
+          size="small"
+          variant="contained"
+          startIcon={paid ? <LockIcon /> : <PlayArrowIcon />}
+        >
           Play
         </Button>
       </CardActions>

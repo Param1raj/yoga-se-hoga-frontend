@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -20,9 +20,9 @@ import CustomSnackbar from "../Snackbar";
 import { useRouter } from "next/navigation";
 function Admin() {
   const [visible, setVisible] = useState(false);
-  let { setAuth } = useContext(AuthContext);
-  const [OpenSuccess, setOpenSuccess] = useState(false);
-  const [OpenError, setOpenError] = useState(false);
+  let { setAuth, auth } = useContext(AuthContext);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openError, setOpenError] = useState(false);
   const [message, setMessage] = useState("");
   const { push } = useRouter();
   const handleChange = () => {
@@ -62,12 +62,18 @@ function Admin() {
         setOpenSuccess(true);
         reset();
         push("/admin/pannel");
+      } else {
+        throw new Error("failed login");
       }
     } catch (error) {
+      console.log("error------>", error);
       setMessage("Failed to Login");
       setOpenError(true);
     }
   };
+  // console.log(openError, "Open Error!");
+  // useEffect(() => {
+  // }, [openSuccess]);
   return (
     <Box
       width={{ xs: "80%", sm: "60%", md: "40%", lg: "30%" }}
@@ -89,9 +95,9 @@ function Admin() {
         >
           Please Login!
         </Typography>
-        {OpenSuccess && (
+        {openSuccess && (
           <CustomSnackbar
-            Open={OpenSuccess}
+            Open={openSuccess}
             varient={"success"}
             message={message}
             setOpen={() => {
@@ -99,9 +105,9 @@ function Admin() {
             }}
           />
         )}
-        {OpenError && (
+        {openError && (
           <CustomSnackbar
-            Open={OpenError}
+            Open={openError}
             varient={"error"}
             message={message}
             setOpen={() => {

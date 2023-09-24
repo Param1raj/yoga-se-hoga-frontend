@@ -7,10 +7,12 @@ function BlogCardReverse({
   title,
   description,
   date,
+  image,
 }: {
   title: string;
   description: string;
   date: string;
+  image?: string;
 }) {
   return (
     <Grid
@@ -28,8 +30,18 @@ function BlogCardReverse({
       padding={{ sm: "5px", md: "5px", lg: "20px" }}
       // border={"1px solid black"}
     >
-      <ForPhone title={title} description={description} date={date} />
-      <ForLaptop title={title} description={description} date={date} />
+      <ForPhone
+        image={image}
+        title={title}
+        description={description}
+        date={date}
+      />
+      <ForLaptop
+        image={image}
+        title={title}
+        description={description}
+        date={date}
+      />
     </Grid>
   );
 }

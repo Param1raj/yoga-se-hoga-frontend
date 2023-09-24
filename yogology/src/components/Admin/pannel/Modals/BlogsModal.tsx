@@ -9,6 +9,18 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
+import { addBlog } from "@/Utils/mutation/addBlog";
+import { useForm } from "react-hook-form";
+import { LoadingButton } from "@mui/lab";
+import CustomSnackbar from "@/components/Snackbar";
+type Blog = {
+  imageUrl: string;
+  heading: string;
+  introduction: string[];
+  blogContent: { heading: string; paragraphs: string[] }[];
+};
 function ModalComp({
   open,
   onClose,
@@ -18,12 +30,67 @@ function ModalComp({
   onClose: () => void;
   type: string;
 }) {
+  const [OpenSuccess, setOpenSuccess] = useState(false);
+  const [OpenError, setOpenError] = useState(false);
+  const [message, setMessage] = useState("");
+  const {
+    formState: { errors },
+    register,
+    handleSubmit,
+    reset,
+  } = useForm();
+  const queryClient = new QueryClient();
+  const searchParams = useSearchParams();
+
+  const page = +searchParams.toString().split("=")[1];
   const [headingAndContentArray, setHeadingAndContentArray] = useState([
     1, 1, 1, 1,
   ]);
+  const { mutateAsync, isSuccess, isError, isLoading } = useMutation({
+    mutationFn: async (data: Blog) => {
+      return await addBlog(data);
+    },
+    mutationKey: ["addBlog"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["blogs", page] });
+    },
+  });
   useEffect(() => {
-    console.log(headingAndContentArray.length);
-  }, [headingAndContentArray]);
+    if (isError) {
+      setMessage("Failed to Add");
+      setOpenError(true);
+    }
+    if (isSuccess) {
+      console.log(".....success");
+
+      setMessage("Created Successfully!");
+      setOpenSuccess(true);
+      reset();
+      // onClose();
+      setTimeout(() => {
+        onClose();
+      }, 2000);
+    }
+  }, [isSuccess, isError]);
+
+  const Submit = async (data: any) => {
+    let blogContent = [];
+    const imageUrl = data.imageUrl;
+    const heading = data.heading;
+    const introduction = data.introduction.split("\n");
+    blogContent = headingAndContentArray.map((_, index) => {
+      return {
+        heading: data[`heading${index + 1}`],
+        paragraphs: data[`paragraph${index + 1}`].split("\n"),
+      };
+    });
+    try {
+      await mutateAsync({ imageUrl, introduction, heading, blogContent });
+    } catch (error) {
+      console.log(error, "error");
+    }
+  };
+
   return (
     <Modal
       keepMounted
@@ -49,6 +116,26 @@ function ModalComp({
           },
         }}
       >
+        {OpenSuccess && (
+          <CustomSnackbar
+            Open={OpenSuccess}
+            varient={"success"}
+            message={message}
+            setOpen={() => {
+              setOpenSuccess(false);
+            }}
+          />
+        )}
+        {OpenError && (
+          <CustomSnackbar
+            Open={OpenError}
+            varient={"error"}
+            message={message}
+            setOpen={() => {
+              setOpenError(false);
+            }}
+          />
+        )}
         <Typography
           id="keep-mounted-modal-title"
           variant="h6"
@@ -67,6 +154,7 @@ function ModalComp({
           //   height={"100%"}
           // border={"1px solid red"}
           paddingY={"20px"}
+          onSubmit={handleSubmit(Submit)}
         >
           <Typography
             id="keep-mounted-modal-title"
@@ -92,11 +180,13 @@ function ModalComp({
             fullWidth
             label="Your Image url"
             placeholder="https://someimage.org.com/image"
+            {...register("imageUrl", { required: true })}
           />
           <TextField
             fullWidth
             label="Heading of your blog"
             placeholder="Solution to daily life problems"
+            {...register("heading", { required: true })}
           />
           <Typography
             id="keep-mounted-modal-title"
@@ -114,6 +204,7 @@ function ModalComp({
             rows={4}
             label="Give an intro to your blog"
             multiline
+            {...register("introduction", { required: true })}
           />
           <Box
             // border={"1px solid red"}
@@ -152,26 +243,31 @@ function ModalComp({
 
           {headingAndContentArray &&
             headingAndContentArray.map((data, index) => {
+              console.log("🚀 ~ file: BlogsModal.tsx:188 ~ data:", data);
               return (
                 <>
-                  <TextField fullWidth label={`Heading ${index + 1}`} />
+                  <TextField
+                    fullWidth
+                    label={`Heading ${index + 1}`}
+                    {...register(`heading${index + 1}`, { required: true })}
+                  />
                   <TextField
                     fullWidth
                     rows={4}
                     label={`Content for above heading ${index + 1}`}
                     multiline
+                    {...register(`paragraph${index + 1}`, { required: true })}
                   />
                 </>
               );
             })}
           <Box
-            // border={"1px solid red"}
             height={"50px"}
             display={"flex"}
             justifyContent={"end"}
             alignItems={"center"}
           >
-            <Button
+            <LoadingButton
               variant="contained"
               sx={{
                 marginRight: "10px",
@@ -180,9 +276,11 @@ function ModalComp({
                   background: "#5F2C70",
                 },
               }}
+              type="submit"
+              loading={isLoading}
             >
               Save
-            </Button>
+            </LoadingButton>
             <Button
               variant="outlined"
               onClick={onClose}

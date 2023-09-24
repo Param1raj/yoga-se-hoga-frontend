@@ -11,6 +11,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getSolutionVideos } from "@/Utils/query/getSolutionVideos";
 import { getNotPaidYogaVideos } from "@/Utils/query/getNotPaidYogaVideos";
 import LoginProtects from "@/app/RouteProtects/LoginProtects";
+import SubscriptionModal from "./modal/SubscriptionModal";
+// import SubscriptionModal from "./modal/SubscriptionModal";
 type Video = {
   _id: string;
   thumbnail: string;
@@ -22,12 +24,13 @@ type Video = {
   category: string;
   isSolution: boolean;
   url: string;
-  Long_Description: string;
-  Short_Description: string;
+  Long_description: string;
+  Short_description: string;
   title: string;
 };
 let data: Video[] = [];
 function Content() {
+  const [open, setOpen] = useState(false);
   const { content: contentType } = useParams();
   const searchParams = useSearchParams();
   const [page, setPage] = useState<number>(
@@ -125,14 +128,27 @@ function Content() {
               // border={"1px solid black"}
               gridTemplateRows={{ xl: "repeat(2,1fr)" }}
             >
+              {
+                <SubscriptionModal
+                  open={open}
+                  onClose={() => {
+                    setOpen(false);
+                  }}
+                />
+              }
               {data &&
                 data.map((item, i) => {
                   return (
                     <MediaCard
+                      image={item.thumbnail}
                       title={item.title}
-                      description={item.Short_Description}
-                      key={i}
+                      description={item.Short_description}
+                      key={item._id}
                       uuid={item._id}
+                      paid={item.isPaid}
+                      setOpen={() => {
+                        setOpen(true);
+                      }}
                     />
                   );
                 })}

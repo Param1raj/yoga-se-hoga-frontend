@@ -1,4 +1,4 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { Grid, Skeleton, Stack, Typography } from "@mui/material";
 import React from "react";
 import { HoverScaleImage, ToLeftTextAnimation } from "./utils";
 
@@ -6,10 +6,14 @@ function BlogCard({
   title,
   description,
   date,
+  loading,
+  image,
 }: {
   title: string;
   description: string;
   date: string;
+  loading?: boolean;
+  image?: string;
 }) {
   return (
     <Grid
@@ -29,7 +33,11 @@ function BlogCard({
       padding={{ sm: "5px", md: "5px", lg: "20px" }}
     >
       <Grid>
-        <HoverScaleImage />
+        {loading ? (
+          <Skeleton variant="rectangular" width={"100%"} height={"100%"} />
+        ) : (
+          <HoverScaleImage image={image} />
+        )}
       </Grid>
       <Grid>
         <Stack
@@ -53,8 +61,9 @@ function BlogCard({
             }}
             // border={"1px solid red"}
           >
-            {title}
+            {loading ? <Skeleton /> : title}
           </Typography>
+
           <Typography
             variant="body1"
             component={"p"}
@@ -65,21 +74,38 @@ function BlogCard({
             lineHeight={"1.3rem"}
             fontSize={"0.8rem"}
           >
-            {date}
+            {loading ? <Skeleton /> : date}
           </Typography>
-          <Typography
-            variant="body1"
-            component={"p"}
-            color={"#847988"}
-            fontFamily={["Nunito", "sans-serif"]}
-            fontWeight={"400"}
-            letterSpacing={"0.00625rem"}
-            lineHeight={"1.72125rem"}
-            fontSize={"1.06rem"}
-          >
-            {description}
-          </Typography>
-          <ToLeftTextAnimation />
+          {loading ? (
+            <>
+              <Skeleton variant="rectangular" width={"100%"} height={100} />
+            </>
+          ) : (
+            <Typography
+              variant="body1"
+              component={"p"}
+              border={"1px solid red"}
+              color={"#847988"}
+              fontFamily={["Nunito", "sans-serif"]}
+              fontWeight={"400"}
+              letterSpacing={"0.00625rem"}
+              lineHeight={"1.72125rem"}
+              fontSize={"1.06rem"}
+              sx={{
+                display: "-webkit-box",
+                overflow: "hidden",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: 3,
+              }}
+            >
+              {description}
+            </Typography>
+          )}
+          {loading ? (
+            <Skeleton width={"10%"} height={50} />
+          ) : (
+            <ToLeftTextAnimation />
+          )}
         </Stack>
       </Grid>
     </Grid>

@@ -40,8 +40,8 @@ function PageHeader({ backgroundImage, title, linkData }: HeaderProps) {
             xl: "2.9rem",
           }}
           component={"h1"}
-          color={backgroundImage ? "#322038" : "#322038"}
-          sx={{ filter: "brightness(2)", backgroundColor: "white" }}
+          color={backgroundImage ? "#fff" : "#322038"}
+          sx={{}}
           textAlign={"center"}
         >
           {title ? title : "Who We Are"}
@@ -55,7 +55,7 @@ function PageHeader({ backgroundImage, title, linkData }: HeaderProps) {
             alignItems: "cemter",
             flexWrap: "wrap",
             color: "#322038",
-            backgroundColor: "white",
+            // backgroundColor: "#fff",
             // border: "1px solid black",
             // textDecoration:'wra'
           }}
@@ -65,14 +65,14 @@ function PageHeader({ backgroundImage, title, linkData }: HeaderProps) {
               key={name}
               underline="hover"
               href={link}
-              color={backgroundImage ? "#322038" : ""}
+              color={backgroundImage ? "#fff" : "#322038"}
             >
               {name}
             </Link>
           ))}
 
           <Typography
-            color={backgroundImage ? "#322038" : ""}
+            color={backgroundImage ? "#fff" : "#322038"}
             textAlign={"center"}
             sx={{ textWrap: "wrap" }}
           >

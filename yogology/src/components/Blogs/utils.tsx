@@ -2,14 +2,14 @@ import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import blogImage from "../../assets/images/BlogImage.jpeg";
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
-export function HoverScaleImage() {
+export function HoverScaleImage({ image }: { image?: string }) {
   return (
     <Box width={"100%"} height={"100%"} overflow={"hidden"}>
       <motion.div
         style={{
           width: "100%",
           height: "100%",
-          background: `url('${blogImage.src}')`,
+          background: `url('${image ? image : blogImage.src}')`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           // border: "1px solid red",
