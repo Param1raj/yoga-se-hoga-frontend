@@ -1,10 +1,27 @@
 "use client";
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import Typical from "react-typical";
+// import Typical from "react-typical";
 // import Typewriter from "typewriter-effect";
+import Typed from "typed.js";
+
 import { motion } from "framer-motion";
 function YogaQuetes() {
+  const el = React.useRef(null);
+
+  React.useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ["<strong>Mind!</strong>", "<strong>body!</strong>"],
+      typeSpeed: 50,
+      loop: true,
+    });
+
+    return () => {
+      // Destroy Typed instance during cleanup to stop animation
+      typed.destroy();
+    };
+  }, []);
+
   const BoxVariant = {
     hidden: {
       opacity: 0,
@@ -105,12 +122,12 @@ function YogaQuetes() {
                       }}
                     >
                       Awaken your true self through yoga. Find liberation,
-                      peace, and harmony as{" "}
-                      <Typical
+                      peace, and harmony as <span ref={el} />
+                      {/* <Typical
                         steps={["Mind", 2000, "body!", 2000]}
                         loop={Infinity}
                         wrapper="span"
-                      ></Typical>
+                      ></Typical> */}
                       <motion.p variants={textVariant}>
                         <Typography
                           variant="h4"

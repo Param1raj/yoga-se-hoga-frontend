@@ -15,20 +15,28 @@ import { addBlog } from "@/Utils/mutation/addBlog";
 import { useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
 import CustomSnackbar from "@/components/Snackbar";
-type Blog = {
+import { updateBlog } from "@/Utils/mutation/updateBlog";
+import BlogType from "@/components/Blogs/Blog";
+export type Blog = {
   imageUrl: string;
   heading: string;
   introduction: string[];
   blogContent: { heading: string; paragraphs: string[] }[];
 };
+
+class HeadingContent {
+  heading: string = "";
+  paragraphs: string[] = [""];
+}
+
 function ModalComp({
   open,
   onClose,
-  type,
+  forEdit,
 }: {
   open: boolean;
   onClose: () => void;
-  type: string;
+  forEdit?: BlogType;
 }) {
   const [OpenSuccess, setOpenSuccess] = useState(false);
   const [OpenError, setOpenError] = useState(false);
@@ -44,7 +52,10 @@ function ModalComp({
 
   const page = +searchParams.toString().split("=")[1];
   const [headingAndContentArray, setHeadingAndContentArray] = useState([
-    1, 1, 1, 1,
+    new HeadingContent(),
+    new HeadingContent(),
+    new HeadingContent(),
+    new HeadingContent(),
   ]);
   const { mutateAsync, isSuccess, isError, isLoading } = useMutation({
     mutationFn: async (data: Blog) => {
@@ -55,15 +66,30 @@ function ModalComp({
       queryClient.invalidateQueries({ queryKey: ["blogs", page] });
     },
   });
+  // update blogFunction.
+  const {
+    mutate: update,
+    isError: updateError,
+    isLoading: updating,
+    isSuccess: updated,
+  } = useMutation({
+    mutationFn: async (data: any) => {
+      return await updateBlog(data);
+    },
+    mutationKey: ["updateBlog"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["blogs"] });
+    },
+  });
   useEffect(() => {
-    if (isError) {
-      setMessage("Failed to Add");
+    if (isError || updateError) {
+      setMessage(forEdit ? "Failed to Update" : "Failed to Add");
       setOpenError(true);
     }
-    if (isSuccess) {
+    if (isSuccess || updated) {
       console.log(".....success");
 
-      setMessage("Created Successfully!");
+      setMessage(forEdit ? "Updated Successfully!" : "Created Successfully!");
       setOpenSuccess(true);
       reset();
       // onClose();
@@ -71,8 +97,9 @@ function ModalComp({
         onClose();
       }, 2000);
     }
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError, updateError, updated]);
 
+  // FIXME:  Optimize it more.
   const Submit = async (data: any) => {
     let blogContent = [];
     const imageUrl = data.imageUrl;
@@ -85,7 +112,15 @@ function ModalComp({
       };
     });
     try {
-      await mutateAsync({ imageUrl, introduction, heading, blogContent });
+      forEdit
+        ? update({
+            _id: forEdit._id,
+            imageUrl,
+            introduction,
+            heading,
+            blogContent,
+          })
+        : await mutateAsync({ imageUrl, introduction, heading, blogContent });
     } catch (error) {
       console.log(error, "error");
     }
@@ -180,12 +215,14 @@ function ModalComp({
             fullWidth
             label="Your Image url"
             placeholder="https://someimage.org.com/image"
+            {...(forEdit && { defaultValue: forEdit.imageUrl })}
             {...register("imageUrl", { required: true })}
           />
           <TextField
             fullWidth
             label="Heading of your blog"
             placeholder="Solution to daily life problems"
+            {...(forEdit && { defaultValue: forEdit.heading })}
             {...register("heading", { required: true })}
           />
           <Typography
@@ -204,6 +241,7 @@ function ModalComp({
             rows={4}
             label="Give an intro to your blog"
             multiline
+            {...(forEdit && { defaultValue: forEdit.introduction.join("\n") })}
             {...register("introduction", { required: true })}
           />
           <Box
@@ -232,7 +270,7 @@ function ModalComp({
                 },
               }}
               onClick={() => {
-                const array = [...headingAndContentArray, 1];
+                const array = [...headingAndContentArray, new HeadingContent()];
                 setHeadingAndContentArray(array);
                 // alert(headingAndContentArray.length);
               }}
@@ -241,14 +279,16 @@ function ModalComp({
             </Button>
           </Box>
 
-          {headingAndContentArray &&
-            headingAndContentArray.map((data, index) => {
-              console.log("🚀 ~ file: BlogsModal.tsx:188 ~ data:", data);
+          {(forEdit ? forEdit.blogContent : headingAndContentArray).map(
+            (data, index) => {
               return (
                 <>
                   <TextField
                     fullWidth
                     label={`Heading ${index + 1}`}
+                    {...(forEdit && {
+                      defaultValue: data.heading,
+                    })}
                     {...register(`heading${index + 1}`, { required: true })}
                   />
                   <TextField
@@ -256,11 +296,15 @@ function ModalComp({
                     rows={4}
                     label={`Content for above heading ${index + 1}`}
                     multiline
+                    {...(forEdit && {
+                      defaultValue: data.paragraphs,
+                    })}
                     {...register(`paragraph${index + 1}`, { required: true })}
                   />
                 </>
               );
-            })}
+            }
+          )}
           <Box
             height={"50px"}
             display={"flex"}
@@ -277,7 +321,8 @@ function ModalComp({
                 },
               }}
               type="submit"
-              loading={isLoading}
+              disabled={false}
+              loading={isLoading || updating}
             >
               Save
             </LoadingButton>

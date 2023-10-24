@@ -1,32 +1,45 @@
 "use client";
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import ContentItems from "./ContentItems";
+import ContentItems, { Title } from "./ContentItems";
 import course from "./images/course.avif";
 import meditation from "./images/meditation.avif";
 import solutions from "./images/problems.avif";
-import diets from "./images/diets.avif";
+import yoga from "./images/yoga.avif";
 import texts from "./images/vedas.avif";
 import LoginProtects from "@/app/RouteProtects/LoginProtects";
 import { motion } from "framer-motion";
 import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
+import Styles from "./content.module.css";
 // import temple1 from "./images/yoga.avif";
 export function Content() {
   return (
     // <LoginProtects>
     <Box
-      width={{ xs: "90%", sm: "90%", md: "70%", lg: "70%", xl: "80%" }}
+      width={{ xs: "90%", sm: "90%", md: "72%", lg: "72%", xl: "80%" }}
       height={{
         xs: "100rem",
-        sm: "58rem",
-        md: "58rem",
-        lg: "75rem",
-        xl: "60rem",
+        sm: "75rem",
+        md: "72rem",
+        lg: "90rem",
+        xl: "65rem",
       }}
       marginBottom={{ xs: "0px", sm: "20px" }}
+      className={Styles.main}
+      display={"flex"}
+      // flexDirection={"column"}
+      // border={"1px solid red"}
+      justifyContent={{ sm: "center" }}
     >
       <motion.div
-        style={{ width: "100%", height: "100%" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          // border: "1px solid yellow",
+          // display: "flex",
+          // flexDirection: "column",
+          // justifyContent: "center",
+        }}
         variants={BoxVariant}
         whileInView={"visible"}
         initial="hidden"
@@ -35,7 +48,11 @@ export function Content() {
         <Box
           display={"flex"}
           flexDirection={"column"}
+          justifyContent={{ sm: "center" }}
           rowGap={{ xs: "20px", xl: "40px" }}
+          // border={"1px solid red"}
+
+          // className={Styles.text}
         >
           <Box
             height={{
@@ -48,7 +65,14 @@ export function Content() {
             width={"100%"}
             display={"flex"}
             alignItems={"end"}
-            marginTop={{ xs: "10px", sm: "50px", md: "10px", xl: "150px" }}
+            marginTop={{
+              xs: "10px",
+              sm: "50px",
+              md: "60px",
+              lg: "80px",
+              xl: "70px",
+            }}
+            // border={"1px solid red"}
           >
             <Typography
               fontWeight={"700"}
@@ -76,14 +100,20 @@ export function Content() {
             rowGap={{ xs: "0px", sm: "20px" }}
           >
             <ContentItems
-              title={"Yoga & Meditations"}
+              title={Title.yoga}
               description="Yogas to enhance your life style"
-              image={meditation.src}
+              image={yoga.src}
               link="/content/yoga"
             />
             <ContentItems
-              title={"Solutions"}
-              description="Find solutions for your daily life problems"
+              title={Title.meditions}
+              description="Meditation for spirituality"
+              image={meditation.src}
+              link="/content/meditation"
+            />
+            <ContentItems
+              title={Title.solutions}
+              description="Find solutions for your daily life"
               image={solutions.src}
               link="content/solutions"
             />
@@ -93,11 +123,17 @@ export function Content() {
           image={diets.src}
         /> */}
             <ContentItems
-              title={"Course"}
+              title={Title.course}
               description="A dedicated course to learn yoga!"
               image={course.src}
               link="/videos"
-              type="course"
+            />
+            <ContentItems
+              title={Title.spiritualTexts}
+              description="A dedicated course to learn yoga!"
+              image={texts.src}
+              link="/videos"
+              comingSoon={true}
             />
             {/* <ContentItems
           title={"Spiritual texts"}

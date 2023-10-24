@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -14,39 +14,28 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { Create_Video } from "../../../../../apis";
 import CustomSnackbar from "@/components/Snackbar";
-import { AuthContext } from "@/app/AuthProvider";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { VideoInput, addVideos } from "@/Utils/mutation/addVideo";
 import { useSearchParams } from "next/navigation";
 import { LoadingButton } from "@mui/lab";
+import { Video } from "../tables/VideoTable";
+import { updateVideo } from "@/Utils/mutation/updateVideo";
 
-/*
-  title={"Asteya"}
-  ShortDescription={
-    "Learn the foundations of yoga in this online course"
-  }
-  LongDescription={
-    "According to Crangle, some researchers have favoured a linear theory,which attempts “to interpret the origin and early of Indian contemplative practices as a sequential growth from an Aryan genesis”, just like traditional Hinduism regards the Vedas to be the ultimate source of all spiritual knowledge."
-  }
-  videoLink={"https://www.youtube.com/embed/jyg8pft9gRY"}
-*/
 function VideoModal({
   open,
   onClose,
-  type,
+  forEditing,
 }: {
   open: boolean;
   onClose: () => void;
-  type: string;
+  forEditing?: Video;
 }) {
   const [OpenSuccess, setOpenSuccess] = useState(false);
   const [OpenError, setOpenError] = useState(false);
   const [message, setMessage] = useState("");
   const searchParams = useSearchParams();
   const page = +searchParams.toString().split("=")[1];
-  // let { auth } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const {
     register,
@@ -64,16 +53,31 @@ function VideoModal({
       queryClient.invalidateQueries({ queryKey: ["videos", page] });
     },
   });
+  // update function
+  const {
+    mutate: update,
+    isLoading: updating,
+    isError: updateError,
+    isSuccess: updated,
+  } = useMutation({
+    mutationFn: async (data: Video) => {
+      return updateVideo(data);
+    },
+    mutationKey: ["updateVideo"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["videos", page] });
+    },
+  });
   useEffect(() => {
     console.log(isError, "Error", isSuccess, "Success");
-    if (isError) {
-      setMessage("Failed to Add");
+    if (isError || updateError) {
+      setMessage(updateError ? "Failed to Update" : "Failed to Add");
       setOpenError(true);
     }
-    if (isSuccess) {
+    if (isSuccess || updated) {
       console.log(".....success");
 
-      setMessage("Created Successfully!");
+      setMessage(updated ? "Updated Successfully!" : "Created Successfully!");
       setOpenSuccess(true);
       reset();
       // onClose();
@@ -81,10 +85,11 @@ function VideoModal({
         onClose();
       }, 2000);
     }
-  }, [isError, isSuccess]);
+  }, [isError, isSuccess, updated, updateError]);
   const Submit = async (data: any) => {
     try {
-      mutate(data);
+      console.log(data, ":data we are getting for updated");
+      !forEditing ? mutate(data) : update({ ...data, _id: forEditing._id });
       console.log(".....Intiated");
     } catch (error) {
       setMessage("Failed to Add");
@@ -128,14 +133,6 @@ function VideoModal({
           flexDirection={"column"}
           pt={"30px"}
           height={"100%"}
-          sx={
-            {
-              // overflowY: "auto",
-              // "::-webkit-scrollbar": {
-              //   display: "none",
-              // },
-            }
-          }
         >
           {OpenSuccess && (
             <CustomSnackbar
@@ -165,7 +162,6 @@ function VideoModal({
             fontSize={"2rem"}
             fontFamily={["Kumbh Sans", "sans-serif"]}
             color={"#5F2C70"}
-            // border={"1px solid red"}
           >
             {"Create a Video"}
           </Typography>
@@ -176,7 +172,6 @@ function VideoModal({
             component={"form"}
             width={"100%"}
             paddingY={"20px"}
-            // border={"1px solid red"}
             onSubmit={handleSubmit(Submit)}
           >
             <Box width={"100%"}>
@@ -185,6 +180,7 @@ function VideoModal({
                 color="secondary"
                 type="text"
                 fullWidth
+                defaultValue={forEditing && forEditing.title}
                 {...register("title", { required: true })}
               />
               {errors.title && (
@@ -200,6 +196,10 @@ function VideoModal({
                 color="secondary"
                 fullWidth
                 {...register("Short_description", { required: true })}
+                {...(forEditing && {
+                  defaultValue: forEditing.Short_description,
+                  focused: true,
+                })}
               />
               {errors.Short_description && (
                 <Typography component={"p"} color={"red"}>
@@ -216,6 +216,10 @@ function VideoModal({
                 fullWidth
                 color="secondary"
                 {...register("Long_description", { required: true })}
+                {...(forEditing && {
+                  defaultValue: forEditing.Long_description,
+                  focused: true,
+                })}
               />
               {errors.Long_description && (
                 <Typography component={"p"} color={"red"}>
@@ -231,6 +235,7 @@ function VideoModal({
                 fullWidth
                 defaultValue={"https://www.youtube.com/embed/"}
                 {...register("url", { required: true })}
+                {...(forEditing && { defaultValue: forEditing.url })}
               />
               {errors.url && (
                 <Typography component={"p"} color={"red"}>
@@ -245,6 +250,7 @@ function VideoModal({
                 type="text"
                 fullWidth
                 {...register("thumbnail", { required: true })}
+                {...(forEditing && { defaultValue: forEditing.thumbnail })}
               />
               {errors.title && (
                 <Typography component={"p"} color={"red"}>
@@ -255,12 +261,17 @@ function VideoModal({
             <Box
               height={"50px"}
               display={"flex"}
-              // border={"1px solid red"}
               alignItems={"center"}
               justifyContent={"space-between"}
             >
               <FormControlLabel
-                control={<Checkbox {...register("isPaid")} color="secondary" />}
+                control={
+                  <Checkbox
+                    {...register("isPaid")}
+                    defaultChecked={forEditing?.isPaid}
+                    color="secondary"
+                  />
+                }
                 label="Paid"
               />
               <FormControlLabel
@@ -269,6 +280,7 @@ function VideoModal({
                     {...register("isSolution")}
                     sx={{ ml: "30px" }}
                     color="secondary"
+                    defaultChecked={forEditing?.isSolution}
                   />
                 }
                 label="Solution"
@@ -287,10 +299,31 @@ function VideoModal({
                   label="Category"
                   color="secondary"
                   {...register("category")}
+                  {...(forEditing && { defaultValue: forEditing.category })}
                 >
                   <MenuItem value={"Beginner"}>Beginner</MenuItem>
                   <MenuItem value={"Intermediate"}>Intermediate</MenuItem>
                   <MenuItem value={"Advance"}>Advance</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel
+                  id="demo-simple-select-autowidth-label"
+                  color="secondary"
+                >
+                  Type
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-autowidth-label"
+                  id="demo-simple-select-autowidth"
+                  autoWidth
+                  label="Type"
+                  color="secondary"
+                  {...register("type")}
+                  {...(forEditing && { defaultValue: forEditing.type })}
+                >
+                  <MenuItem value={"Yoga"}>Yoga</MenuItem>
+                  <MenuItem value={"Meditation"}>Meditation</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -311,7 +344,7 @@ function VideoModal({
                   },
                 }}
                 type="submit"
-                loading={isLoading}
+                loading={isLoading || updating}
               >
                 Save
               </LoadingButton>

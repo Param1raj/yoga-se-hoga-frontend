@@ -10,11 +10,12 @@ const VideoRoute = `${HostAndPort}/video`;
 
 export const Create_Video = `${VideoRoute}/add`;
 export const All_Video = `${VideoRoute}/videos`;
-export const All_Free_Videos = `${VideoRoute}/free`;
+export const Videos = `${VideoRoute}/type`;
 export const Base_Single_Video = `${VideoRoute}`;
 export const first_Video = `${VideoRoute}/course/first`;
 export const Get_Next_Video = `${VideoRoute}/content`;
 export const Delete_Video = VideoRoute;
+export const Update_Video = VideoRoute
 
 const UserRoute = `${HostAndPort}/user`;
 

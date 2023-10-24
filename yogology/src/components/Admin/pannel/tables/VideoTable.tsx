@@ -34,6 +34,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getVideos } from "@/Utils/query/getVideos";
 import imageUrl from "../../../../assets/images/errors.webp";
 import { deleteVideo } from "@/Utils/mutation/deleteVideo";
+import VideoModal from "../Modals/VideoModal";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#5F2C70",
@@ -55,6 +56,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 export type Video = {
   _id: string;
+  type: string;
   thumbnail: string;
   title: string;
   category: string;
@@ -65,13 +67,14 @@ export type Video = {
     _id: string;
     name: string;
   };
-  Short_Description: string;
-  Long_Description: string;
+  Short_description: string;
+  Long_description: string;
 };
 
 let rows: Video[] = [];
 
 function VideosTable() {
+  const [edit, setEdit] = React.useState<Video | null>(null);
   const queryClient = useQueryClient();
   const [open, setOpen] = React.useState(false);
   const [encorElm, setEncorElm] = React.useState<null | HTMLButtonElement>(
@@ -113,6 +116,9 @@ function VideosTable() {
     },
   });
 
+  const handleClose = () => {
+    setEdit(null);
+  };
   if (isError) {
     return (
       <TableContainer
@@ -151,6 +157,7 @@ function VideosTable() {
               <StyledTableCell align="left">Category</StyledTableCell>
               <StyledTableCell align="center">Is Soluton</StyledTableCell>
               <StyledTableCell align="center">Is Paid</StyledTableCell>
+              <StyledTableCell align="center">Type</StyledTableCell>
               <StyledTableCell align="center">Video Url</StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
             </TableRow>
@@ -177,6 +184,9 @@ function VideosTable() {
               </StyledTableCell>
               <StyledTableCell align="center">
                 <Skeleton variant="circular" width={50} height={50} />
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <Skeleton variant="rectangular" />
               </StyledTableCell>
               <StyledTableCell align="center">
                 <Skeleton variant="rectangular" />
@@ -222,6 +232,9 @@ function VideosTable() {
 
   return (
     <TableContainer component={Paper}>
+      {edit && (
+        <VideoModal onClose={handleClose} open={!!edit} forEditing={edit} />
+      )}
       {deleteError && (
         <Snackbar
           open={alert}
@@ -270,6 +283,7 @@ function VideosTable() {
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Is Soluton</StyledTableCell>
             <StyledTableCell align="center">Is Paid</StyledTableCell>
+            <StyledTableCell align="center">Type</StyledTableCell>
             <StyledTableCell align="center">Video Url</StyledTableCell>
             <StyledTableCell align="right">
               <AddIcon />
@@ -313,6 +327,7 @@ function VideosTable() {
                   <CancelIcon sx={{ color: "red" }} />
                 )}
               </StyledTableCell>
+              <StyledTableCell align="center">{row?.type}</StyledTableCell>
               <StyledTableCell align="center">{row?.url}</StyledTableCell>
               <StyledTableCell align="right">
                 <IconButton
@@ -336,6 +351,8 @@ function VideosTable() {
                 >
                   <MenuItem
                     onClick={() => {
+                      const row = sltRow;
+                      if (row) setEdit(row);
                       setOpen(false);
                     }}
                   >

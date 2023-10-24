@@ -31,6 +31,7 @@ function SubscriptionModal({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        background: "none",
       }}
     >
       <Box
@@ -47,6 +48,7 @@ function SubscriptionModal({
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           // border: "1px solid red",
+          // borderRadius: "45%",
         }}
       >
         <Box
@@ -59,7 +61,7 @@ function SubscriptionModal({
           flexDirection={"column"}
         >
           <Typography
-            color={"#5aaa"}
+            color={"#322038"}
             fontWeight={"700"}
             // textAlign={"center"}
             fontFamily={["Nunito", "sans-serif"]}

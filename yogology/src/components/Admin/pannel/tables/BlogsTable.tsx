@@ -20,7 +20,6 @@ import {
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-// import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
@@ -28,14 +27,10 @@ import Blog from "@/components/Blogs/Blog";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import imageUrl from "../../../../assets/images/errors.webp";
-import {
-  QueryClient,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getBlogs } from "@/Utils/query/getBlogs";
 import { deleteBlog } from "@/Utils/mutation/deleteBlog";
+import ModalComp from "../Modals/BlogsModal";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#5F2C70",
@@ -59,6 +54,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 let rows: Blog[] = [];
 const PageSize = 10;
 function BlogTable() {
+  const [edit, setEdit] = React.useState<Blog | null>(null);
   const queryClient = useQueryClient();
   const [open, setOpen] = React.useState(false);
   const [encorElm, setEncorElm] = React.useState<null | HTMLButtonElement>(
@@ -99,6 +95,10 @@ function BlogTable() {
       queryClient.invalidateQueries({ queryKey: ["blogs", page] });
     },
   });
+
+  const handleClose = () => {
+    setEdit(null);
+  };
 
   if (isError) {
     return (
@@ -196,10 +196,9 @@ function BlogTable() {
     count = data.data.data.count;
   }
 
-  // React.useEffect(() => {}, [isSuccess]);
-
   return (
     <TableContainer component={Paper}>
+      {edit && <ModalComp open={!!edit} onClose={handleClose} forEdit={edit}/>}
       {deleteError && (
         <Snackbar
           open={alert}
@@ -317,6 +316,8 @@ function BlogTable() {
                 >
                   <MenuItem
                     onClick={() => {
+                      const row = sltRow;
+                      if (row) setEdit(row);
                       setOpen(false);
                     }}
                   >

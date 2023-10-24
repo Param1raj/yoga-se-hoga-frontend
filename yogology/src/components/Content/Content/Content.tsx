@@ -9,9 +9,10 @@ import {
 } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getSolutionVideos } from "@/Utils/query/getSolutionVideos";
-import { getNotPaidYogaVideos } from "@/Utils/query/getNotPaidYogaVideos";
+import { getYogaVideos } from "@/Utils/query/getYogaVideos";
 import LoginProtects from "@/app/RouteProtects/LoginProtects";
 import SubscriptionModal from "./modal/SubscriptionModal";
+import { getMeditationVideos } from "@/Utils/query/getMeditationVideos";
 // import SubscriptionModal from "./modal/SubscriptionModal";
 type Video = {
   _id: string;
@@ -55,7 +56,9 @@ function Content() {
     queryKey: ["videos", page, contentType],
     queryFn: () => {
       return contentType === "yoga"
-        ? getNotPaidYogaVideos(page)
+        ? getYogaVideos(page)
+        : contentType === "meditation"
+        ? getMeditationVideos(page)
         : getSolutionVideos(page);
     },
   });
@@ -100,10 +103,10 @@ function Content() {
             color={"#5F2C70"}
           >
             {contentType === "yoga"
-              ? "Yoga & Meditations For Better Life Style"
-              : contentType
+              ? "Yoga For Better Life Style"
+              : contentType === "solutions"
               ? "Find your solutions to daily life problems"
-              : "Yoga & Meditations For Better Life Style"}
+              : "Meditations For Better Life Style"}
           </Typography>
         </Box>
         {isLoading && <Typography>Loading...</Typography>}

@@ -1,1 +1,50 @@
-/*  */
+@media all and (min-width:540px) and (max-width:599px) {
+    .main{
+        height: 122rem;
+    }
+    
+}
+@media all and (min-width:500px) and (max-width:539px) {
+    .main{
+        height: 114rem;
+    }
+
+}
+@media all and (min-width:464px) and (max-width:499px) {
+    .main{
+        height: 110rem;
+    }
+  
+}
+@media all and (min-width:430px) and (max-width:463px) {
+    .main{
+        height: 105rem;
+    }
+}
+@media all and (min-width:400px) and (max-width:429px) {
+    .main{
+        height: 100rem;
+    }
+ 
+}
+
+@media all and (min-width:370px) and (max-width:399px) {
+    .main{
+        height: 95rem;
+    }
+ 
+}
+@media all and (min-width:350px) and (max-width:369px) {
+    .main{
+        height: 92rem;
+        margin-top: 10px;
+    }
+ 
+}
+@media all and (min-width:310px) and (max-width:349px) {
+    .main{
+        height: 92rem;
+        margin-top: 10px;
+    }
+ 
+}

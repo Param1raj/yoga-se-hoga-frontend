@@ -20,9 +20,10 @@ const PageSize = 4;
 type Blog = {
   _id: string;
   heading: string;
-  introduction: string;
+  introduction: string[];
   createdAt: string;
   imageUrl: string;
+  blogContent: [{ heading: string; paragraphs: string[] }];
 };
 let data: Blog[] = [];
 function Blog() {
@@ -56,13 +57,31 @@ function Blog() {
 
   if (isError) {
     return (
-      <BlogCard
-        title="The difference between mindful practice and meditation"
-        description="Q Proin faucibus nec mauris a sodales, sed elementum mi tincidunt.
+      <Box
+        width={{ xs: "97%", sm: "95%", md: "95%", lg: "90%", xl: "70%" }}
+        height={"100%"}
+        overflow={"scroll"}
+        sx={{
+          scrollBehavior: "smooth",
+          "&::-webkit-scrollbar": {
+            width: "1px",
+          },
+        }}
+      >
+        <Box
+          // key={data}
+          marginBottom={{ xs: "160px", md: "50px" }}
+          sx={{ cursor: "pointer" }}
+        >
+          <BlogCard
+            title="The difference between mindful practice and meditation"
+            description="Q Proin faucibus nec mauris a sodales, sed elementum mi tincidunt.
         Sed eget viverra egestas nisi in consequat. Fusce sodales augue a
         accumsan. Cras sollicitudin, ipsum eget blandit pulvinar. Integer…"
-        date={new Date().toUTCString()}
-      />
+            date={new Date().toUTCString()}
+          />
+        </Box>
+      </Box>
     );
   }
 
@@ -141,14 +160,14 @@ function Blog() {
             {index % 2 == 0 ? (
               <BlogCardReverse
                 title={data.heading}
-                description={data.introduction}
+                description={data.introduction[0]}
                 date={data.createdAt}
                 image={data.imageUrl}
               />
             ) : (
               <BlogCard
                 title={data.heading}
-                description={data.introduction}
+                description={data.introduction[0]}
                 date={data.createdAt}
                 image={data.imageUrl}
               />

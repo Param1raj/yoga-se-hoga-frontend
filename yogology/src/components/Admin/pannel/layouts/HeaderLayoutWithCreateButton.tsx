@@ -7,7 +7,7 @@ import {
   //   InputAdornment,
   TextField,
 } from "@mui/material";
-  import AddIcon from "@mui/icons-material/Add";
+import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import ModalComp from "../Modals/BlogsModal";
 import UsersModal from "../Modals/UsersModal";
@@ -45,7 +45,7 @@ function HeaderLayoutWithCreateButton({ type }: { type: string }) {
       )}
       {type === "video" && openModal && (
         <VideoModal
-          type={type}
+          // type={type}
           onClose={() => setOpenModal(false)}
           open={openModal}
         />

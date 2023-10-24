@@ -6,12 +6,13 @@ import { User_Login } from "../../../apis";
 
 export type UserInput = {
   email: string;
-  password: string;
+  password?: string;
+  uid?: string;
 };
 
-export const userLogin = async (data: UserInput) => {
+export const userLogin = async (data: UserInput, type: string) => {
   return await axios.post(
-    User_Login,
+    User_Login + `/${type}`,
     { ...data },
     {
       headers: {

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
+  Button,
   IconButton,
   InputAdornment,
   Stack,
@@ -15,6 +16,14 @@ import { UserInput, userLogin } from "@/Utils/mutation/userLogin";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Cookies from "js-cookie";
+import { envs } from "@/Utils/config/envs";
+import { useRouter } from "next/navigation";
+import googleAuthentication from "../googleAuth";
+import { AuthenticationType } from "@/components/types";
+import GoogleIcon from "@mui/icons-material/Google";
+import GoogleButton from "./GoogleButton";
+// TODO: Replace the following with your app's Firebase project configuration
+
 function LoginInput({
   setOpenError,
   setOpenSuccess,
@@ -24,12 +33,19 @@ function LoginInput({
   setOpenSuccess: (val: boolean) => void;
   setMessage: (val: string) => void;
 }) {
+  const { push } = useRouter();
+  const [type, setType] = useState<AuthenticationType>(
+    AuthenticationType.gernal
+  );
   const [visible, setVisible] = useState(false);
+  const [uid, setUid] = useState<string | undefined>();
   const {
     register,
     formState: { errors },
     reset,
     handleSubmit,
+    setValue,
+    getValues,
   } = useForm();
 
   const handleChange = () => {
@@ -44,28 +60,14 @@ function LoginInput({
     // isPaused,
   } = useMutation({
     mutationFn: async (data: UserInput) => {
-      return userLogin(data);
+      return userLogin(data, type);
     },
     mutationKey: ["login"],
   });
 
   const Submit = async (data: any) => {
     try {
-      await mutateAsync(data);
-      if (isError) {
-        throw new Error("Failed to login");
-      }
-      if (isSuccess) {
-        console.log("######Data######", LoginData);
-        let date = new Date();
-        date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
-        Cookies.set("a_t_t", LoginData.data.data.token, {
-          expires: date,
-        });
-        setOpenSuccess(true);
-        setMessage("Login Successful");
-        reset();
-      }
+      await mutateAsync({ ...data });
     } catch (error) {
       setOpenError(true);
       setMessage("Login Failed");
@@ -73,6 +75,26 @@ function LoginInput({
     }
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      console.log("######Data######", LoginData);
+      let date = new Date();
+      date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+      Cookies.set(envs.USER_COOKIE_KEY, LoginData.data.data.token, {
+        expires: date,
+      });
+      setOpenSuccess(true);
+      setMessage("Login Successful");
+      reset();
+      push("/content");
+    }
+  }, [isSuccess]);
+
+  const handleGoogleLogin = async (email: string, uid: string) => {
+    try {
+      await mutateAsync({ email, uid });
+    } catch (error) {}
+  };
   return (
     <Stack spacing={5} component={"form"} onSubmit={handleSubmit(Submit)}>
       {/* <Stack> */}
@@ -109,7 +131,9 @@ function LoginInput({
           type={!visible ? "password" : "text"}
           variant="outlined"
           color="secondary"
-          {...register("password", { required: true })}
+          {...register("password", {
+            required: type === AuthenticationType.google ? false : true,
+          })}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -147,6 +171,19 @@ function LoginInput({
         >
           Login
         </LoadingButton>
+        <Button
+          onClick={async () => {
+            setType(AuthenticationType.google);
+            let user = await googleAuthentication();
+            if (user) {
+              const { email, uid } = user;
+              await handleGoogleLogin(email || "", uid);
+            }
+          }}
+          // type="submit"
+        >
+          <GoogleButton />
+        </Button>
       </motion.div>
     </Stack>
   );

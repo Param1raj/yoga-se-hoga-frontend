@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Stack, TextField, Typography } from "@mui/material";
+import { Button, Stack, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { UserSignupInput, userSignup } from "@/Utils/mutation/signupUser";
+import googleAuthentication from "../googleAuth";
+import { AuthenticationType } from "@/components/types";
+import GoogleButton from "./GoogleButton";
 
 function SignupInput({
   setOpenError,
@@ -15,6 +18,13 @@ function SignupInput({
   setOpenSuccess: (val: boolean) => void;
   setMessage: (val: string) => void;
 }) {
+  const [type, setType] = useState<AuthenticationType>(
+    AuthenticationType.gernal
+  );
+  const [uid, setUid] = useState<string | undefined>();
+  const handleUid = (value: string) => {
+    setUid(value);
+  };
   const {
     register,
     reset,
@@ -22,36 +32,57 @@ function SignupInput({
     formState: {
       errors: { name, email, password, phone },
     },
+    setValue,
+    getValues,
   } = useForm();
+  const handleValue = (name: string, value: string) => {
+    setValue(name, value);
+  };
   const {
     isLoading,
     isError,
     mutateAsync,
     isSuccess,
     data: signupData,
+    error,
   } = useMutation({
     mutationFn: async (data: UserSignupInput) => {
-      return await userSignup(data);
+      return await userSignup(data, type);
     },
     mutationKey: ["signup"],
   });
   const Submit = async (data: any) => {
     try {
-      await mutateAsync(data);
-      if (isError) throw new Error("failed!");
-      if (isSuccess) {
-        console.log(
-          "###################data Signup###################",
-          signupData
-        );
-        setOpenSuccess(true);
-        setMessage("Successfully registered!");
-        reset();
-      }
+      await mutateAsync({ ...data });
     } catch (error) {
       setOpenError(true);
-      setMessage("Failed to register your account!");
+      setMessage(error as string);
       reset();
+    }
+  };
+
+  useEffect(() => {
+    if (isError) {
+      setOpenError(true);
+      setMessage("User already exits or invalide input");
+      reset();
+    }
+    if (isSuccess) {
+      setOpenSuccess(true);
+      setMessage("Successfully registered!");
+      reset();
+    }
+  }, [isSuccess, isError]);
+
+  const handleGoogleSignup = async (
+    name: string,
+    email: string,
+    uid: string
+  ) => {
+    try {
+      await mutateAsync({ name, email, uid });
+    } catch (error) {
+      console.log(error, "error");
     }
   };
 
@@ -71,7 +102,7 @@ function SignupInput({
         />{" "}
         {name && (
           <Typography component={"p"} color={"red"}>
-            * Email is required field.
+            * Name is required field.
           </Typography>
         )}
       </motion.div>
@@ -103,11 +134,13 @@ function SignupInput({
           type="password"
           variant="outlined"
           color="secondary"
-          {...register("password", { required: true })}
+          {...register("password", {
+            required: type === AuthenticationType.google ? false : true,
+          })}
         />
         {password && (
           <Typography component={"p"} color={"red"}>
-            * Email is required field.
+            * Password is required field.
           </Typography>
         )}
       </motion.div>
@@ -121,11 +154,11 @@ function SignupInput({
           variant="outlined"
           type="text"
           color="secondary"
-          {...register("phone", { required: true })}
+          {...register("phone")}
         />
         {phone && (
           <Typography component={"p"} color={"red"}>
-            * Email is required field.
+            * Phone is required field.
           </Typography>
         )}
       </motion.div>
@@ -149,6 +182,19 @@ function SignupInput({
         >
           Signup
         </LoadingButton>
+        <Button
+          onClick={async () => {
+            setType(AuthenticationType.google);
+            let user = await googleAuthentication();
+            if (user) {
+              const { email, displayName, uid } = user;
+              await handleGoogleSignup(displayName || "", email || "", uid);
+            }
+          }}
+          sx={{ width: "fit-content" }}
+        >
+          <GoogleButton />
+        </Button>
       </motion.div>
     </Stack>
   );

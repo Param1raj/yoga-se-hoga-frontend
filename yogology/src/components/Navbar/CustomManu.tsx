@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Me } from "../../../apis";
+import { envs } from "@/Utils/config/envs";
 const settings = ["Dashboard", "Logout"];
 
 // type User = {
@@ -83,9 +84,10 @@ function CustomManu({ children }: { children: ReactNode }) {
             key={setting}
             onClick={() => {
               if (setting === "Logout") {
-                Cookies.remove("a_t_t");
-                refresh();
+                Cookies.remove(envs.USER_COOKIE_KEY);
+                Cookies.remove(envs.ADMIN_COOKIE_KEY);
                 push("/", {});
+                refresh();
               } else if (setting === "Dashboard") {
                 push("/content");
               }

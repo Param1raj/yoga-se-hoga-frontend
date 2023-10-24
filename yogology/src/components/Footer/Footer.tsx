@@ -59,23 +59,22 @@ function Footer() {
               sm: "20% 35% 15% 30%",
               md: "repeat(4,1fr)",
             }}
-            // spacing={2}
-            padding={{ md: "20px" }}
-            // container
+            padding={{ xs: "10px", md: "20px" }}
             zIndex={10}
             sx={{ backgroundColor: { xs: "none", md: "#1D0427" } }}
           >
             <Grid
               paddingX={{ sm: "20px" }}
               paddingY={{ sm: "0px" }}
-              height={{ xs: "50%", sm: "100%" }}
+              height={{ xs: "85%", sm: "100%" }}
               color={"white"}
             >
               <Box
                 width={{ xs: "50%", sm: "100%", md: "40%" }}
-                height={{ xs: "50%", md: "25%" }}
+                height={{ xs: "100%", md: "25%" }}
                 position={"relative"}
                 paddingX={{ xs: "20px", sm: "20px" }}
+                // border={"1px solid red"}
                 sx={{
                   background: `url('${logo.src}')`,
                   backgroundRepeat: "no-repeat",
