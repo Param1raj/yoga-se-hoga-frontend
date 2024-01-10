@@ -4,11 +4,11 @@ import temple from "./images/temple3.avif";
 import { motion } from "framer-motion";
 // import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
-import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getFirstVideoByCategory } from "@/Utils/query/getFirstVideo";
 import HistoryIcon from "@mui/icons-material/History";
 import { textFadeVariant } from "@/Utils/animations/variants/textVariant";
+import { useRouter } from "next13-progressbar";
 export enum Title {
   course = "Course",
   yoga = "Yoga",

@@ -7,9 +7,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import meditation from "../images/meditation.avif";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { useRouter } from "next/navigation";
 import LockIcon from "@mui/icons-material/Lock";
 import SubscriptionModal from "./modal/SubscriptionModal";
+import { useRouter } from "next13-progressbar";
 export default function MediaCard({
   title,
   uuid,

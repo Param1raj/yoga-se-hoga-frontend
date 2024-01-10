@@ -3,7 +3,7 @@ import { Box, Button, Grid, Skeleton, Stack, Typography } from "@mui/material";
 import ButtonComp from "../ButtonComp";
 
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next13-progressbar";
 function VideoWithDetails({
   title,
   ShortDescription,

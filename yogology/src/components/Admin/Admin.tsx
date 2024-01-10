@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import { Admin_Login_Api } from "../../../apis";
 import { AuthContext } from "@/app/AuthProvider";
 import CustomSnackbar from "../Snackbar";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next13-progressbar";
 function Admin() {
   const [visible, setVisible] = useState(false);
   let { setAuth, auth } = useContext(AuthContext);

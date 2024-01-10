@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Box, Pagination, Typography } from "@mui/material";
 import MediaCard from "./YogaCrad";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getSolutionVideos } from "@/Utils/query/getSolutionVideos";
 import { getYogaVideos } from "@/Utils/query/getYogaVideos";
 import LoginProtects from "@/app/RouteProtects/LoginProtects";
 import SubscriptionModal from "./modal/SubscriptionModal";
 import { getMeditationVideos } from "@/Utils/query/getMeditationVideos";
+import { useRouter } from "next13-progressbar";
 // import SubscriptionModal from "./modal/SubscriptionModal";
 type Video = {
   _id: string;

@@ -3,14 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Grid, Stack, Typography } from "@mui/material";
 // import ButtonComp from "@/components/ButtonComp";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
-// import { AuthContext } from "@/app/AuthProvider";
-// import { Login_Api, Signup_Api } from "../../../apis";
 import CustomSnackbar from "../Snackbar";
 import Image from "./Image";
 import LoginInput from "./Inputs/LoginInput";
 import SignupInput from "./Inputs/SignupInput";
 import Heading from "./Heading";
+import { useRouter } from "next13-progressbar";
 function LoginSgnup({
   isForLogin,
   image,

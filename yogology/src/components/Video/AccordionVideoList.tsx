@@ -11,11 +11,11 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { Video } from "../Admin/pannel/tables/VideoTable";
 import { getVideosByCategory } from "@/Utils/query/getVideosByCategory";
 import { getFirstVideoByCategory } from "@/Utils/query/getFirstVideo";
+import { useRouter } from "next13-progressbar";
 
 function AccordionVideoList({
   title,

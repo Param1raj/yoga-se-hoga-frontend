@@ -2,7 +2,7 @@
 import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next13-progressbar";
 
 type cardprops = {
   image: any;

@@ -135,7 +135,7 @@ function YogaQuetes() {
                           fontFamily={["Kumbh Sans", "sans-serif"]}
                           fontWeight={700}
                           sx={{
-                            textDecoration: { xs: "none", sm: "underline" },
+                            textDecoration: { xs: "none", sm: "none" },
                             borderWidth: "5px",
                           }}
                           fontSize={{

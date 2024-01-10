@@ -1,6 +1,6 @@
 import PageHeader from "@/components/PageHeader/Header";
 import styles from "../page.module.css";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Blog from "@/components/Blogs/Blog";
 
 export const metadata = {

@@ -24,13 +24,14 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 import Blog from "@/components/Blogs/Blog";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import imageUrl from "../../../../assets/images/errors.webp";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getBlogs } from "@/Utils/query/getBlogs";
 import { deleteBlog } from "@/Utils/mutation/deleteBlog";
 import ModalComp from "../Modals/BlogsModal";
+import { useRouter } from "next13-progressbar";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#5F2C70",
@@ -198,7 +199,7 @@ function BlogTable() {
 
   return (
     <TableContainer component={Paper}>
-      {edit && <ModalComp open={!!edit} onClose={handleClose} forEdit={edit}/>}
+      {edit && <ModalComp open={!!edit} onClose={handleClose} forEdit={edit} />}
       {deleteError && (
         <Snackbar
           open={alert}

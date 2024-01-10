@@ -16,11 +16,12 @@ import React, {
   useState,
 } from "react";
 import IconButton from "@mui/material/IconButton";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Me } from "../../../apis";
 import { envs } from "@/Utils/config/envs";
+import { useRouter } from "next13-progressbar";
 const settings = ["Dashboard", "Logout"];
 
 // type User = {

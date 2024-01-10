@@ -1,6 +1,7 @@
 "use client";
 import { AuthContext } from "@/app/AuthProvider";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next13-progressbar";
 import React, { ReactNode, useContext } from "react";
 
 function AdminLoginProtect({

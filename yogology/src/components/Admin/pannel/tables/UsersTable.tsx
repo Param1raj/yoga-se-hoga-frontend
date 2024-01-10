@@ -24,12 +24,13 @@ import ThreePIcon from "@mui/icons-material/ThreeP";
 import AddIcon from "@mui/icons-material/Add";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUsers } from "@/Utils/query/getUsers";
 import Image from "next/image";
 import imageUrl from "../../../../assets/images/errors.webp";
 import { deleteUser } from "@/Utils/mutation/deletUser";
+import { useRouter } from "next13-progressbar";
 // import { useRouter } from "next/router";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

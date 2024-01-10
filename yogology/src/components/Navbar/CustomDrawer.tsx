@@ -7,7 +7,7 @@ import { Box, Drawer, Stack, Typography } from "@mui/material";
 import ButtonComp from "../ButtonComp";
 import { AuthContext } from "@/app/AuthProvider";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next13-progressbar";
 const NavRoutes = [
   {
     name: "Home",

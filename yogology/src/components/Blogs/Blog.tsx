@@ -10,9 +10,10 @@ import {
 // import { HoverScaleImage, ToLeftTextAnimation } from "./utils";
 import BlogCardReverse from "@/components/Blogs/BlogCardReverse";
 import BlogCard from "@/components/Blogs/BlogCard";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogs } from "@/Utils/query/getBlogs";
+import { useRouter } from "next13-progressbar";
 
 const demoArray = [1, 2, 3, 4];
 const PageSize = 4;

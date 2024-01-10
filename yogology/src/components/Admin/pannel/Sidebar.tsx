@@ -24,8 +24,9 @@ import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import BookIcon from "@mui/icons-material/Book";
 import PaidIcon from "@mui/icons-material/Paid";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { CircularProgress } from "@mui/material";
+import { useRouter } from "next13-progressbar";
 
 const DASHBOARD_URL = "https://dashboard.razorpay.com/app/dashboard";
 

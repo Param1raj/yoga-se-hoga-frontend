@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import { Button, Typography, formLabelClasses } from "@mui/material";
 import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next13-progressbar";
+
 function ButtonComp({
   text,
   width,

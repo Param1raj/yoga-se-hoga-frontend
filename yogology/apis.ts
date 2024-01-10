@@ -1,4 +1,4 @@
-const HostAndPort = "http://localhost:8000";
+const HostAndPort = "https://yoga-backend-service.onrender.com";
 
 export const Login_Api = `${HostAndPort}/user/login`;
 export const Signup_Api = `${HostAndPort}/user/signup`;
@@ -15,7 +15,7 @@ export const Base_Single_Video = `${VideoRoute}`;
 export const first_Video = `${VideoRoute}/course/first`;
 export const Get_Next_Video = `${VideoRoute}/content`;
 export const Delete_Video = VideoRoute;
-export const Update_Video = VideoRoute
+export const Update_Video = VideoRoute;
 
 const UserRoute = `${HostAndPort}/user`;
 
