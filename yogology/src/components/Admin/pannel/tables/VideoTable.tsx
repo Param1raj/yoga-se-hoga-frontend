@@ -29,11 +29,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
 // import { All_Video } from "../../../../../apis.";
-import { AuthContext } from "@/app/AuthProvider";
+import { AuthContext } from "@/src/app/AuthProvider";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getVideos } from "@/Utils/query/getVideos";
-import imageUrl from "../../../../assets/images/errors.webp";
-import { deleteVideo } from "@/Utils/mutation/deleteVideo";
+import { getVideos } from "@/src/Utils/query/getVideos";
+import imageUrl from "../@/assets//images/errors.webp";
+import { deleteVideo } from "@/src/Utils/mutation/deleteVideo";
 import VideoModal from "../Modals/VideoModal";
 import { useRouter } from "next13-progressbar";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

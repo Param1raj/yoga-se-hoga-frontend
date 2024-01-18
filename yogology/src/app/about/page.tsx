@@ -1,4 +1,4 @@
-import About from "@/components/About/About";
+import About from "@/src/components/About/About";
 export const metadata = {
   title: "Yogaratha - About",
   description: "Find more about us!",

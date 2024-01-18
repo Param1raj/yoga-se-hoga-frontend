@@ -2,11 +2,11 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import styles from "./Video.module.css";
-import VideoWithDetails from "@/components/Video/VideoWithDetails";
+import VideoWithDetails from "@/src/components/Video/VideoWithDetails";
 import { useQuery } from "@tanstack/react-query";
-import { getNextVideo } from "@/Utils/query/getNextVideo";
+import { getNextVideo } from "@/src/Utils/query/getNextVideo";
 import { usePathname } from "next/navigation";
-import { getSingleVideo } from "@/Utils/query/getSingleVideo";
+import { getSingleVideo } from "@/src/Utils/query/getSingleVideo";
 
 function Video() {
   // one api call for getPreviousVideos.

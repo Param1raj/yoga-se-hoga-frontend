@@ -1,4 +1,4 @@
-import Users from "@/components/Admin/pannel/users/users";
+import Users from "@/src/components/Admin/pannel/users/users";
 import React from "react";
 
 export const metadata = {

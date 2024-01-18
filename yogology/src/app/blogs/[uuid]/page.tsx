@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import style from "../../page.module.css";
 import { Box, Stack, Typography } from "@mui/material";
-import PageHeader from "@/components/PageHeader/Header";
-import BackgrooundImage from "../../../assets/images/BlogImage.jpeg";
+import PageHeader from "@/src/components/PageHeader/Header";
+import BackgrooundImage from "@/assets//images/BlogImage.jpeg";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
-import { getBlog } from "@/Utils/query/getBlog";
+import { getBlog } from "@/src/Utils/query/getBlog";
 
 type Content = {
   heading: string;

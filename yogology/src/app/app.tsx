@@ -1,10 +1,10 @@
 "use client";
 import React, { ReactNode } from "react";
-import ResponsiveAppBar from "@/components/Navbar/Header";
-import Footer from "@/components/Footer/Footer";
+import ResponsiveAppBar from "@/src/components/Navbar/Header";
+import Footer from "@/src/components/Footer/Footer";
 import { usePathname } from "next/navigation";
-import Sidebar from "@/components/Admin/pannel/Sidebar";
-import AdminLoginProtect from "@/app/RouteProtects/AdminLoginProtect";
+import Sidebar from "@/src/components/Admin/pannel/Sidebar";
+import AdminLoginProtect from "@/src/app/RouteProtects/AdminLoginProtect";
 import { Box } from "@mui/material";
 
 const AdminPath = "/admin/pannel";

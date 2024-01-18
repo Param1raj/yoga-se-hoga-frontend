@@ -3,7 +3,7 @@ import React from "react";
 import { AppBar, Box, Toolbar } from "@mui/material";
 
 import Image from "next/image";
-import logo from "../../assets/images/GitaWebLogo.png";
+import logo from "@/assets/images/GitaWebLogo.png";
 import ButtonComp from "../ButtonComp";
 import CustomDrawer from "./CustomDrawer";
 import CustomManu from "./CustomManu";

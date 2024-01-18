@@ -7,7 +7,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import animation from "../../../../assets/images/animated_yoga.gif";
+import animation from "@/assets//images/animated_yoga.gif";
 import { useRouter } from "next13-progressbar";
 function SubscriptionModal({
   open,

@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import blogImage from "../../assets/images/BlogImage.jpeg";
+import blogImage from "@/assets/images/BlogImage.jpeg";
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 export function HoverScaleImage({ image }: { image?: string }) {
   return (

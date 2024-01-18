@@ -7,9 +7,9 @@ import VideoWithDetails from "./VideoWithDetails";
 import CustomDrawer from "./CustomDrawer";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { getSingleVideo } from "@/Utils/query/getSingleVideo";
-import LoginProtects from "@/app/RouteProtects/LoginProtects";
-import { getFirstVideoByCategory } from "@/Utils/query/getFirstVideo";
+import { getSingleVideo } from "@/src/Utils/query/getSingleVideo";
+import LoginProtects from "@/src/app/RouteProtects/LoginProtects";
+import { getFirstVideoByCategory } from "@/src/Utils/query/getFirstVideo";
 
 function Video() {
   const [id, setId] = useState<string>("");

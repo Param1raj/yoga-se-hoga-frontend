@@ -13,8 +13,8 @@ import SendIcon from "@mui/icons-material/Send";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { motion } from "framer-motion";
-import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
-import { textUpVariant } from "@/Utils/animations/variants/textVariant";
+import { BoxVariant } from "@/src/Utils/animations/variants/boxVariant";
+import { textUpVariant } from "@/src/Utils/animations/variants/textVariant";
 function EmailSubscrib() {
   return (
     <Box

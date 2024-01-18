@@ -1,5 +1,5 @@
 "use client";
-import { AuthContext } from "@/app/AuthProvider";
+import { AuthContext } from "@/src/app/AuthProvider";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next13-progressbar";
 import React, { ReactNode, useContext } from "react";

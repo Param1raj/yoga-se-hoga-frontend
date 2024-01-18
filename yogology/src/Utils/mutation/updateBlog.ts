@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { BlogRoute } from "../../../apis";
-import Blog from "@/components/Blogs/Blog";
+import Blog from "@/src/components/Blogs/Blog";
 import Cookies from "js-cookie";
 import { envs } from "../config/envs";
 

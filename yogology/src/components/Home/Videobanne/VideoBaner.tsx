@@ -2,7 +2,7 @@
 
 import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
-import VideoBanner from "./images/videoBanner.jpeg";
+import VideoBanner from "@/assets/images/videoBanner.jpeg";
 import { motion } from "framer-motion";
 import PlayButton from "./PlayButton";
 export default function VideoBaner() {

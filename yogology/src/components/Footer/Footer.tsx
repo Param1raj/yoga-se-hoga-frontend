@@ -1,11 +1,11 @@
 "use client";
 import { Box, Container, Grid, Icon, Stack, Typography } from "@mui/material";
 import React from "react";
-import logo from "../../assets/images/FooterLogo.png";
+import logo from "@/assets/images/FooterLogo.png";
 // import CustomIcon from "./icons8-facebook.svg";
-import Facebookicon from "../../assets/Iconsvg/FacebookIcon";
-import Instagramicon from "../../assets/Iconsvg/InstagramIcon";
-import ParticleComp from "@/components/Particle";
+import Facebookicon from "@/assets/Iconsvg/FacebookIcon";
+import Instagramicon from "@/assets/Iconsvg/InstagramIcon";
+import ParticleComp from "@/src/components/Particle";
 function Footer() {
   return (
     <Box

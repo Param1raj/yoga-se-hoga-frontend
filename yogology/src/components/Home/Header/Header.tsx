@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import { Box, Typography } from "@mui/material";
-// import Particle from "@/components/Particle";
+// import Particle from "@/src/components/Particle";
 import style from "./header.module.css";
 import { motion } from "framer-motion";
-import ParticleComp from "@/components/Particle";
+import ParticleComp from "@/src/components/Particle";
 
 function Header() {
   const variant = {

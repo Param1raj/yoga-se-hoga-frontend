@@ -1,7 +1,7 @@
-import PageHeader from "@/components/PageHeader/Header";
+import PageHeader from "@/src/components/PageHeader/Header";
 import styles from "../page.module.css";
 // import { useRouter } from "next/navigation";
-import Blog from "@/components/Blogs/Blog";
+import Blog from "@/src/components/Blogs/Blog";
 
 export const metadata = {
   title: "Yogaratha - Blogs",

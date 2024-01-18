@@ -4,9 +4,9 @@ import { Button, Stack, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { UserSignupInput, userSignup } from "@/Utils/mutation/signupUser";
+import { UserSignupInput, userSignup } from "@/src/Utils/mutation/signupUser";
 import googleAuthentication from "../googleAuth";
-import { AuthenticationType } from "@/components/types";
+import { AuthenticationType } from "@/src/components/types";
 import GoogleButton from "./GoogleButton";
 
 function SignupInput({

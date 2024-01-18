@@ -1,7 +1,7 @@
-// import LoginProtects from "@/Utils/RouteProtects/LoginProtects";
-// import SubscriptionProtect from "@/Utils/RouteProtects/SubscriptionProtect";
+// import LoginProtects from "@/src/Utils/RouteProtects/LoginProtects";
+// import SubscriptionProtect from "@/src/Utils/RouteProtects/SubscriptionProtect";
 import React from "react";
-import Video from "@/components/Video/Video";
+import Video from "@/src/components/Video/Video";
 
 export const metadata = {
   title: "Yogaratha - Video",

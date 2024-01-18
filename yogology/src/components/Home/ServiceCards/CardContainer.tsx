@@ -6,7 +6,7 @@ import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import SpaIcon from "@mui/icons-material/Spa";
 import EmojiFoodBeverageIcon from "@mui/icons-material/EmojiFoodBeverage";
 import { motion } from "framer-motion";
-import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
+import { BoxVariant } from "@/src/Utils/animations/variants/boxVariant";
 const services = [
   {
     title: "Solutions",

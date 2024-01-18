@@ -1,4 +1,4 @@
-import Videos from "@/components/Admin/pannel/videos/videos";
+import Videos from "@/src/components/Admin/pannel/videos/videos";
 import React from "react";
 
 export const metadata = {

@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { Update_Video } from "../../../apis";
-import { Video } from "@/components/Admin/pannel/tables/VideoTable";
+import { Video } from "@/src/components/Admin/pannel/tables/VideoTable";
 import Cookies from "js-cookie";
 import { envs } from "../config/envs";
 

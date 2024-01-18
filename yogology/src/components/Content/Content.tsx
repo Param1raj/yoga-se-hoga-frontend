@@ -2,14 +2,14 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import ContentItems, { Title } from "./ContentItems";
-import course from "./images/course.avif";
-import meditation from "./images/meditation.avif";
-import solutions from "./images/problems.avif";
-import yoga from "./images/yoga.avif";
-import texts from "./images/vedas.avif";
-import LoginProtects from "@/app/RouteProtects/LoginProtects";
+import course from "@/assets/images/course.avif";
+import meditation from "@/assets/images/meditation.avif";
+import solutions from "@/assets/images/problems.avif";
+import yoga from "@/assets/images/yoga.avif";
+import texts from "@/assets/images/vedas.avif";
+import LoginProtects from "@/src/app/RouteProtects/LoginProtects";
 import { motion } from "framer-motion";
-import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
+import { BoxVariant } from "@/src/Utils/animations/variants/boxVariant";
 import Styles from "./content.module.css";
 // import temple1 from "./images/yoga.avif";
 export function Content() {

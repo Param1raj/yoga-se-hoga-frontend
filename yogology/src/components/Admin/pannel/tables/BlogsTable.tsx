@@ -23,13 +23,13 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
-import Blog from "@/components/Blogs/Blog";
+import Blog from "@/src/components/Blogs/Blog";
 import { usePathname, useSearchParams } from "next/navigation";
 
-import imageUrl from "../../../../assets/images/errors.webp";
+import imageUrl from "../@/assets//images/errors.webp";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getBlogs } from "@/Utils/query/getBlogs";
-import { deleteBlog } from "@/Utils/mutation/deleteBlog";
+import { getBlogs } from "@/src/Utils/query/getBlogs";
+import { deleteBlog } from "@/src/Utils/mutation/deleteBlog";
 import ModalComp from "../Modals/BlogsModal";
 import { useRouter } from "next13-progressbar";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

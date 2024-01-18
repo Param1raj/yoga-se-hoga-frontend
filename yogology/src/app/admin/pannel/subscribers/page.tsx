@@ -1,4 +1,4 @@
-import Subscribers from "@/components/Admin/pannel/subscribers/subscribers";
+import Subscribers from "@/src/components/Admin/pannel/subscribers/subscribers";
 import React from "react";
 
 export const metadata = {

@@ -7,8 +7,8 @@ import { LaptopChromebookRounded } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
 import { animation } from "./utils";
 import { motion } from "framer-motion";
-import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
-import { textLeftVariant } from "@/Utils/animations/variants/textVariant";
+import { BoxVariant } from "@/src/Utils/animations/variants/boxVariant";
+import { textLeftVariant } from "@/src/Utils/animations/variants/textVariant";
 
 const FormdataArray = [
   {

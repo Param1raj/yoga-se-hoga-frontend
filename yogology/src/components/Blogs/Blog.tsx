@@ -8,11 +8,11 @@ import {
 // import { motion } from "framer-motion";
 // import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 // import { HoverScaleImage, ToLeftTextAnimation } from "./utils";
-import BlogCardReverse from "@/components/Blogs/BlogCardReverse";
-import BlogCard from "@/components/Blogs/BlogCard";
+import BlogCardReverse from "@/src/components/Blogs/BlogCardReverse";
+import BlogCard from "@/src/components/Blogs/BlogCard";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { getBlogs } from "@/Utils/query/getBlogs";
+import { getBlogs } from "@/src/Utils/query/getBlogs";
 import { useRouter } from "next13-progressbar";
 
 const demoArray = [1, 2, 3, 4];

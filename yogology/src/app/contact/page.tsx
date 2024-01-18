@@ -1,6 +1,6 @@
-import Contactus from "@/components/ContactUs/Contactus";
+import Contactus from "@/src/components/ContactUs/Contactus";
 import styles from "../page.module.css";
-import PageHeader from "@/components/PageHeader/Header";
+import PageHeader from "@/src/components/PageHeader/Header";
 
 export const metadata = {
   title: "Yogaratha - Contact",

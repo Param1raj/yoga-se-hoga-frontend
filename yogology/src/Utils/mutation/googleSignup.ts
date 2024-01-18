@@ -1,6 +1,6 @@
 import axios from "axios";
 import { User_Signup } from "../../../apis";
-import { AuthenticationType } from "@/components/types";
+import { AuthenticationType } from "@/src/components/types";
 
 export type GoogleSignupInput = {
   email: string;

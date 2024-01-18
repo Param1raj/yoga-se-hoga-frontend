@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import meditation from "../images/meditation.avif";
+import meditation from "@/assets/images/meditation.avif";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import LockIcon from "@mui/icons-material/Lock";
 import SubscriptionModal from "./modal/SubscriptionModal";

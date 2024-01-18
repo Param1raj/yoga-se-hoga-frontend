@@ -17,7 +17,7 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
-import ImageUrl from "./images/icons8-check.gif";
+import ImageUrl from "@/assets/images/icons8-check.gif";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",

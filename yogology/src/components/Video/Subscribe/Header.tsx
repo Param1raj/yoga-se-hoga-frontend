@@ -1,6 +1,6 @@
 "use client";
 import { Box, Stack, Typography } from "@mui/material";
-import background from "../../../assets/images/nature.avif";
+import background from "@/assets//images/nature.avif";
 import React from "react";
 
 function Header() {

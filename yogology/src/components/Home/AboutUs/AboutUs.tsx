@@ -1,9 +1,9 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import Images from "./images/AboutUs.jpeg";
+import Images from "@'/assets/images/AboutUs.jpeg";
 import ButtonComp from "../../ButtonComp";
 import { motion } from "framer-motion";
-import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
+import { BoxVariant } from "@/src/Utils/animations/variants/boxVariant";
 function AboutUs() {
   const imageVariant = {
     hidden: {

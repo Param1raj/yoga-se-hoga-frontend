@@ -1,9 +1,9 @@
 import React from "react";
 import style from "./page.module.css";
-import { Content } from "@/components/Content/Content";
+import { Content } from "@/src/components/Content/Content";
 import LoginProtects from "../RouteProtects/LoginProtects";
-// import LoginProtects from "@/Utils/RouteProtects/LoginProtects";
-// import SubscriptionProtect from "@/Utils/RouteProtects/SubscriptionProtect";
+// import LoginProtects from "@/src/Utils/RouteProtects/LoginProtects";
+// import SubscriptionProtect from "@/src/Utils/RouteProtects/SubscriptionProtect";
 export const metadata = {
   title: "Yogaratha - Content",
   description: "Your online yoga institute!",

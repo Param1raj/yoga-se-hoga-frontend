@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Button, Chip, Stack, Typography } from "@mui/material";
-import temple from "./images/temple3.avif";
+import temple from "@/assets/images/temple3.avif";
 import { motion } from "framer-motion";
 // import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import { useQuery } from "@tanstack/react-query";
-import { getFirstVideoByCategory } from "@/Utils/query/getFirstVideo";
+import { getFirstVideoByCategory } from "@/src/Utils/query/getFirstVideo";
 import HistoryIcon from "@mui/icons-material/History";
-import { textFadeVariant } from "@/Utils/animations/variants/textVariant";
+import { textFadeVariant } from "@/src/Utils/animations/variants/textVariant";
 import { useRouter } from "next13-progressbar";
 export enum Title {
   course = "Course",

@@ -3,11 +3,11 @@ import { Box } from "@mui/material";
 import React from "react";
 import GallaryItem from "./GallaryItem";
 import backgroundOne from "../../Home/AboutUs/images/AboutUs.jpeg";
-import backgroundForth from "../../../assets/images/two.jpeg";
-import backgroundThree from "../../../assets/images/third.jpeg";
-import backgroundTwo from "../../../assets/images/two.jpeg";
-import backgroundFifth from "../../../assets/images/fifth.jpeg";
-import backgroundSix from "../../../assets/images/foodImage.jpeg";
+import backgroundForth from "@/assets//images/two.jpeg";
+import backgroundThree from "@/assets//images/third.jpeg";
+import backgroundTwo from "@/assets//images/two.jpeg";
+import backgroundFifth from "@/assets//images/fifth.jpeg";
+import backgroundSix from "@/assets//images/foodImage.jpeg";
 const gallary = [
   { text: "Holidays", gridArea: "one", background: backgroundOne.src },
   { text: "Kundalini yoga", gridArea: "two", background: backgroundTwo.src },

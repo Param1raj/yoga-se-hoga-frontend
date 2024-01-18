@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import ButtonComp from "@/components/ButtonComp";
+import ButtonComp from "@/src/components/ButtonComp";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AlarmOnIcon from "@mui/icons-material/AlarmOn";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
@@ -23,11 +23,11 @@ import TabPanel from "@mui/lab/TabPanel";
 import { TabList } from "@mui/lab";
 
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import HoverImage from "@/components/Home/WhatWeDo/HoverImage";
-import image1 from "../../../../assets/images/loginbackground.jpg";
+import HoverImage from "@/src/components/Home/WhatWeDo/HoverImage";
+import image1 from "../@/assets//images/loginbackground.jpg";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import image2 from "../../../assets/images/side-bend.gif";
-// import image3 from "../../../assets/images/side-bend.gif";
+// import image2 from "@/assets//images/side-bend.gif";
+// import image3 from "@/assets//images/side-bend.gif";
 import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
 import LockIcon from "@mui/icons-material/Lock";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";

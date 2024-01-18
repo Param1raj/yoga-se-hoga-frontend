@@ -15,7 +15,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useForm } from "react-hook-form";
 import { Admin_Login_Api } from "../../../apis";
-import { AuthContext } from "@/app/AuthProvider";
+import { AuthContext } from "@/src/app/AuthProvider";
 import CustomSnackbar from "../Snackbar";
 import { useRouter } from "next13-progressbar";
 function Admin() {

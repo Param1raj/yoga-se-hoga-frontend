@@ -1,15 +1,15 @@
 "use client";
-import Header from "@/components/Home/Header/Header";
+import Header from "@/src/components/Home/Header/Header";
 import styles from "./page.module.css";
 import VideoBaner from "../components/Home/Videobanne/VideoBaner";
-import YogaQuetes from "@/components/Home/YogaQuetes/YogaQuetes";
-import CardContainer from "@/components/Home/ServiceCards/CardContainer";
-import AboutUs from "@/components/Home/AboutUs/AboutUs";
-import WhatWeDo from "@/components/Home/WhatWeDo/WhatWeDo";
-import Careers from "@/components/Home/Careers/Careers";
-import EmailSubscrib from "@/components/Home/EmailSubscrib/EmailSubscrib";
-import ContactUs from "@/components/Home/ContactUs/ContactUs";
-import ParticleComp from "@/components/Particle";
+import YogaQuetes from "@/src/components/Home/YogaQuetes/YogaQuetes";
+import CardContainer from "@/src/components/Home/ServiceCards/CardContainer";
+import AboutUs from "@/src/components/Home/AboutUs/AboutUs";
+import WhatWeDo from "@/src/components/Home/WhatWeDo/WhatWeDo";
+import Careers from "@/src/components/Home/Careers/Careers";
+import EmailSubscrib from "@/src/components/Home/EmailSubscrib/EmailSubscrib";
+import ContactUs from "@/src/components/Home/ContactUs/ContactUs";
+import ParticleComp from "@/src/components/Particle";
 
 export default function Home() {
   return (

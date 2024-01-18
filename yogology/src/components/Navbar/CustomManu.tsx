@@ -1,5 +1,5 @@
 "use client";
-import { AuthContext } from "@/app/AuthProvider";
+import { AuthContext } from "@/src/app/AuthProvider";
 import {
   Avatar,
   Box,
@@ -20,7 +20,7 @@ import IconButton from "@mui/material/IconButton";
 import Cookies from "js-cookie";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Me } from "../../../apis";
-import { envs } from "@/Utils/config/envs";
+import { envs } from "@/src/Utils/config/envs";
 import { useRouter } from "next13-progressbar";
 const settings = ["Dashboard", "Logout"];
 

@@ -6,9 +6,9 @@ import image1 from "./images/Grid-1.jpeg";
 import image2 from "./images/Grid-2.jpeg";
 import image3 from "./images/Grid-3.jpeg";
 import HoverImage from "./HoverImage";
-import ButtonComp from "@/components/ButtonComp";
+import ButtonComp from "@/src/components/ButtonComp";
 import { motion } from "framer-motion";
-import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
+import { BoxVariant } from "@/src/Utils/animations/variants/boxVariant";
 
 const hoverData = [
   {

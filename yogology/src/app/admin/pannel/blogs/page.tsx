@@ -1,4 +1,4 @@
-import Blogs from "@/components/Admin/pannel/blogs/blogs";
+import Blogs from "@/src/components/Admin/pannel/blogs/blogs";
 import React from "react";
 
 export const metadata = {

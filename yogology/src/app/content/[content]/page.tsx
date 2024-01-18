@@ -1,7 +1,7 @@
 "use client";
 
-import LoginProtects from "@/app/RouteProtects/LoginProtects";
-import Content from "@/components/Content/Content/Content";
+import LoginProtects from "@/src/app/RouteProtects/LoginProtects";
+import Content from "@/src/components/Content/Content/Content";
 import React from "react";
 // import meditation from
 

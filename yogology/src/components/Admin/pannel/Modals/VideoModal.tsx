@@ -14,13 +14,13 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-import CustomSnackbar from "@/components/Snackbar";
+import CustomSnackbar from "@/src/components/Snackbar";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { VideoInput, addVideos } from "@/Utils/mutation/addVideo";
+import { VideoInput, addVideos } from "@/src/Utils/mutation/addVideo";
 import { useSearchParams } from "next/navigation";
 import { LoadingButton } from "@mui/lab";
 import { Video } from "../tables/VideoTable";
-import { updateVideo } from "@/Utils/mutation/updateVideo";
+import { updateVideo } from "@/src/Utils/mutation/updateVideo";
 
 function VideoModal({
   open,

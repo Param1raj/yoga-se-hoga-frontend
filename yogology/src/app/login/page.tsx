@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./page.module.css";
-import background from "../../assets/images/loginbackground.jpg";
-import LoginSgnup from "@/components/Login&Signup/Login&Signup";
+import background from "@/assets/images/loginbackground.jpg";
+import LoginSgnup from "@/src/components/Login&Signup/Login&Signup";
 export const metadata = {
   title: "Yogaratha - Login",
   description: "Watch videos in details!",

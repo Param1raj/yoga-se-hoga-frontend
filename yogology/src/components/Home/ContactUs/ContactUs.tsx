@@ -1,14 +1,14 @@
 "use client";
 import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
-import images from "./images/contactUs.jpeg";
-// import ButtonComp from "@/components/ButtonComp";
-// import HoverInput from "@/components/HoverInput";
-import { animation } from "@/components/ContactUs/utils";
+import images from "@/assets/images/contactUs.jpeg";
+// import ButtonComp from "@/src/components/ButtonComp";
+// import HoverInput from "@/src/components/HoverInput";
+import { animation } from "@/src/components/ContactUs/utils";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
-import { textLeftVariant } from "@/Utils/animations/variants/textVariant";
+import { BoxVariant } from "@/src/Utils/animations/variants/boxVariant";
+import { textLeftVariant } from "@/src/Utils/animations/variants/textVariant";
 
 function ContactUs() {
   const {

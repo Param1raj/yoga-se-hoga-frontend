@@ -6,8 +6,8 @@ import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import SpaIcon from "@mui/icons-material/Spa";
 import { motion } from "framer-motion";
-import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
-import { textLeftVariant } from "@/Utils/animations/variants/textVariant";
+import { BoxVariant } from "@/src/Utils/animations/variants/boxVariant";
+import { textLeftVariant } from "@/src/Utils/animations/variants/textVariant";
 const services = [
   {
     title: "Solutions",

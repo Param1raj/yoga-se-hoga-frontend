@@ -1,7 +1,7 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import { motion } from "framer-motion";
-import TestimonialSvgIcon from "../../../assets/Iconsvg/TestimonialSvg";
+import TestimonialSvgIcon from "../../../../public/assets/Iconsvg/TestimonialSvg";
 function FeedbackCard({
   feedback,
   name,

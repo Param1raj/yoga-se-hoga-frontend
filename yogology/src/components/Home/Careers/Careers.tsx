@@ -1,11 +1,11 @@
 "use client";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import image1 from "./images/Careers-1.jpeg";
-import image2 from "./images/Careers-2.jpeg";
-import ButtonComp from "@/components/ButtonComp";
+import image1 from "@/assets/images/Careers-1.jpeg";
+import image2 from "@/assets/images/Careers-2.jpeg";
+import ButtonComp from "@/src/components/ButtonComp";
 import { motion } from "framer-motion";
-import { BoxVariant } from "@/Utils/animations/variants/boxVariant";
+import { BoxVariant } from "@/src/Utils/animations/variants/boxVariant";
 
 type GridCompProps = {
   image: string;

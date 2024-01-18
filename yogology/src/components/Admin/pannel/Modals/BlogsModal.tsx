@@ -11,12 +11,12 @@ import {
 } from "@mui/material";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { addBlog } from "@/Utils/mutation/addBlog";
+import { addBlog } from "@/src/Utils/mutation/addBlog";
 import { useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
-import CustomSnackbar from "@/components/Snackbar";
-import { updateBlog } from "@/Utils/mutation/updateBlog";
-import BlogType from "@/components/Blogs/Blog";
+import CustomSnackbar from "@/src/components/Snackbar";
+import { updateBlog } from "@/src/Utils/mutation/updateBlog";
+import BlogType from "@/src/components/Blogs/Blog";
 export type Blog = {
   imageUrl: string;
   heading: string;
