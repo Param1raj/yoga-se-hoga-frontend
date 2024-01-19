@@ -2,7 +2,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import GallaryItem from "./GallaryItem";
-import backgroundOne from "../../Home/AboutUs/images/AboutUs.jpeg";
+import backgroundOne from "@/assets/images/AboutUs.jpeg";
 import backgroundForth from "@/assets//images/two.jpeg";
 import backgroundThree from "@/assets//images/third.jpeg";
 import backgroundTwo from "@/assets//images/two.jpeg";

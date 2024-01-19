@@ -7,7 +7,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
     <>
       <Next13ProgressBar
         height="4px"
-        color="#5F2C70"
+        color="#fc0377"
         // options={{ showSpinner: true }}
         showOnShallow
       />

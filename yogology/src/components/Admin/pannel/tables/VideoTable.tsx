@@ -32,7 +32,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { AuthContext } from "@/src/app/AuthProvider";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getVideos } from "@/src/Utils/query/getVideos";
-import imageUrl from "../@/assets//images/errors.webp";
+import imageUrl from "@/assets/images/errors.webp";
 import { deleteVideo } from "@/src/Utils/mutation/deleteVideo";
 import VideoModal from "../Modals/VideoModal";
 import { useRouter } from "next13-progressbar";

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import {
   Box,
   Pagination,
@@ -14,6 +14,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogs } from "@/src/Utils/query/getBlogs";
 import { useRouter } from "next13-progressbar";
+import Link from "next/link";
 
 const demoArray = [1, 2, 3, 4];
 const PageSize = 4;
@@ -135,65 +136,69 @@ function Blog() {
       // border={"1px solid red"}
       justifyContent={"center"}
     >
-      <Box
-        width={{ xs: "97%", sm: "95%", md: "95%", lg: "90%", xl: "70%" }}
-        height={"100%"}
-        overflow={"scroll"}
-        sx={{
-          scrollBehavior: "smooth",
-          "&::-webkit-scrollbar": {
-            width: "1px",
-          },
-        }}
-        // border={"1px solid black"}
-        padding={{ x: "5px", sm: "10px", md: "10px", lg: "30px" }}
+      <Suspense
+        fallback={<div style={{ border: "1px solid red" }}>Loading....</div>}
       >
-        {data.map((data, index) => (
-          <Box
-            key={data._id}
-            height={{ xs: "60%", sm: "60%", md: "50%" }}
-            marginBottom={{ xs: "160px", md: "50px" }}
-            sx={{ cursor: "pointer" }}
-            onClick={() => {
-              push(`/blogs/${data._id}`);
-            }}
-          >
-            {index % 2 == 0 ? (
-              <BlogCardReverse
-                title={data.heading}
-                description={data.introduction[0]}
-                date={data.createdAt}
-                image={data.imageUrl}
-              />
-            ) : (
-              <BlogCard
-                title={data.heading}
-                description={data.introduction[0]}
-                date={data.createdAt}
-                image={data.imageUrl}
-              />
-            )}
-            {/* </Grid> */}
-          </Box>
-        ))}
         <Box
-          width={"100%"}
-          height={"50px"}
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          // border={"1px solid red"}
+          width={{ xs: "97%", sm: "95%", md: "95%", lg: "90%", xl: "70%" }}
+          height={"100%"}
+          overflow={"scroll"}
+          sx={{
+            scrollBehavior: "smooth",
+            "&::-webkit-scrollbar": {
+              width: "1px",
+            },
+          }}
+          // border={"1px solid black"}
+          padding={{ x: "5px", sm: "10px", md: "10px", lg: "30px" }}
         >
-          <Pagination
-            count={count}
-            size={"large"}
-            variant="outlined"
-            color="secondary"
-            page={page}
-            onChange={handleChange}
-          />
+          {data.map((data, index) => (
+            <Link href={`/blogs/${data._id}`}>
+              <Box
+                key={data._id}
+                height={{ xs: "60%", sm: "60%", md: "50%" }}
+                marginBottom={{ xs: "160px", md: "50px" }}
+                sx={{ cursor: "pointer" }}
+              >
+                {index % 2 == 0 ? (
+                  <BlogCardReverse
+                    title={data.heading}
+                    description={data.introduction[0]}
+                    date={data.createdAt}
+                    image={data.imageUrl}
+                  />
+                ) : (
+                  <BlogCard
+                    title={data.heading}
+                    description={data.introduction[0]}
+                    date={data.createdAt}
+                    image={data.imageUrl}
+                  />
+                )}
+                {/* </Grid> */}
+              </Box>
+            </Link>
+          ))}
+
+          <Box
+            width={"100%"}
+            height={"50px"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            // border={"1px solid red"}
+          >
+            <Pagination
+              count={count}
+              size={"large"}
+              variant="outlined"
+              color="secondary"
+              page={page}
+              onChange={handleChange}
+            />
+          </Box>
         </Box>
-      </Box>
+      </Suspense>
     </Box>
   );
 }

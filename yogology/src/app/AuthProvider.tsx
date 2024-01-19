@@ -1,6 +1,7 @@
 "use client";
 import { ReactNode, createContext, useState } from "react";
 import Cookies from "js-cookie";
+// TODO: Fix this context api to work properly.
 export const AuthContext = createContext({
   auth: { isAuth: false, hasSubscribed: false, isAdmin: false, token: "" },
   setAuth: ({

@@ -26,7 +26,9 @@ import PaidIcon from "@mui/icons-material/Paid";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import { usePathname } from "next/navigation";
 import { CircularProgress } from "@mui/material";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { useRouter } from "next13-progressbar";
+import Link from "next/link";
 
 const DASHBOARD_URL = "https://dashboard.razorpay.com/app/dashboard";
 
@@ -34,18 +36,22 @@ const PrimaryData = [
   {
     icon: <DashboardIcon />,
     name: "Dashboard",
+    link: "/admin/pannel",
   },
   {
     icon: <SlowMotionVideoIcon />,
     name: "Videos",
+    link: "/admin/pannel/videos?page=1",
   },
   {
     icon: <SupervisedUserCircleIcon />,
     name: "Users",
+    link: "/admin/pannel/users?page=1",
   },
   {
     icon: <BookIcon />,
     name: "Blogs",
+    link: "/admin/pannel/blogs?page=1",
   },
 ];
 
@@ -53,10 +59,12 @@ const SecodaryData = [
   {
     icon: <PaidIcon />,
     name: "Payments",
+    link: DASHBOARD_URL,
   },
   {
     icon: <SubscriptionsIcon />,
     name: "Subscribers",
+    link: "/admin/pannel/subscribers",
   },
 ];
 
@@ -69,6 +77,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: "hidden",
+  marginTop: "3px",
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
@@ -81,6 +90,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
+  marginTop: "3px",
 });
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -158,13 +168,14 @@ export default function MiniDrawer({
   }, [modal]);
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", zIndex: -1 }}>
       <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
           backgroundColor: "#5F2C70",
           padding: "10px",
+          marginTop: "3px",
         }}
         open={open}
       >
@@ -186,8 +197,15 @@ export default function MiniDrawer({
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} sx={{ border: "0px" }}>
-        <DrawerHeader sx={{ paddingY: "22px", background: "#5F2C70" }}>
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader
+          sx={{
+            paddingY: "22px",
+            // marginTop: "3px",
+            background: "#5F2C70",
+            // zIndex: 1,
+          }}
+        >
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
@@ -198,134 +216,93 @@ export default function MiniDrawer({
         </DrawerHeader>
         <Divider />
         <List>
-          {PrimaryData.map(({ name, icon }, index) => (
-            <ListItem
-              key={name}
-              disablePadding
-              sx={{
-                display: "block",
-                color:
-                  pathNameArray.length === 3 && index === 0
-                    ? "#5F2C70"
-                    : pathNameArray[3] === name.toLowerCase()
-                    ? "#5F2C70"
-                    : "",
-                backgroundColor:
-                  pathNameArray.length === 3 && index === 0
-                    ? "#875d959c"
-                    : pathNameArray[3] === name.toLowerCase()
-                    ? "#875d959c"
-                    : "",
-              }}
-              onClick={() => {
-                if (name === "Dashboard") {
-                  push(`/admin/pannel`);
-                } else {
-                  setModal(true);
-                  push(`/admin/pannel/${name.toLowerCase()}?page=1`);
-                  // alert(modal);
-                }
-              }}
-            >
-              <ListItemButton
+          {PrimaryData.map(({ name, icon, link }, index) => (
+            <Link href={link} replace>
+              <ListItem
+                disablePadding
+                key={name}
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
+                  display: "block",
+                  color: "#5F2C70",
+                  backgroundColor:
+                    pathNameArray.length === 3 && index === 0
+                      ? "#875d959c"
+                      : pathNameArray[3] === name.toLowerCase()
+                      ? "#875d959c"
+                      : "",
                 }}
+                // onClick={() => {
+                //   push(link);
+                // }}
               >
-                <ListItemIcon
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                    color:
-                      pathName.length === 3 && index === 0 ? "#5F2C70" : "",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  {icon}
-                </ListItemIcon>
-                <ListItemText primary={name} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                      color:
+                        pathName.length === 3 && index === 0 ? "#5F2C70" : "",
+                    }}
+                  >
+                    {icon}
+                  </ListItemIcon>
+                  <ListItemText primary={name} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
         <List>
-          {SecodaryData.map(({ name, icon }, index) => (
-            <ListItem
-              key={name}
-              disablePadding
-              sx={{
-                display: "block",
-                color:
-                  pathNameArray.length === 3 && index === 0
-                    ? "#5F2C70"
-                    : pathNameArray[3] === name.toLowerCase()
-                    ? "#5F2C70"
-                    : "",
-                backgroundColor:
-                  pathNameArray.length === 3 && index === 0
-                    ? "#875d959c"
-                    : pathNameArray[3] === name.toLowerCase()
-                    ? "#875d959c"
-                    : "",
-              }}
-              onClick={() => {
-                if (name === "Dashboard") {
-                  push(`/admin/pannel`);
-                } else {
-                  setModal(true);
-                  push(`/admin/pannel/${name.toLowerCase()}`);
-                  // alert(modal);
-                }
-              }}
+          {SecodaryData.map(({ name, icon, link }, index) => (
+            <Link
+              href={link}
+              target={name === "Payments" ? "_blank" : ""}
+              replace
             >
-              <ListItemButton
+              <ListItem
+                key={name}
+                disablePadding
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
+                  display: "block",
+                  color: "#5F2C70",
+                  backgroundColor:
+                    pathNameArray[3] === name.toLowerCase() ? "#875d959c" : "",
                 }}
               >
-                <ListItemIcon
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  {icon}
-                </ListItemIcon>
-                {name === "Payments" ? (
-                  <a href={DASHBOARD_URL} target="_blank">
-                    <ListItemText
-                      primary={name}
-                      sx={{ opacity: open ? 1 : 0 }}
-                    />
-                  </a>
-                ) : (
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {icon}
+                  </ListItemIcon>
                   <ListItemText primary={name} sx={{ opacity: open ? 1 : 0 }} />
-                )}
-              </ListItemButton>
-            </ListItem>
+                  {name === "Payments" && open && <OpenInNewIcon />}
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1 }}>
-        {/* <DrawerHeader /> */}
         {children}
-        {modal && (
-          <CircularProgress
-            color="secondary"
-            sx={{
-              // border: "1px solid black",
-              position: "absolute",
-              top: "40vh",
-              left: "50vw",
-            }}
-          />
-        )}
       </Box>
     </Box>
   );

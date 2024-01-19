@@ -26,3 +26,16 @@ body{
     color-scheme: light;
   }
 }
+
+body::-webkit-scrollbar {
+  width: 10px;               
+}
+
+body::-webkit-scrollbar-track {
+  background: white;       
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #5F2C70;   
+  border-radius: 2px;
+}

@@ -3,29 +3,21 @@ import React, { ReactNode } from "react";
 import ResponsiveAppBar from "@/src/components/Navbar/Header";
 import Footer from "@/src/components/Footer/Footer";
 import { usePathname } from "next/navigation";
-import Sidebar from "@/src/components/Admin/pannel/Sidebar";
-import AdminLoginProtect from "@/src/app/RouteProtects/AdminLoginProtect";
-import { Box } from "@mui/material";
-
-const AdminPath = "/admin/pannel";
 
 function App({ children }: { children: ReactNode }) {
-  const pathName = usePathname().split("/");
-  console.log(`PathName:{${pathName}}`);
+  const Path = usePathname();
+  console.log(Path.includes("admin"));
   return (
-    <Box>
-      {pathName[1] === "admin" && pathName[2] === "pannel" ? (
+    <>
+      {!Path.includes("/admin") ? (
         <>
-          <Sidebar>{children}</Sidebar>
+          <ResponsiveAppBar /> {children}
+          <Footer />
         </>
       ) : (
-        <>
-          <ResponsiveAppBar />
-          {children}
-        </>
+        children
       )}
-      {pathName[1] === "admin" && pathName[2] === "pannel" ? <></> : <Footer />}
-    </Box>
+    </>
   );
 }
 

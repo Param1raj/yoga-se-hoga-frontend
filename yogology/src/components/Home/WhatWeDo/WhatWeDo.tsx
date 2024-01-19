@@ -2,9 +2,9 @@
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import image1 from "./images/Grid-1.jpeg";
-import image2 from "./images/Grid-2.jpeg";
-import image3 from "./images/Grid-3.jpeg";
+import image1 from "@/assets/images/Grid-1.jpeg";
+import image2 from "@/assets/images/Grid-2.jpeg";
+import image3 from "@/assets/images/Grid-3.jpeg";
 import HoverImage from "./HoverImage";
 import ButtonComp from "@/src/components/ButtonComp";
 import { motion } from "framer-motion";

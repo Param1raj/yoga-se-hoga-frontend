@@ -24,7 +24,7 @@ import { TabList } from "@mui/lab";
 
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import HoverImage from "@/src/components/Home/WhatWeDo/HoverImage";
-import image1 from "../@/assets//images/loginbackground.jpg";
+import image1 from "@/assets/images/loginbackground.jpg";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 // import image2 from "@/assets//images/side-bend.gif";
 // import image3 from "@/assets//images/side-bend.gif";

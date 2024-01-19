@@ -3,12 +3,12 @@ import { Inter } from "next/font/google";
 import AuthProvider from "./AuthProvider";
 import App from "./app";
 import QueryProvider from "./QueryProvider";
-import Providers from "@/src/components/Provider";
+import ProgressbarProvider from "@/src/components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Yogaratha - Home",
+  title: "Home | Yogaratha ",
   description: "Your online yoga institute!",
 };
 
@@ -42,9 +42,9 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           <QueryProvider>
-            <Providers>
+            <ProgressbarProvider>
               <App>{children}</App>
-            </Providers>
+            </ProgressbarProvider>
           </QueryProvider>
         </AuthProvider>
       </body>

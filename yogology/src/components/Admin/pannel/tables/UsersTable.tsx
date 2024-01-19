@@ -28,7 +28,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUsers } from "@/src/Utils/query/getUsers";
 import Image from "next/image";
-import imageUrl from "../@/assets//images/errors.webp";
+import imageUrl from "@/assets/images/errors.webp";
 import { deleteUser } from "@/src/Utils/mutation/deletUser";
 import { useRouter } from "next13-progressbar";
 // import { useRouter } from "next/router";

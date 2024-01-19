@@ -10,7 +10,6 @@ import CustomManu from "./CustomManu";
 import NavbarElement from "./NavElement";
 import "./navbar.css";
 import Link from "next/link";
-// import NextNProgress from "nextjs-progressbar";
 
 const NavRoutes = [
   {
@@ -36,20 +35,16 @@ function Navbar() {
       sx={{
         background: "#FFF8FD;",
         boxShadow: "none",
-        // border: "1px solid black",
         display: "flex",
         maxWidth: "100vw",
-        // marginTop: "10px",
         zIndex: "1",
       }}
       position="fixed"
     >
-      {/* <NextNProgress color="#000000" height={0.3} /> */}
       <Box
         sx={{
           padding: { xs: "0.8rem", sm: "0.8rem", md: "0.5rem" },
         }}
-        // border={"1px solid red"}
         width={"100%"}
       >
         <Toolbar
@@ -60,9 +55,9 @@ function Navbar() {
             justifyContent: "space-between",
           }}
         >
-          <a href="/">
+          <Link href="/">
             <Image src={logo} alt="logo" />
-          </a>
+          </Link>
           <CustomDrawer />
           <Box
             sx={{

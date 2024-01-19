@@ -5,7 +5,7 @@ import React from "react";
 function Pannel() {
   const pathName = usePathname();
   console.log(pathName, "+++++++++++++++++Path Name++++++++++++++++");
-  return <div></div>;
+  return <div>Data Not available!</div>;
 }
 
 export default Pannel;

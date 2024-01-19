@@ -7,8 +7,8 @@ export const metadata = {
   description: "Admin Dashboard for management",
 };
 
-function page() {
+function Page() {
   return <Pannel />;
 }
 
-export default page;
+export default Page;
