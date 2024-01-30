@@ -1,15 +1,15 @@
 "use client";
-import { AuthContext } from "@/src/app/AuthProvider";
+import { AuthContext, AuthContextType } from "@/src/app/AuthProvider";
 import { useRouter } from "next13-progressbar";
 // import { useRouter } from "next/navigation";
 import React, { ReactNode, useContext } from "react";
 
 function LoginProtects({ children }: { children: ReactNode }) {
   const {
-    auth: { isAuth },
-  } = useContext(AuthContext);
+    auth: { isAuthenticated },
+  } = useContext(AuthContext) as AuthContextType;
   const { push } = useRouter();
-  if (!isAuth) {
+  if (!isAuthenticated) {
     push("/login");
   }
   return children;

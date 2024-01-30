@@ -29,7 +29,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
 // import { All_Video } from "../../../../../apis.";
-import { AuthContext } from "@/src/app/AuthProvider";
+import { AuthContext, AuthContextType } from "@/src/app/AuthProvider";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getVideos } from "@/src/Utils/query/getVideos";
 import imageUrl from "@/assets/images/errors.webp";
@@ -88,7 +88,7 @@ function VideosTable() {
   let count = 10;
   const pathName = usePathname();
   const { push } = useRouter();
-  const { auth } = React.useContext(AuthContext);
+  const { auth } = React.useContext(AuthContext) as AuthContextType;
   const [sltRow, setSltRow] = React.useState<Video>();
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);

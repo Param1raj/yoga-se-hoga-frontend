@@ -15,12 +15,12 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useForm } from "react-hook-form";
 import { Admin_Login_Api } from "../../../apis";
-import { AuthContext } from "@/src/app/AuthProvider";
+import { AuthContext, AuthContextType } from "@/src/app/AuthProvider";
 import CustomSnackbar from "../Snackbar";
 import { useRouter } from "next13-progressbar";
 function Admin() {
   const [visible, setVisible] = useState(false);
-  let { setAuth, auth } = useContext(AuthContext);
+  let { setAuth, auth } = useContext(AuthContext) as AuthContextType;
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
   const [message, setMessage] = useState("");
@@ -57,7 +57,7 @@ function Admin() {
           "expires=" +
           date.toUTCString() +
           ";path=/";
-        setAuth({ isAdmin: true, isAuth: true });
+        setAuth({ isAdmin: true, isAuthenticated: true });
         setMessage("Login Successful!");
         setOpenSuccess(true);
         reset();

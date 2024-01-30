@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 // import Container from "@mui/material/Container";
 import { Box, Drawer, Stack, Typography } from "@mui/material";
 import ButtonComp from "../ButtonComp";
-import { AuthContext } from "@/src/app/AuthProvider";
+import { AuthContext, AuthContextType } from "@/src/app/AuthProvider";
 import Cookies from "js-cookie";
 import { useRouter } from "next13-progressbar";
 const NavRoutes = [
@@ -40,8 +40,8 @@ function CustomDrawer() {
     setAnchor(!anchor);
   };
   const {
-    auth: { isAuth },
-  } = useContext(AuthContext);
+    auth: { isAuthenticated },
+  } = useContext(AuthContext) as AuthContextType;
   const { push } = useRouter();
   return (
     <Box
@@ -107,7 +107,7 @@ function CustomDrawer() {
               paddingLeft={"20px"}
               display={{ xs: "block", sm: "none" }}
             >
-              {isAuth ? (
+              {isAuthenticated ? (
                 <>
                   <ButtonComp text="login" width={"70%"} link={"/login"} />
                   <ButtonComp

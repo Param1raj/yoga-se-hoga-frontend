@@ -1,5 +1,5 @@
 "use client";
-import { AuthContext } from "@/src/app/AuthProvider";
+import { AuthContext, AuthContextType } from "@/src/app/AuthProvider";
 import { useRouter } from "next13-progressbar";
 import React, { ReactNode, useContext } from "react";
 
@@ -12,9 +12,9 @@ function SubscriptionProtect({
 }) {
   const { push } = useRouter();
   const {
-    auth: { isAuth, hasSubscribed },
-  } = useContext(AuthContext);
-  if (!isAuth || !hasSubscribed) {
+    auth: { isAuthenticated, hasSubscribed },
+  } = useContext(AuthContext) as AuthContextType;
+  if (!isAuthenticated || !hasSubscribed) {
     push("/videos/subscribe");
   }
   return <> {children}</>;

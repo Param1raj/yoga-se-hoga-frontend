@@ -217,7 +217,7 @@ export default function MiniDrawer({
         <Divider />
         <List>
           {PrimaryData.map(({ name, icon, link }, index) => (
-            <Link href={link} replace>
+            <Link href={link} replace key={name}>
               <ListItem
                 disablePadding
                 key={name}
@@ -263,6 +263,7 @@ export default function MiniDrawer({
         <List>
           {SecodaryData.map(({ name, icon, link }, index) => (
             <Link
+              key={name}
               href={link}
               target={name === "Payments" ? "_blank" : ""}
               replace

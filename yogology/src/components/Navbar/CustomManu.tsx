@@ -1,5 +1,5 @@
 "use client";
-import { AuthContext } from "@/src/app/AuthProvider";
+import { AuthContext, AuthContextType } from "@/src/app/AuthProvider";
 import {
   Avatar,
   Box,
@@ -8,13 +8,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import React, {
-  MouseEvent,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { MouseEvent, ReactNode, useContext, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 // import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
@@ -22,7 +16,22 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Me } from "../../../apis";
 import { envs } from "@/src/Utils/config/envs";
 import { useRouter } from "next13-progressbar";
-const settings = ["Dashboard", "Logout"];
+import Link from "next/link";
+const settings = [
+  {
+    name: "Dashboard",
+    link: "/content",
+    handle: () => {},
+  },
+  {
+    name: "Logout",
+    link: "/",
+    handle: () => {
+      Cookies.remove(envs.USER_COOKIE_KEY);
+      Cookies.remove(envs.ADMIN_COOKIE_KEY);
+    },
+  },
+];
 
 // type User = {
 //   name: string;
@@ -33,22 +42,22 @@ const settings = ["Dashboard", "Logout"];
 //   subscriptionEndDate?: string;
 // };
 
-function  CustomManu({ children }: { children: ReactNode }) {
-  // const [user, setUser] = useState<User | null>(null);
+function CustomManu({ children }: { children: ReactNode }) {
   const { push, refresh } = useRouter();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const {
+    auth: { isAuthenticated },
+    setAuth,
+  } = useContext(AuthContext) as AuthContextType;
+  console.log("isAuthenticated right now?", isAuthenticated);
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const {
-    auth: { isAuth, token },
-  } = useContext(AuthContext);
-
-  const handleCloseUserMenu = () => {
+  function handleCloseUserMenu() {
     setAnchorElUser(null);
-  };
-  return isAuth ? (
+  }
+  return isAuthenticated ? (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -80,29 +89,25 @@ function  CustomManu({ children }: { children: ReactNode }) {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
-          <MenuItem
-            key={setting}
+        {settings.map(({ name, link, handle }) => (
+          <Link
+            key={name}
+            href={link}
             onClick={() => {
-              if (setting === "Logout") {
-                Cookies.remove(envs.USER_COOKIE_KEY);
-                Cookies.remove(envs.ADMIN_COOKIE_KEY);
-                push("/", {});
-                refresh();
-              } else if (setting === "Dashboard") {
-                push("/content");
-              }
+              handle();
               handleCloseUserMenu();
+              if (name === "Logout") setAuth({ isAuthenticated: false });
             }}
-            sx={{ width: "100%" }}
           >
-            <Typography textAlign="center">{setting}</Typography>
-          </MenuItem>
+            <MenuItem key={name} sx={{ width: "100%" }}>
+              <Typography textAlign="center">{name}</Typography>
+            </MenuItem>
+          </Link>
         ))}
       </Menu>
     </Box>
-  ) : !isAuth ? (
-    <> {children}</>
+  ) : !isAuthenticated ? (
+    <Box> {children}</Box>
   ) : (
     <></>
   );

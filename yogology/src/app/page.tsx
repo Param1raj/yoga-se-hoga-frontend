@@ -9,9 +9,12 @@ import WhatWeDo from "@/src/components/Home/WhatWeDo/WhatWeDo";
 import Careers from "@/src/components/Home/Careers/Careers";
 import EmailSubscrib from "@/src/components/Home/EmailSubscrib/EmailSubscrib";
 import ContactUs from "@/src/components/Home/ContactUs/ContactUs";
-import ParticleComp from "@/src/components/Particle";
+import { useContext } from "react";
+import { AuthContext, AuthContextType } from "./AuthProvider";
 
 export default function Home() {
+  const { auth } = useContext(AuthContext) as AuthContextType;
+  console.log("authentication is here we are doing.", auth);
   return (
     <div className={styles.main}>
       <Header />

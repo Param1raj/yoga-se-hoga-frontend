@@ -31,7 +31,7 @@ function HeaderLayoutWithCreateButton({ type }: { type: string }) {
     >
       {type === "blog" && openModal && (
         <ModalComp
-          type={type}
+          // type={type}
           onClose={() => setOpenModal(false)}
           open={openModal}
         />

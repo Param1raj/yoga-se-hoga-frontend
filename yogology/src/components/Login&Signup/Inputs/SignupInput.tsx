@@ -8,6 +8,7 @@ import { UserSignupInput, userSignup } from "@/src/Utils/mutation/signupUser";
 import googleAuthentication from "../googleAuth";
 import { AuthenticationType } from "@/src/components/types";
 import GoogleButton from "./GoogleButton";
+import { useRouter } from "next13-progressbar";
 
 function SignupInput({
   setOpenError,
@@ -22,6 +23,7 @@ function SignupInput({
     AuthenticationType.gernal
   );
   const [uid, setUid] = useState<string | undefined>();
+  const { replace } = useRouter();
   const handleUid = (value: string) => {
     setUid(value);
   };
@@ -46,8 +48,8 @@ function SignupInput({
     data: signupData,
     error,
   } = useMutation({
-    mutationFn: async (data: UserSignupInput) => {
-      return await userSignup(data, type);
+    mutationFn: (data: UserSignupInput) => {
+      return userSignup(data, type);
     },
     mutationKey: ["signup"],
   });
@@ -71,6 +73,7 @@ function SignupInput({
       setOpenSuccess(true);
       setMessage("Successfully registered!");
       reset();
+      replace("/login");
     }
   }, [isSuccess, isError]);
 
@@ -182,6 +185,7 @@ function SignupInput({
         >
           Signup
         </LoadingButton>
+        {/* TODO: Need to test in production and also make sure to work properly in dev only */}
         <Button
           onClick={async () => {
             setType(AuthenticationType.google);

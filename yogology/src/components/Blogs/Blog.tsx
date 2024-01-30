@@ -153,7 +153,7 @@ function Blog() {
           padding={{ x: "5px", sm: "10px", md: "10px", lg: "30px" }}
         >
           {data.map((data, index) => (
-            <Link href={`/blogs/${data._id}`}>
+            <Link href={`/blogs/${data._id}`} key={data._id}>
               <Box
                 key={data._id}
                 height={{ xs: "60%", sm: "60%", md: "50%" }}

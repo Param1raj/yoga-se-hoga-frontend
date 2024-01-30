@@ -1,9 +1,6 @@
 "use client";
 import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
-import React, { useEffect } from "react";
-import ButtonComp from "../ButtonComp";
-import HoverInput from "../HoverInput";
-import { LaptopChromebookRounded } from "@mui/icons-material";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { animation } from "./utils";
 import { motion } from "framer-motion";

@@ -9,17 +9,16 @@ import LoginInput from "./Inputs/LoginInput";
 import SignupInput from "./Inputs/SignupInput";
 import Heading from "./Heading";
 import { useRouter } from "next13-progressbar";
-function LoginSgnup({
-  isForLogin,
-  image,
-  redirectTo,
-}: {
+import Link from "next/link";
+
+type LoginSignUpProps = {
   isForLogin: boolean;
   image: string;
   redirectTo?: string;
-}) {
+};
+
+function LoginSignup({ isForLogin, image, redirectTo }: LoginSignUpProps) {
   const { push } = useRouter();
-  // let { setAuth } = useContext(AuthContext);
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openError, setOpenError] = useState(false);
 
@@ -136,14 +135,13 @@ function LoginSgnup({
                 fontWeight={"400"}
               >
                 {isForLogin ? "Don't have account?" : "Already Registered?"}
-                <span
-                  onClick={() => {
-                    push(isForLogin ? "/signup" : "/login");
-                  }}
-                  style={{ color: "blue", cursor: "pointer" }}
-                >
-                  {isForLogin ? " Register." : " Login"}
-                </span>
+                <Link href={isForLogin ? "/signup" : "/login"}>
+                  <span
+                    style={{ color: "blue", cursor: "pointer" }}
+                  >
+                    {isForLogin ? " Register." : " Login"}
+                  </span>
+                </Link>
               </Typography>
             </motion.div>
           </Stack>
@@ -153,4 +151,4 @@ function LoginSgnup({
   );
 }
 
-export default LoginSgnup;
+export default LoginSignup;

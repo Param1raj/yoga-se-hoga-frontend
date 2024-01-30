@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Button,
@@ -19,20 +19,23 @@ import Cookies from "js-cookie";
 import { envs } from "@/src/Utils/config/envs";
 import googleAuthentication from "../googleAuth";
 import { AuthenticationType } from "@/src/components/types";
-import GoogleIcon from "@mui/icons-material/Google";
 import GoogleButton from "./GoogleButton";
 import { useRouter } from "next13-progressbar";
+import { AuthContext, AuthContextType } from "@/src/app/AuthProvider";
 // TODO: Replace the following with your app's Firebase project configuration
 
 function LoginInput({
   setOpenError,
   setOpenSuccess,
   setMessage,
+  lastVisited,
 }: {
   setOpenError: (val: boolean) => void;
   setOpenSuccess: (val: boolean) => void;
   setMessage: (val: string) => void;
+  lastVisited?: string; // it is suppose to be the path of the last visited page.
 }) {
+  const { setAuth } = useContext(AuthContext) as AuthContextType;
   const { push } = useRouter();
   const [type, setType] = useState<AuthenticationType>(
     AuthenticationType.gernal
@@ -53,13 +56,12 @@ function LoginInput({
   };
   const {
     isLoading,
-    isError,
     mutateAsync,
     isSuccess,
     data: LoginData,
     // isPaused,
   } = useMutation({
-    mutationFn: async (data: UserInput) => {
+    mutationFn: (data: UserInput) => {
       return userLogin(data, type);
     },
     mutationKey: ["login"],
@@ -83,10 +85,12 @@ function LoginInput({
       Cookies.set(envs.USER_COOKIE_KEY, LoginData.data.data.token, {
         expires: date,
       });
+      console.log("trying to login!");
+      setAuth({ isAuthenticated: true });
       setOpenSuccess(true);
       setMessage("Login Successful");
       reset();
-      push("/content");
+      push(lastVisited ? lastVisited : "/content");
     }
   }, [isSuccess]);
 
