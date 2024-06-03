@@ -320,7 +320,7 @@ function Body() {
                 fontWeight={"500"}
                 color={"#5F2C70"}
               >
-                Free
+                700&#8377;
               </Typography>
 
               <Box width={"100%"}>

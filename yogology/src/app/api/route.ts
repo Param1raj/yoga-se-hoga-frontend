@@ -4,8 +4,8 @@ import shortid from "shortid";
 
 export const POST = async (req: Request) => {
   const razorpay = new Razorpay({
-    key_id: process.env.KEY_ID || "",
-    key_secret: process.env.KEY_SECRET,
+    key_id: process.env.NEXT_PUBLIC_KEY_ID || "",
+    key_secret: process.env.NEXT_PUBLIC_KEY_SECRET,
   });
   const payment_capture = 1;
   const amount = 700;
