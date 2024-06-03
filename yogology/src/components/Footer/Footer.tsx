@@ -61,7 +61,7 @@ function Footer() {
             }}
             padding={{ xs: "10px", md: "20px" }}
             zIndex={10}
-            sx={{ backgroundColor: { xs: "none", md: "#1D0427" } }}
+            sx={{ backgroundColor: { xs: "#1D0427" } }}
           >
             <Grid
               paddingX={{ sm: "20px" }}
