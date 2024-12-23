@@ -1,4 +1,4 @@
-const HostAndPort = "https://yoga-backend-service.onrender.com";
+const HostAndPort = "http://http://51.20.96.45:8000";
 
 export const Login_Api = `${HostAndPort}/user/login`;
 export const Signup_Api = `${HostAndPort}/user/signup`;
